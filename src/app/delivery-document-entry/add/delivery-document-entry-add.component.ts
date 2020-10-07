@@ -77,7 +77,7 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
         materialType: new FormControl(deliveryDocumentEntry.material.type, Validators.required),
         quantity: new FormControl(deliveryDocumentEntry.quantity, Validators.required),
         measureUnit: new FormControl(deliveryDocumentEntry.measureUnit, Validators.required),
-        estimatePositionName: new FormControl(deliveryDocumentEntry.estimatePosition.name, Validators.required),
+        estimatePositionName: new FormControl(deliveryDocumentEntry.estimatePosition.name + ';' + deliveryDocumentEntry.estimatePosition.costCode.fullCode, Validators.required),
         projectCode: new FormControl(deliveryDocumentEntry.costCode.projectCode, Validators.required),
         costType: new FormControl(deliveryDocumentEntry.costCode.costType, Validators.required),
         priceType: new FormControl(deliveryDocumentEntry.deliveryPrice.priceType, Validators.required),
@@ -138,8 +138,8 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
       this.estimatePositions.next(Object.values(response)[0]);
 
       const estimatePositions = this.estimatePositions.getValue();
-      for (const estimatePsisition of estimatePositions) {
-        this.estimatePositionNames.push(estimatePsisition.name + ';' + estimatePsisition.costCode.fullCode);
+      for (const estimatePosition of estimatePositions) {
+        this.estimatePositionNames.push(estimatePosition.name + ';' + estimatePosition.costCode.fullCode);
       }
     });
 
@@ -200,6 +200,8 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
         break;
       }
     }
+
+    this.getDeliveryPrice();
   }
 
   onSelectProjectCode(projectCode: {}) {
@@ -215,13 +217,12 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
     this.deliveryDocumentEntryAddForm.patchValue({
       costType: ''
     });
-    this.getDeliveryPrice();
   }
 
   getDeliveryPrice() {
     const priceType = this.deliveryDocumentEntryAddForm.value.priceType;
     const materialType = this.deliveryDocumentEntryAddForm.value.materialType;
-    const projectCode = this.deliveryDocumentEntryAddForm.value.projectCode;
+    const projectCode = this.selectedEstimatePosition.costCode.projectCode;
 
     this.deliveryDocumentEntryAddForm.patchValue({
       deliveryPrice: ''
@@ -232,14 +233,6 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
     const deliveryPrices = this.deliveryPrices.getValue();
     for (const price of deliveryPrices) {
       if (priceType === price.priceType && materialType === price.material.type && projectCode === price.projectCode) {
-        this.deliveryPrice = price;
-        this.deliveryDocumentEntryAddForm.patchValue({
-          deliveryPrice: this.deliveryPrice.price
-        });
-
-        this.isDeliveryPriceValid = true;
-        break;
-      } else if (priceType === price.priceType && materialType === price.material.type && price.projectCode === 'NOT DEFINED') {
         this.deliveryPrice = price;
         this.deliveryDocumentEntryAddForm.patchValue({
           deliveryPrice: this.deliveryPrice.price
