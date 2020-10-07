@@ -197,6 +197,11 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
     for (const estimatePosition of this.estimatePositions.getValue()) {
       if (estimatePosition.name + ';' + estimatePosition.costCode.fullCode === selectedEstimatePositionName) {
         this.selectedEstimatePosition = estimatePosition;
+
+        this.deliveryDocumentEntryAddForm.patchValue({
+          projectCode: estimatePosition.costCode.projectCode,
+          costType: estimatePosition.costCode.costType
+        });
         break;
       }
     }
