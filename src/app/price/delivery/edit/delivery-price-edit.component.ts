@@ -142,8 +142,8 @@ export class DeliveryPriceEditComponent implements OnInit {
   onCheckAndSavePrice() {
 
     const editedDeliveryPrice = new DeliveryPrice(
-      this.selectedContractor,
-      this.selectedMaterial,
+      this.price.contractor,
+      this.price.material,
       this.price.priceType,
       this.deliveryPriceEditForm.value.editedPriceValue,
       this.deliveryPriceEditForm.value.editedStartDate,
@@ -152,8 +152,8 @@ export class DeliveryPriceEditComponent implements OnInit {
     );
 
     const newDeliveryPrice = new DeliveryPrice(
-      this.selectedContractor,
-      this.selectedMaterial,
+      this.price.contractor,
+      this.price.material,
       this.price.priceType,
       this.deliveryPriceEditForm.value.newPriceValue,
       this.deliveryPriceEditForm.value.newStartDate,

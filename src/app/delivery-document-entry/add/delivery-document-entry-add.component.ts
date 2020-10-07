@@ -26,7 +26,7 @@ import {DeliveryDocumentRepositoryService} from '../../delivery-document/reposit
 })
 export class DeliveryDocumentEntryAddComponent implements OnInit {
   deliveryDocumentEntryAddForm: FormGroup;
-  contractorNames =[];
+  contractorNames = [];
   contractors = new BehaviorSubject<Client[]>([]);
   materialTypes = [];
   materials = new BehaviorSubject<Material[]>([]);
