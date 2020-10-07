@@ -23,12 +23,16 @@ export class CostCodeAddComponent implements OnInit {
     if (this.isOnEdit) {
       this.costCodeForm = new FormGroup({
         projectCode: new FormControl(this.costCode.projectCode, Validators.required),
-        costType: new FormControl(this.costCode.costType)
+        costType: new FormControl(this.costCode.costType, Validators.required),
+        projectCodeDescription: new FormControl(this.costCode.projectCodeDescription, Validators.required),
+        costTypeDescription: new FormControl(this.costCode.costTypeDescription, Validators.required)
       });
     } else {
       this.costCodeForm = new FormGroup({
         projectCode: new FormControl('', Validators.required),
-        costType: new FormControl('', Validators.required)
+        costType: new FormControl('', Validators.required),
+        projectCodeDescription: new FormControl('', Validators.required),
+        costTypeDescription: new FormControl('', Validators.required)
       });
     }
   }
@@ -37,7 +41,9 @@ export class CostCodeAddComponent implements OnInit {
 
     const costCode = new CostCode(
       this.costCodeForm.value.projectCode,
-      this.costCodeForm.value.costType
+      this.costCodeForm.value.costType,
+      this.costCodeForm.value.projectCodeDescription,
+      this.costCodeForm.value.costTypeDescription
     );
 
     if (this.isOnEdit) {
