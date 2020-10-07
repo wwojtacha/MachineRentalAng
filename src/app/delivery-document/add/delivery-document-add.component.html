@@ -3,6 +3,18 @@
   <div class="row">
     <div class="col-xs-2">
       <div class="form-group">
+        <label for="contractorName">Contractor</label>
+        <select type="text" id="contractorName" formControlName="contractorName" class="form-control" (ngModelChange)="chooseContractor($event)">
+          <option></option>
+          <option *ngFor="let contractorName of contractorNames" [ngValue]="contractorName">{{contractorName}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
         <label for="documentNumber">Document number</label>
         <input type="text" id="documentNumber" formControlName="documentNumber" class="form-control">
       </div>

@@ -8,6 +8,8 @@ import {ErrorDialogComponent} from '../../error-dialog/error-dialog.component';
 import {MatDialog} from '@angular/material';
 import {Router} from '@angular/router';
 import {DeliveryDocument} from '../model/delivery-document.model';
+import {Client} from '../../client/model/client.model';
+import {ClientRepositoryService} from '../../client/repository-service/client-repository.service';
 
 @Component({
   selector: 'app-delivery-document-list',
@@ -17,17 +19,23 @@ import {DeliveryDocument} from '../model/delivery-document.model';
 export class DeliveryDocumentListComponent implements OnInit {
   deliveryDocumentListForm: FormGroup;
   deliveryDocuments = new BehaviorSubject<DeliveryDocument[]>([]);
+  contractors = new BehaviorSubject<Client[]>([]);
 
   constructor(private deliveryDocumentRepositoryService: DeliveryDocumentRepositoryService,
               public dialog: MatDialog,
-              private router: Router) {
+              private router: Router,
+              private clientRepositoryService: ClientRepositoryService) {
   }
 
   ngOnInit(): void {
     this.deliveryDocumentListForm = new FormGroup({
+      contractor: new FormControl(''),
       documentNumber: new FormControl(''),
       date: new FormControl('')
     });
+
+    const params = new HttpParams({});
+    this.clientRepositoryService.getClients(params).subscribe(response => this.contractors.next(Object.values(response)[0]));
 
   }
 
@@ -41,6 +49,7 @@ export class DeliveryDocumentListComponent implements OnInit {
 
     const params = new HttpParams({
       fromObject: {
+        contractorName: this.deliveryDocumentListForm.value.contractor,
         documentNumber: this.deliveryDocumentListForm.value.documentNumber,
         date: this.deliveryDocumentListForm.value.date
       }
