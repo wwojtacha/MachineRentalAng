@@ -1,0 +1,176 @@
+<form [formGroup]="workReportEntryForm">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="workCode">Activity type</label>
+        <select type="text" id="workCode" formControlName="workCode" class="form-control" (ngModelChange)="getHourPrice()">
+          <option>PS</option>
+          <option>PX</option>
+          <option>PP</option>
+          <option>PN</option>
+          <option>PZ</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="startHour">Start hour</label>
+        <input type="time" id="startHour" formControlName="startHour" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="endHour">End hour</label>
+        <input type="time" id="endHour" formControlName="endHour" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="placeOfWork">Place of work</label>
+        <input id="placeOfWork" formControlName="placeOfWork" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="typeOfWork">Type of work</label>
+        <input id="typeOfWork" formControlName="typeOfWork" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="workQuantity">Work quantity</label>
+        <input type="number" min="0" id="workQuantity" formControlName="workQuantity" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="measureUnit">Measure unit</label>
+        <select type="text" id="measureUnit" formControlName="measureUnit" class="form-control">
+          <option></option>
+          <option>-</option>
+          <option>m3</option>
+          <option>Mg</option>
+          <option>m2</option>
+          <option>mb</option>
+          <option>szt</option>
+          <option>kpl</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="priceType">Price type</label>
+        <select type="text" id="priceType" formControlName="priceType" class="form-control" (ngModelChange)="getHourPrice()">
+          <option value="ONLY_MACHINE">Machine</option>
+          <option value="WITH_OPERATOR">Machine + operator</option>
+          <option value="WITH_FUEL">Machine + fuel</option>
+          <option value="WITH_OPERATOR_AND_FUEL">Machine + operator + fuel</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group" *ngIf="isOnEdit">
+        <label for="editedEstimatePosition">Current estimate position</label>
+        <input id="editedEstimatePosition" formControlName="editedEstimatePosition" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2" id="changeEstimatePositionButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableEstimatePositionSelect()">Change estimate position</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isEstimatePositionShown">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="estimatePosition">Estimate position</label>
+        <select type="text" id="estimatePosition" formControlName="estimatePosition" class="form-control" (ngModelChange)="onSelectEstimatePosition($event)" [ngStyle]="styleElementToChange()">
+          <option value=""></option>
+          <option *ngFor="let estimatePosition of estimatePositions | async" [ngValue]="estimatePosition">{{estimatePosition.name + ';' + estimatePosition.costCode.fullCode}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="hourPrice">Hour price</label>
+        <input type="number" id="hourPrice" formControlName="hourPrice" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="projectCode">Project code (sell)</label>
+        <select type="text" id="projectCode" formControlName="projectCode" class="form-control" (ngModelChange)="onSelectProjectCode($event)">
+          <option></option>
+          <option *ngFor="let projectCode of projectCodes" [ngValue]="projectCode">{{projectCode}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="costType">Cost type (sell)</label>
+        <select type="text" id="costType" formControlName="costType" class="form-control">
+          <option></option>
+          <option *ngFor="let costType of costTypes" [ngValue]="costType">{{costType}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+        <div class="form-group">
+          <label for="acceptingPerson">Accepted by</label>
+          <input type="text" id="acceptingPerson" formControlName="acceptingPerson" class="form-control">
+        </div>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="workDocument">Work Document</label>
+        <input id="workDocument" formControlName="workDocument" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-primary" (click)="onAddEntry()" [disabled]="!workReportEntryForm.valid || !isHourPriceValid">{{isOnEdit ? 'Update' : 'Add'}}</button>
+
+</form>

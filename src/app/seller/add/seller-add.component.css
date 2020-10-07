@@ -1,0 +1,15 @@
+form {
+  margin-left: 5%;
+}
+
+#message {
+  font-size: large;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  margin-top: 5%;
+  max-width: 90%;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}

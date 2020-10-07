@@ -1,0 +1,136 @@
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" (click)="onAddNewWorkDocument()">Add new Work Document</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="workDocumentListForm" (ngSubmit)="onSearch()">
+
+
+  <div class="row">
+
+      <div class="col-xs-1">
+        <div class="form-group">
+          <label for="documentId">Document number</label>
+          <input type="text" id="documentId" formControlName="documentId" class="form-control">
+        </div>
+      </div>
+
+      <div class="col-xs-1">
+        <div class="form-group">
+          <label for="documentType">Document type</label>
+          <select type="text" id="documentType" formControlName="documentType" class="form-control">
+            <option value=""></option>
+            <option value="WORK_REPORT">Work report</option>
+            <option value="ROAD_CARD">Road card</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-xs-1">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" formControlName="date" class="form-control">
+        </div>
+      </div>
+
+      <div class="col-xs-2">
+        <div class="form-group">
+          <label for="operator">Operator</label>
+          <select type="text" id="operator" formControlName="operator" class="form-control">
+            <option value=""></option>
+            <option *ngFor="let operator of operators">{{operator.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-xs-2">
+        <div class="form-group">
+          <label for="machine">Machine</label>
+          <select id="machine" formControlName="machine" class="form-control">
+            <option></option>
+            <option *ngFor="let machine of machines" [value]="machine.internalId">{{machine.internalId + '; name: ' + machine.name}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-xs-1">
+        <div class="form-group">
+          <label for="counterStart">Counter start</label>
+          <input type="number" id="counterStart" formControlName="counterStart" class="form-control">
+        </div>
+      </div>
+
+      <div class="col-xs-1">
+        <div class="form-group">
+          <label for="counterEnd">Counter end</label>
+          <input type="number" id="counterEnd" formControlName="counterEnd" class="form-control">
+        </div>
+      </div>
+
+      <div class="col-xs-1">
+        <div class="form-group">
+          <label for="delegation">Delegation</label>
+          <select type="text" id="delegation" formControlName="delegation" class="form-control">
+            <option value=""></option>
+            <option value="0%">0%</option>
+            <option value="50%">50%</option>
+            <option value="100%">100%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-xs-1">
+        <div class="form-group">
+          <label for="invoiceNumber">Invoice number</label>
+          <input type="text" id="invoiceNumber" formControlName="invoiceNumber" class="form-control">
+        </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-xs-1">Document number</th>
+    <th class="col-xs-1">Document type</th>
+    <th class="col-xs-1">Date</th>
+    <th class="col-xs-1">Operator</th>
+    <th class="col-xs-1">Machine</th>
+    <th class="col-xs-1">Counter start</th>
+    <th class="col-xs-1">Counter end</th>
+    <th class="col-xs-1">Delegation</th>
+    <th class="col-xs-1">Invoice number</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let workDocument of workDocuments | async; let i = index">
+    <td>{{workDocument.id}}</td>
+    <td>{{workDocument.documentType}}</td>
+    <td>{{workDocument.date}}</td>
+    <td>{{workDocument.operator.name}}</td>
+    <td>{{workDocument.machine.internalId}}</td>
+    <td>{{workDocument.counterStart}}</td>
+    <td>{{workDocument.counterEnd}}</td>
+    <td>{{workDocument.delegation}}</td>
+    <td>{{workDocument.invoiceNumber}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditWorkDocument(workDocument)">Edit</button>
+      <button mat-button type="button" class="btn btn-danger" (click)="onDeleteWorkDocument(workDocument.id, i)">Delete</button>
+      <button mat-button type="button" class="btn btn-primary" (click)="onShowEntries(workDocument)">Show entries</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

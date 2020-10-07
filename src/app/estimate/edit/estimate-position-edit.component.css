@@ -1,0 +1,12 @@
+form {
+  margin-left: 10%;
+}
+
+#message {
+  margin-left: 10%;
+  margin-top: 2%;
+}
+
+input.ng-touched, select.ng-touched {
+  background-color: aqua;
+}

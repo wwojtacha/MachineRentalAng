@@ -1,0 +1,58 @@
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" (click)="onAddNewDeliveryDocument()">Add new Delivery Document</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="deliveryDocumentListForm" (ngSubmit)="onSearch()">
+
+
+  <div class="row">
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="documentNumber">Document number</label>
+        <input type="text" id="documentNumber" formControlName="documentNumber" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" formControlName="date" class="form-control">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-xs-1">Document number</th>
+    <th class="col-xs-1">Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let deliveryDocument of deliveryDocuments | async; let i = index">
+    <td>{{deliveryDocument.documentNumber}}</td>
+    <td>{{deliveryDocument.date}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditDeliveryDocument(deliveryDocument)">Edit</button>
+      <button mat-button type="button" class="btn btn-danger" (click)="onDeleteDeliveryDocument(deliveryDocument.id, i)">Delete</button>
+      <button mat-button type="button" class="btn btn-primary" (click)="onShowEntries(deliveryDocument)">Show entries</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

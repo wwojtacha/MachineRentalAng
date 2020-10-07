@@ -1,0 +1,20 @@
+<form [formGroup]="materialAddForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="type">Material type</label>
+        <input type="text" id="type" formControlName="type" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success" [disabled]="!materialAddForm.valid" >{{isOnEdit ? 'Update' : 'Create'}}</button>
+    </div>
+  </div>
+
+  <div id="message" [ngStyle]="messageStyler.styleMessage(userMessage)">{{userMessage}}</div>
+
+</form>

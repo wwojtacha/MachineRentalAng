@@ -1,0 +1,38 @@
+<table class="table" appShowEntries>
+  <thead>
+  <tr>
+    <th class="col-xs-1">Work code</th>
+    <th class="col-xs-1">Start hour</th>
+    <th class="col-xs-1">End hour</th>
+    <th class="col-xs-1">Place of work</th>
+    <th class="col-xs-1">Type of work</th>
+    <th class="col-xs-1">Work quantity</th>
+    <th class="col-xs-1">Measure unit</th>
+    <th class="col-xs-1">Price type</th>
+    <th class="col-xs-1">Price</th>
+    <th class="col-xs-1">Estimate position</th>
+    <th class="col-xs-1">Cost code (sell)</th>
+    <th class="col-xs-1">Accepted by</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let workReportEntry of workReportEntries | async; let i = index">
+    <td>{{workReportEntry.workCode}}</td>
+    <td>{{workReportEntry.startHour}}</td>
+    <td>{{workReportEntry.endHour}}</td>
+    <td>{{workReportEntry.placeOfWork}}</td>
+    <td>{{workReportEntry.typeOfWork}}</td>
+    <td>{{workReportEntry.workQuantity}}</td>
+    <td>{{workReportEntry.measureUnit}}</td>
+    <td>{{workReportEntry.hourPrice.priceType}}</td>
+    <td>{{workReportEntry.hourPrice.price}}</td>
+    <td>{{workReportEntry.estimatePosition.name}}</td>
+    <td>{{workReportEntry.costCode.fullCode}}</td>
+    <td>{{workReportEntry.acceptingPerson}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditWorkDocumentEntry(workReportEntry, i)">Edit</button>
+      <button mat-button type="button" class="btn btn-danger" (click)="onDeleteWorkDocumentEntry(workReportEntry.id, i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

@@ -1,0 +1,32 @@
+<table class="table" appShowEntries>
+  <thead>
+  <tr>
+    <th class="col-xs-1">Contractor</th>
+    <th class="col-xs-1">Material</th>
+    <th class="col-xs-1">Quantity</th>
+    <th class="col-xs-1">Measure unit</th>
+    <th class="col-xs-1">Estimate position</th>
+    <th class="col-xs-1">Cost code</th>
+    <th class="col-xs-1">Delivery price</th>
+    <th class="col-xs-1">Cost value</th>
+    <th class="col-xs-1">Invoice number</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let deliveryDocumentEntry of deliveryDocumentEntries | async; let i = index">
+    <td>{{deliveryDocumentEntry.contractor.name}}</td>
+    <td>{{deliveryDocumentEntry.material.type}}</td>
+    <td>{{deliveryDocumentEntry.quantity}}</td>
+    <td>{{deliveryDocumentEntry.measureUnit}}</td>
+    <td>{{deliveryDocumentEntry.estimatePosition.name}}</td>
+    <td>{{deliveryDocumentEntry.costCode.fullCode}}</td>
+    <td>{{deliveryDocumentEntry.deliveryPrice.price}}</td>
+    <td>{{deliveryDocumentEntry.costValue}}</td>
+    <td>{{deliveryDocumentEntry.invoiceNumber}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditDeliveryDocumentEntry(deliveryDocumentEntry, i)">Edit</button>
+      <button mat-button type="button" class="btn btn-danger" (click)="onDeleteDeliveryDocumentEntry(deliveryDocumentEntry.id, i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

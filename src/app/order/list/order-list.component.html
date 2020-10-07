@@ -1,0 +1,135 @@
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" routerLink="/order-add">Add new order</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="orderListForm" (ngSubmit)="onSearch()">
+
+  <div class="row">
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="machineNumber">Machine number</label>
+        <input type="text" id="machineNumber" formControlName="machineNumber" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select type="text" id="status" formControlName="status" class="form-control">
+          <option value=""></option>
+          <option>Settled</option>
+          <option>Unsettled</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="startDateStart">Start date from</label>
+        <input type="date" id="startDateStart" formControlName="startDateStart" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="startDateEnd">Start date to</label>
+        <input type="date" id="startDateEnd" formControlName="startDateEnd" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="endDateStart">End date from</label>
+        <input type="date" id="endDateStart" formControlName="endDateStart" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="endDateEnd">End date to</label>
+        <input type="date" id="endDateEnd" formControlName="endDateEnd" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="priceType">Price type</label>
+        <select type="text" id="priceType" formControlName="priceType" class="form-control">
+          <option></option>
+          <option *ngFor="let priceType of priceTypes">{{priceType}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="clientName">Client name</label>
+        <select type="text" id="clientName" formControlName="clientName" class="form-control">
+          <option></option>
+          <option *ngFor="let client of clients | async">{{client.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="sellerName">Seller name</label>
+        <select type="text" id="sellerName" formControlName="sellerName" class="form-control">
+          <option></option>
+          <option *ngFor="let seller of sellers | async">{{seller.name}}</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-1">Machine number</th>
+    <th class="col-md-1">Status</th>
+    <th class="col-md-1">Start date</th>
+    <th class="col-md-1">End date</th>
+    <th class="col-md-1">Price type</th>
+    <th class="col-md-1">Price</th>
+    <th class="col-md-1">Quantity</th>
+    <th class="col-md-1">Order value</th>
+    <th class="col-md-1">Client name</th>
+    <th class="col-md-1">Seller name</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let order of orders | async; let i = index">
+    <td>{{order.machine.internalId}}</td>
+    <td>{{order.status}}</td>
+    <td>{{order.startDate}}</td>
+    <td>{{order.endDate}}</td>
+    <td>{{order.priceType}}</td>
+    <td>{{order.price}}</td>
+    <td>{{order.quantity}}</td>
+    <td>{{order.value}}</td>
+    <td>{{order.client.name}}</td>
+    <td>{{order.seller.name}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditOrder(order)">Edit</button>
+      <button mat-button type="button" class="btn btn-danger" (click)="onDeleteOrder(order.id, i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

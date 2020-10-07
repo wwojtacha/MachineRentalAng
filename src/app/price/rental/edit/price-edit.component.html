@@ -1,0 +1,56 @@
+<form [formGroup]="priceEditForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input type="number" id="year" formControlName="year" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="machineNumber">Machine number</label>
+        <input type="text" id="machineNumber" formControlName="machineNumber" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="priceType">Type</label>
+
+        <select type="text" id="priceType" formControlName="priceType" class="form-control">
+          <option *ngFor="let priceType of priceTypes" [ngValue]="priceType">{{priceType}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="priceValue">Price</label>
+        <input type="number" id="priceValue" formControlName="priceValue" class="form-control">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="row">
+      <div class="col-xs-1">
+        <button type="submit" class="btn btn-success">Update</button>
+      </div>
+    </div>
+  </div>
+
+
+</form>
+
+<br><br>
+<div id="message" [ngStyle]="messageStyler.stylePriceMessage(isError)">{{userMessage}}</div>
+

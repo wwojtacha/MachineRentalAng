@@ -1,0 +1,186 @@
+<form [formGroup]="workDocumentForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="documentId">Document number</label>
+        <input type="text" id="documentId" formControlName="documentId" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="documentType">Document type</label>
+        <select type="text" id="documentType" formControlName="documentType" class="form-control">
+          <option value="WORK_REPORT">Work report</option>
+          <option value="ROAD_CARD">Road card</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" formControlName="date" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row" appShowCurrentInput>
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="editedOperator">Current operator</label>
+        <input id="editedOperator" formControlName="editedOperator" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2" id="changeOperatorButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableOperatorSelect()">Change operator</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isOperatorSelectShown">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="operator">Operator</label>
+        <select type="text" id="operator" formControlName="operator" class="form-control" (ngModelChange)="onSelectOperator($event)" [ngStyle]="messageStyler.styleElementToChange(isOnEdit)">
+          <option value=""></option>
+          <option *ngFor="let operator of operators | async" [ngValue]="operator">{{operator.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" appShowCurrentInput>
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="editedMachine">Current machine</label>
+        <input id="editedMachine" formControlName="editedMachine" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2" id="changeMachineButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableMachineSelect()">Change machine</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isMachineSelectShownn">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="machine">Machine</label>
+        <select id="machine" formControlName="machine" class="form-control" (ngModelChange)="onSelectMachine($event)" [ngStyle]="messageStyler.styleElementToChange(isOnEdit)">
+          <option></option>
+          <option *ngFor="let machine of machines | async" [ngValue]="machine">{{machine.internalId}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="counterStart">Counter start</label>
+        <input type="number" min="0" id="counterStart" formControlName="counterStart" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="counterEnd">Counter end</label>
+        <input type="number" min="0" id="counterEnd" formControlName="counterEnd" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="delegation">Delegation</label>
+        <select type="text" id="delegation" formControlName="delegation" class="form-control">
+          <option value="0%">0%</option>
+          <option value="50%">50%</option>
+          <option value="100%">100%</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="invoiceNumber">Invoice number</label>
+        <input type="text" id="invoiceNumber" formControlName="invoiceNumber" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row" appShowSubmitButton>
+    <div class="col-xs-2 text-center">
+      <button type="submit" class="btn btn-success" [disabled]="!workDocumentForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+    </div>
+  </div>
+
+  <div id="message" *ngFor="let message of userMessages" [ngStyle]="messageStyler.styleMessage(message)">{{message}}</div>
+
+  <div class="row" id="addNewWorkDocumentEntryButton">
+    <div class="col-xs-2 text-center">
+      <button type="button" class="btn btn-primary" (click)="onAddWorkDocumentEntry()" appShowAddWorkEntryButton>Add new Work Document Entry</button>
+    </div>
+
+    <div class="col-xs-2 text-center">
+      <button type="button" class="btn btn-success" (click)="onSaveWorkDocumentEntries()" appSaveEntriesButton>Save entries</button>
+    </div>
+
+  </div>
+
+
+</form>
+
+<app-work-report-entry-list *ngIf="isWorkReport()"></app-work-report-entry-list>
+<app-road-card-entry-list *ngIf="isRoadCard()"></app-road-card-entry-list>
+
+
+<!--<table class="table" appShowAddWorkEntryButton>-->
+  <!--<thead>-->
+  <!--<tr>-->
+    <!--<th class="col-xs-1">Work code</th>-->
+    <!--<th class="col-xs-1">Start hour</th>-->
+    <!--<th class="col-xs-1">End hour</th>-->
+    <!--<th class="col-xs-2">Place of work</th>-->
+    <!--<th class="col-xs-2">Type of work</th>-->
+    <!--<th class="col-xs-1">Work quantity</th>-->
+    <!--<th class="col-xs-1">Measure unit</th>-->
+    <!--<th class="col-xs-1">Project</th>-->
+    <!--<th class="col-xs-1">Accepted by</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<tr *ngFor="let workReportEntry of workReportEntries; let i = index">-->
+    <!--<td>{{workReportEntry.workCode}}</td>-->
+    <!--<td>{{workReportEntry.startHour}}</td>-->
+    <!--<td>{{workReportEntry.endHour}}</td>-->
+    <!--<td>{{workReportEntry.placeOfWork}}</td>-->
+    <!--<td>{{workReportEntry.typeOfWork}}</td>-->
+    <!--<td>{{workReportEntry.workQuantity}}</td>-->
+    <!--<td>{{workReportEntry.measureUnit}}</td>-->
+    <!--<td>{{workReportEntry.mpk}}</td>-->
+    <!--<td>{{workReportEntry.acceptingPerson}}</td>-->
+    <!--<td>-->
+      <!--<button type="button" class="btn btn-primary" (click)="onEditWorkDocumentEntry(workReportEntry, i)">Edit</button>-->
+      <!--<button mat-button type="button" class="btn btn-danger" (click)="onDeleteWorkDocument(workDocument.id, i)">Delete</button>-->
+    <!--</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+<!--</table>-->
+
+

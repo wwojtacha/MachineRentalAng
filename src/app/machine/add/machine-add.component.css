@@ -1,0 +1,24 @@
+form {
+  margin-left: 5%;
+}
+
+#message {
+  font-size: large;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  margin-top: 2%;
+  max-width: 90%;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+#changeMachineTypeButton, #changeOwnerButton {
+  margin-top: 1.5%;
+}
+
+button {
+  margin-left: 6%;
+}
+

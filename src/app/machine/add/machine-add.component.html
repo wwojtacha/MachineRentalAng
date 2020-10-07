@@ -1,0 +1,133 @@
+<form [formGroup]="machineForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="internalId">Machine number</label>
+        <input type="text" id="internalId" formControlName="internalId" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="producer">Producer</label>
+        <input type="text" id="producer" formControlName="producer" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="model">Model</label>
+        <input type="text" id="model" formControlName="model" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group" *ngIf="isOnEdit">
+        <label for="editedMachineType">Current machine type</label>
+        <input id="editedMachineType" formControlName="editedMachineType" class="form-control">
+      </div>
+    </div>
+
+
+    <div class="col-xs-2" id="changeMachineTypeButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableMachineTypeSelect()">Change machine type</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2" *ngIf="isMachineTypeShown">
+      <div class="form-group">
+        <label for="machineType">Type</label>
+        <select id="machineType" formControlName="machineType" class="form-control" (ngModelChange)="onSelectMachineType($event)" [ngStyle]="styleElementToChange()">
+          <option value=""></option>
+          <option *ngFor="let machineType of machineTypes | async" [ngValue]="machineType">{{machineType.machineType}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="productionYear">Production year</label>
+        <input type="text" id="productionYear" formControlName="productionYear" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group" *ngIf="isOnEdit">
+        <label for="editedOwner">Current owner</label>
+        <input id="editedOwner" formControlName="editedOwner" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2" id="changeOwnerButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableOwnerSelect()">Change owner</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isOwnerShown">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="client">Owner</label>
+        <select type="text" id="owner" formControlName="owner" class="form-control" (ngModelChange)="onSelectOwner($event)" [ngStyle]="styleElementToChange()">
+          <option value=""></option>
+          <option *ngFor="let owner of owners | async" [ngValue]="owner">{{owner.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select type="text" id="status" formControlName="machineStatus" class="form-control">
+          <option>In use</option>
+          <option>Out of use</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" formControlName="quantity" class="form-control">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-offset-0">
+      <button type="submit" class="btn btn-success" [disabled]="!machineForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+    </div>
+  </div>
+
+  <div id="message" [ngStyle]="messageStyler.styleMessage(userMessage)">{{userMessage}}</div>
+
+</form>

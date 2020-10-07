@@ -1,0 +1,91 @@
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" routerLink="/estimate-position-add">Upload estimate positions</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="estimatePositionListForm" (ngSubmit)="onSearch()">
+
+  <div class="row">
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="name">Estimate position name</label>
+        <input type="text" id="name" formControlName="name" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="projectCode">Project code</label>
+        <select type="text" id="projectCode" formControlName="projectCode" class="form-control" (ngModelChange)="onSelectProjectCode($event)">
+          <option></option>
+          <option *ngFor="let projectCode of projectCodes">{{projectCode}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="costType">Cost type</label>
+        <select type="text" id="costType" formControlName="costType" class="form-control">
+          <option></option>
+          <option *ngFor="let costType of costTypes">{{costType}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="remarks">Remarks</label>
+        <input type="text" id="remarks" formControlName="remarks" class="form-control">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-2">Estimate position name</th>
+    <th class="col-md-1">Project code</th>
+    <th class="col-md-1">Cost type</th>
+    <th class="col-md-1">Quantity</th>
+    <th class="col-md-1">Measure unit</th>
+    <th class="col-md-1">Sell price</th>
+    <th class="col-md-1">Sell value</th>
+    <th class="col-md-1">Remarks</th>
+    <th class="col-md-1">Cost price</th>
+    <th class="col-md-1">Cost value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let estimatePosition of estimatePositions | async">
+    <td>{{estimatePosition.name}}</td>
+    <td>{{estimatePosition.costCode.projectCode}}</td>
+    <td>{{estimatePosition.costCode.costType}}</td>
+    <td>{{estimatePosition.quantity}}</td>
+    <td>{{estimatePosition.measureUnit}}</td>
+    <td>{{estimatePosition.sellPrice}}</td>
+    <td>{{estimatePosition.sellValue}}</td>
+    <td>{{estimatePosition.remarks}}</td>
+    <td>{{estimatePosition.costPrice}}</td>
+    <td>{{estimatePosition.costValue}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditEstimatePosition(estimatePosition)">Edit</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

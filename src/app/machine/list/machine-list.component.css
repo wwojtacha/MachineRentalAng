@@ -1,0 +1,17 @@
+table {
+  margin-left: 5%;
+  padding-right: 5%;
+  /*max-width: 90%;*/
+}
+
+form {
+  padding-left: 5%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+#add-button {
+  margin-left: 5%;
+}
+

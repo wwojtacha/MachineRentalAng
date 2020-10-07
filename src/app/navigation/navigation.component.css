@@ -1,0 +1,15 @@
+p {
+  margin-right: 100px;
+}
+
+li {
+  list-style-type: none;
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  background-color: white;
+}
+
+

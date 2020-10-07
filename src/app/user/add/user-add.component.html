@@ -1,0 +1,58 @@
+<form [formGroup]="userAddForm" (ngSubmit)="onSubmit()">
+
+  <div id="searchFields" class="row">
+
+    <div class="row">
+      <div class="col-xs-2">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" formControlName="username" class="form-control">
+      </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-control">
+      </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+      <div class="form-group">
+        <label for="role">User role</label>
+        <select id="role" formControlName="role" class="form-control">
+          <option></option>
+          <option>ADMIN</option>
+          <option>USER</option>
+        </select>
+      </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+      <div class="form-group">
+        <label for="email">E-mail address</label>
+        <input type="email" id="email" formControlName="email" class="form-control">
+      </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-offset-0">
+      <button type="submit" class="btn btn-success" [disabled]="!userAddForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+    </div>
+  </div>
+
+  <div id="message" *ngFor="let message of userMessages" [ngStyle]="messageStyler.styleMessage(message)">{{message}}</div>
+
+
+</form>

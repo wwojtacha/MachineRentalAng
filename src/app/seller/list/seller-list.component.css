@@ -1,0 +1,21 @@
+table {
+  margin-left: 5%;
+  margin-right: 5%;
+  max-width: 90%;
+}
+
+form {
+  margin-left: 5%;
+}
+
+ form > div :nth-child(2), form > div :nth-child(3), label {
+  margin-left: 9%;
+}
+
+form :nth-child(2) {
+  margin-left: .4%;
+}
+
+#add-button {
+  margin-left: 6%;
+}

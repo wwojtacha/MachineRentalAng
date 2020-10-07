@@ -1,0 +1,43 @@
+<form [formGroup]="deliveryDocumentAddForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="documentNumber">Document number</label>
+        <input type="text" id="documentNumber" formControlName="documentNumber" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" formControlName="date" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row" appShowSubmitButton>
+    <div class="col-xs-2 text-center">
+      <button type="submit" class="btn btn-success" [disabled]="!deliveryDocumentAddForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+    </div>
+  </div>
+
+  <div id="message" *ngFor="let message of userMessages" [ngStyle]="messageStyler.styleMessage(message)">{{message}}</div>
+
+  <div class="row" id="addNewDeliveryDocumentEntryButton">
+    <div class="col-xs-2 text-center">
+      <button type="button" class="btn btn-primary" (click)="onAddDeliveryDocumentEntry()" appShowDeliveryEntryButton>Add new Delivery Document Entry</button>
+    </div>
+
+    <!--<div class="col-xs-2 text-center">-->
+      <!--<button type="button" class="btn btn-success" (click)="onSaveWorkDocumentEntries()">Save entries</button>-->
+    <!--</div>-->
+
+  </div>
+
+
+</form>
+
+<app-delivery-document-entry-list></app-delivery-document-entry-list>

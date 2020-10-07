@@ -1,0 +1,106 @@
+<div class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" routerLink="/delivery-price-add">Upload delivery price list</button>
+  </div>
+</div>
+<br><br>
+
+<form [formGroup]="deliveryPriceListForm" (ngSubmit)="onSearch()">
+
+  <div class="row">
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="contractor">Contractor</label>
+        <select type="text" id="contractor" formControlName="contractor" class="form-control">
+          <option></option>
+          <option *ngFor="let contractor of contractors | async">{{contractor.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="material">Material</label>
+        <select type="text" id="material" formControlName="material" class="form-control">
+          <option></option>
+          <option *ngFor="let material of materials | async">{{material.type}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="priceType">Price type</label>
+        <select type="text" id="priceType" formControlName="priceType" class="form-control">
+          <option></option>
+          <option value="MATERIAL_M3">Material (m3)</option>
+          <option value="MATERIAL_MG">Material (Mg)</option>
+          <option value="MATERIAL_KPL">Material (kpl)</option>
+          <option value="MATERIAL_SZT">Material (szt)</option>
+          <option value="TRANSPORT_M3">Transport (m3)</option>
+          <option value="TRANSPORT_MG">Transport (Mg)</option>
+          <option value="TRANSPORT_KPL">Transport (kpl)</option>
+          <option value="TRANSPORT_SZT">Transport (szt)</option>
+          <option value="MATERIAL_TRANSPORT_M3">Material + Transport (m3)</option>
+          <option value="MATERIAL_TRANSPORT_MG">Material + Transport (Mg)</option>
+          <option value="MATERIAL_TRANSPORT_KPL">Material + Transport (kpl)</option>
+          <option value="MATERIAL_TRANSPORT_SZT">Material + Transport (szt)</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="projectCode">Project code</label>
+        <select type="text" id="projectCode" formControlName="projectCode" class="form-control">
+          <option></option>
+          <option *ngFor="let projectCode of projectCodes">{{projectCode}}</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-1">Contractor</th>
+    <th class="col-md-2">Material</th>
+    <th class="col-md-2">Price type</th>
+    <th class="col-md-2">Price</th>
+    <th class="col-md-2">Start date</th>
+    <th class="col-md-2">End date</th>
+    <th class="col-md-1">Project code</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let price of prices | async; let i = index">
+    <td>{{price.contractor.name}}</td>
+    <td>{{price.material.type}}</td>
+    <td>{{price.priceType}}</td>
+    <td>{{price.price}}</td>
+    <td>{{price.startDate}}</td>
+    <td>{{price.endDate}}</td>
+    <td>{{price.projectCode}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditPrice(price)">Edit</button>
+      <!--<button type="button" class="btn btn-danger" (click)="onDeletePrice(price.id, i)">Delete</button>-->
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div id="message" [ngStyle]="messageStyler.stylePriceMessage(isError)">{{userMessage}}</div>
+

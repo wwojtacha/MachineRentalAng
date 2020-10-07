@@ -1,0 +1,181 @@
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="status">Order status</label>
+        <select type="text" id="status" formControlName="status" class="form-control">
+          <option>Settled</option>
+          <option>Unsettled</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="startDate">Start date</label>
+        <input type="date" id="startDate" formControlName="startDate" class="form-control" (ngModelChange)="onSelectStartDate()">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="endDate">End date</label>
+        <input type="date" id="endDate" formControlName="endDate" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group" *ngIf="isOnEdit">
+        <label for="editedMachine">Current machine (order item)</label>
+        <input id="editedMachine" formControlName="editedMachine" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2" id="changeMachineButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableMachineSelect()">Change machine</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isMachineShown">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="machine">Machine (order item)</label>
+        <select id="machine" formControlName="machine" class="form-control" (ngModelChange)="onSelectMachine($event)" [ngStyle]="styleElementToChange()">
+          <option></option>
+          <option *ngFor="let machine of machines | async" [ngValue]="machine">{{machine.internalId}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!--<div class="row">-->
+    <!--<div class="col-xs-2">-->
+      <!--<div class="form-group">-->
+        <!--<label for="machine">Machine (order item)</label>-->
+        <!--<input type="text" id="machine" formControlName="machine" class="form-control" value="{{order.machine.internalId}}">-->
+          <!--&lt;!&ndash;<option value=""></option>&ndash;&gt;-->
+          <!--&lt;!&ndash;<option *ngFor="let machine of machines">{{machine.internalId}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="priceType">Price type</label>
+        <select type="text" id="priceType" formControlName="priceType" class="form-control" (ngModelChange)="onPriceTypeChange($event)">
+          <option value=""></option>
+          <option *ngFor="let priceType of priceTypes" [ngValue]="priceType">{{priceType}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="priceValue">Price</label>
+        <input type="number" id="priceValue" formControlName="priceValue" class="form-control" (ngModelChange)="onPriceValueChange()">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" min="0" id="quantity" formControlName="quantity" class="form-control" (ngModelChange)="onQuantityChange()">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="orderValue">Order value</label>
+        <input type="number" id="orderValue" formControlName="orderValue" class="form-control">
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group" *ngIf="isOnEdit">
+        <label for="editedSeller">Current seller</label>
+        <input id="editedSeller" formControlName="editedSeller" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2" id="changeSellerButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableSellerSelect()">Change seller</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isSellerShown">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="seller">Seller</label>
+        <select type="text" id="seller" formControlName="seller" class="form-control" (ngModelChange)="onSelectSeller($event)" [ngStyle]="styleElementToChange()">
+          <option value=""></option>
+          <option *ngFor="let seller of sellers | async" [ngValue]="seller">{{seller.mpk}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group" *ngIf="isOnEdit">
+        <label for="editedClient">Current client</label>
+        <input id="editedClient" formControlName="editedClient" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2" id="changeClientButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableClientSelect()">Change client</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isClientShown">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="client">Client</label>
+        <select type="text" id="client" formControlName="client" class="form-control" (ngModelChange)="onSelectClient($event)" [ngStyle]="styleElementToChange()">
+          <option value=""></option>
+          <option *ngFor="let client of clients | async" [ngValue]="client">{{client.mpk}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-offset-0">
+      <button type="submit" class="btn btn-success" [disabled]="!orderForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+    </div>
+  </div>
+
+  <div id="message" *ngFor="let message of userMessages" [ngStyle]="messageStyler.styleMessage(message)">{{message}}</div>
+
+
+</form>
+
+
+

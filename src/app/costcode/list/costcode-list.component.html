@@ -1,0 +1,54 @@
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" routerLink="/cost-code-add">Add new cost code</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="costCodeListForm" (ngSubmit)="onSearch()">
+
+  <div class="row">
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="projectCode">Project code</label>
+        <input type="text" id="projectCode" formControlName="projectCode" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="costType">Cost type</label>
+        <input type="text" id="costType" formControlName="costType" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-1">Project code</th>
+    <th class="col-md-1">Cost type</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let costCode of costCodes | async">
+    <td>{{costCode.projectCode}}</td>
+    <td>{{costCode.costType}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditCostCode(costCode)">Edit</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

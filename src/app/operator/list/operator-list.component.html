@@ -1,0 +1,68 @@
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" routerLink="/operator-add">Add new operator</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="operatorListForm" (ngSubmit)="onSearch()">
+
+  <div id="searchFields" class="row">
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="operatorName">Operator name</label>
+        <input type="text" id="operatorName" formControlName="operatorName" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="qualifications">Qualifications</label>
+        <input type="text" id="qualifications" formControlName="qualifications" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="company">Company</label>
+        <select id="company" formControlName="company" class="form-control" (ngModelChange)="onSelectCompany($event)">
+          <option></option>
+          <option *ngFor="let company of companies" [ngValue]="company">{{company.mpk + '; name: ' + company.name}}</option>
+        </select>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-3">Operator name</th>
+    <th class="col-md-3">Qualifications</th>
+    <th class="col-md-3">Company</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let operator of operators | async; let i = index">
+    <td>{{operator.name}}</td>
+    <td>{{operator.qualifications}}</td>
+    <td>{{operator.company.name}}</td>
+    <td>
+      <button id="editButton" type="button" class="btn btn-primary" (click)="onEditOperator(operator)">Edit</button>
+      <!--<button mat-button type="button" class="btn btn-danger" (click)="onDeleteOrder(order.id, i)">Delete</button>-->
+    </td>
+  </tr>
+  </tbody>
+</table>

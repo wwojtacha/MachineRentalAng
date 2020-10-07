@@ -1,0 +1,159 @@
+<form [formGroup]="deliveryDocumentEntryAddForm" (ngSubmit)="onSubmit()">
+
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="contractorName">Contractor</label>
+        <select type="text" id="contractorName" formControlName="contractorName" class="form-control" (ngModelChange)="chooseContractor($event)">
+          <option></option>
+          <option *ngFor="let contractorName of contractorNames" [ngValue]="contractorName">{{contractorName}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="materialType">Material</label>
+        <select type="text" id="materialType" formControlName="materialType" class="form-control" (ngModelChange)="chooseMaterial($event)">
+          <option></option>
+          <option *ngFor="let materialType of materialTypes" [ngValue]="materialType">{{materialType}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" min="0" id="quantity" formControlName="quantity" class="form-control" (ngModelChange)="getCostValue()">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="measureUnit">Measure unit</label>
+        <select type="text" id="measureUnit" formControlName="measureUnit" class="form-control">
+          <option></option>
+          <option>m3</option>
+          <option>Mg</option>
+          <option>szt</option>
+          <option>kpl</option>
+          <option>mb</option>
+          <option>m2</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="estimatePositionName">Estimate position</label>
+        <select type="text" id="estimatePositionName" formControlName="estimatePositionName" class="form-control" (ngModelChange)="chooseEstimatePosition($event)">
+          <option></option>
+          <option *ngFor="let estimatePositionName of estimatePositionNames" [ngValue]="estimatePositionName">{{estimatePositionName}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="projectCode">Project code</label>
+        <select type="text" id="projectCode" formControlName="projectCode" class="form-control" (ngModelChange)="onSelectProjectCode($event)">
+          <option></option>
+          <option *ngFor="let projectCode of projectCodes" [ngValue]="projectCode">{{projectCode}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="costType">Cost type</label>
+        <select type="text" id="costType" formControlName="costType" class="form-control">
+          <option></option>
+          <option *ngFor="let costType of costTypes" [ngValue]="costType">{{costType}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="priceType">Price type</label>
+        <select type="text" id="priceType" formControlName="priceType" class="form-control" (ngModelChange)="getDeliveryPrice()">
+          <option value="MATERIAL_M3">Material (m3)</option>
+          <option value="MATERIAL_MG">Material (Mg)</option>
+          <option value="MATERIAL_KPL">Material (kpl)</option>
+          <option value="MATERIAL_SZT">Material (szt)</option>
+          <option value="TRANSPORT_M3">Transport (m3)</option>
+          <option value="TRANSPORT_MG">Transport (Mg)</option>
+          <option value="TRANSPORT_KPL">Transport (kpl)</option>
+          <option value="TRANSPORT_SZT">Transport (szt)</option>
+          <option value="MATERIAL_TRANSPORT_M3">Material + Transport (m3)</option>
+          <option value="MATERIAL_TRANSPORT_MG">Material + Transport (Mg)</option>
+          <option value="MATERIAL_TRANSPORT_KPL">Material + Transport (kpl)</option>
+          <option value="MATERIAL_TRANSPORT_SZT">Material + Transport (szt)</option>
+          <option value="OTHER">Other</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="deliveryPrice">Delivery price</label>
+        <input type="number" id="deliveryPrice" formControlName="deliveryPrice" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="costValue">Cost value</label>
+        <input type="number" id="costValue" formControlName="costValue" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="invoiceNumber">Invoice number</label>
+        <input type="text" id="invoiceNumber" formControlName="invoiceNumber" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="deliveryDocument">Delivery Document</label>
+        <input id="deliveryDocument" formControlName="deliveryDocument" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2 text-center">
+      <button type="submit" class="btn btn-success" [disabled]="!deliveryDocumentEntryAddForm.valid || !isDeliveryPriceValid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+    </div>
+  </div>
+
+  <div id="message" *ngFor="let message of userMessages" [ngStyle]="messageStyler.styleMessage(message)">{{message}}</div>
+
+  <!--<button type="button" class="btn btn-primary" (click)="onAddEntry()" [disabled]="!deliveryDocumentEntryAddForm.valid || !isDelieveryPriceValid">{{isOnEdit ? 'Update' : 'Add'}}</button>-->
+
+</form>

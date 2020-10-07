@@ -1,0 +1,72 @@
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" routerLink="/user-add">Add new user</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="userListForm" (ngSubmit)="onSearch()">
+
+  <!--<div id="searchFields" class="row">-->
+
+    <!--<div class="col-xs-1">-->
+      <!--<div class="form-group">-->
+        <!--<label for="username">Username</label>-->
+        <!--<input type="text" id="username" formControlName="username" class="form-control">-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+
+    <!--<div class="col-xs-2">-->
+      <!--<div class="form-group">-->
+        <!--<label for="role">User role</label>-->
+        <!--<select id="role" formControlName="role" class="form-control">-->
+          <!--<option></option>-->
+          <!--<option>ADMIN</option>-->
+          <!--<option>USER</option>-->
+        <!--</select>-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col-xs-1">-->
+      <!--<div class="form-group">-->
+        <!--<label for="email">E-mail address</label>-->
+        <!--<input type="email" id="email" formControlName="email" class="form-control">-->
+      <!--</div>-->
+    <!--</div>-->
+
+
+  <!--</div>-->
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-2">Username</th>
+    <th class="col-md-2">User role</th>
+    <th class="col-md-2">E-mail address</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users | async; let i = index">
+    <td>{{user.username}}</td>
+    <td>{{user.role}}</td>
+    <td>{{user.email}}</td>
+    <td>
+      <button id="editButton" type="button" class="btn btn-primary" (click)="onEditUser(user)">Edit</button>
+      <!--<button mat-button type="button" class="btn btn-danger" (click)="onDeleteOrder(order.id, i)">Delete</button>-->
+    </td>
+  </tr>
+  </tbody>
+</table>

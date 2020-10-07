@@ -1,0 +1,25 @@
+<form [formGroup]="priceAddForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <div>File to upload</div>
+        <br>
+        <input type="file" (change)="onFileChange($event)">
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success" [disabled]="!isFile">Upload</button>
+    </div>
+  </div>
+
+</form>
+
+<div id="message" [ngStyle]="messageStyler.stylePriceMessage(isError)">{{userMessage}}</div>

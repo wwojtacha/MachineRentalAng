@@ -1,0 +1,221 @@
+<form [formGroup]="priceEditForm" (ngSubmit)="onSubmit()">
+
+  <div class="prices">
+    <div id="editedPrice">
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedWorkCode">Work code</label>
+            <select type="text" id="editedWorkCode" formControlName="editedWorkCode" class="form-control">
+              <option>CP</option>
+              <option>PX</option>
+              <option>PP</option>
+              <option>PN</option>
+              <option>PZ</option>
+            </select>
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedMachineNumber">Machine</label>
+            <select type="text" id="editedMachineNumber" formControlName="editedMachineNumber" class="form-control">
+              <option></option>
+              <option *ngFor="let machineInternalId of machineInternalIds" [ngValue]="machineInternalId">{{machineInternalId}}</option>
+            </select>
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedPriceType">Price type</label>
+            <select type="text" id="editedPriceType" formControlName="editedPriceType" class="form-control">
+              <option value="DISTANCE">Distance</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedPriceValue">Price</label>
+            <input type="number" id="editedPriceValue" formControlName="editedPriceValue" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedRangeMin">Range min</label>
+            <input type="number" id="editedRangeMin" formControlName="editedRangeMin" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedRangeMax">Range max</label>
+            <input type="number" id="editedRangeMax" formControlName="editedRangeMax" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedStartDate">Start date</label>
+            <input type="date" id="editedStartDate" formControlName="editedStartDate" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedEndDate">End date</label>
+            <input type="date" id="editedEndDate" formControlName="editedEndDate" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="editedProjectCode">Project code</label>
+            <select type="text" id="editedProjectCode" formControlName="editedProjectCode" class="form-control">
+              <option></option>
+              <option *ngFor="let projectCode of projectCodes" [ngValue]="projectCode">{{projectCode}}</option>
+            </select>
+          </div>
+        <!--</div>-->
+      </div>
+    </div>
+
+
+
+    <div id="newPrice" *ngIf="isNewPriceShown">
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newWorkCode">Work code</label>
+            <select type="text" id="newWorkCode" formControlName="newWorkCode" class="form-control">
+              <option>CP</option>
+              <option>PX</option>
+              <option>PP</option>
+              <option>PN</option>
+              <option>PZ</option>
+            </select>
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newMachineNumber">Machine</label>
+            <select type="text" id="newMachineNumber" formControlName="newMachineNumber" class="form-control">
+              <option></option>
+              <option *ngFor="let machineInternalId of machineInternalIds" [ngValue]="machineInternalId">{{machineInternalId}}</option>
+            </select>
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newPriceType">Price type</label>
+            <select type="text" id="newPriceType" formControlName="newPriceType" class="form-control">
+              <option value="DISTANCE">Distance</option>
+              <option value="OTHER">Other</option>
+            </select>
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newPriceValue">Price</label>
+            <input type="number" id="newPriceValue" formControlName="newPriceValue" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newRangeMin">Range min</label>
+            <input type="number" id="newRangeMin" formControlName="newRangeMin" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newRangeMax">Range max</label>
+            <input type="number" id="newRangeMax" formControlName="newRangeMax" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newStartDate">Start date</label>
+            <input type="date" id="newStartDate" formControlName="newStartDate" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newEndDate">End date</label>
+            <input type="date" id="newEndDate" formControlName="newEndDate" class="form-control">
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row">
+        <!--<div class="col-xs-2">-->
+          <div class="form-group">
+            <label for="newProjectCode">Project code</label>
+            <select type="text" id="newProjectCode" formControlName="newProjectCode" class="form-control">
+              <option></option>
+              <option *ngFor="let projectCode of projectCodes" [ngValue]="projectCode">{{projectCode}}</option>
+            </select>
+          </div>
+        <!--</div>-->
+      </div>
+
+      <div class="row" *ngIf="isNewPriceShown">
+        <div class="col-xs-1">
+          <button type="button" class="btn btn-success" [disabled]="!priceEditForm.valid" (click)="onCheckAndSavePrice()">Check and save prices</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <!--<div class="col-xs-1">-->
+      <button type="submit" class="btn btn-success" [disabled]="isNewPriceShown">Update</button>
+    <!--</div>-->
+
+    <button id="addNewPriceButton" type="button" class="btn btn-primary" (click)="onAddNewPrice()">{{isNewPriceShown ? 'Hide' : 'Add new price'}}</button>
+  </div>
+
+</form>
+
+<br>
+<div id="message" [ngStyle]="messageStyler.stylePriceMessage(isError)">{{userMessage}}</div>
+

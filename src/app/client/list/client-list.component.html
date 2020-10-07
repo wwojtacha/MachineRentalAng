@@ -1,0 +1,93 @@
+
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" routerLink="/client-add">Add new client</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="clientListForm" (ngSubmit)="onSearch()">
+
+  <div class="row">
+
+    <div class="col-xs-1">
+      <div class="form-group">
+        <label for="mpk">Client MPK / NIP</label>
+        <input type="text" id="mpk" formControlName="mpk" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" formControlName="name" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" formControlName="city" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="text" id="email" formControlName="email" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="contactPerson">Contact person</label>
+        <input type="text" id="contactPerson" formControlName="contactPerson" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="phoneNumber">Phone number</label>
+        <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-2">Client MPK / NIP</th>
+    <th class="col-md-2">Name</th>
+    <th class="col-md-2">City</th>
+    <th class="col-md-2">Email address</th>
+    <th class="col-md-2">Contact person</th>
+    <th class="col-md-2">Phone number</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let client of clients | async">
+    <td>{{client.mpk}}</td>
+    <td>{{client.name}}</td>
+    <td>{{client.city}}</td>
+    <td>{{client.email}}</td>
+    <td>{{client.contactPerson}}</td>
+    <td>{{client.phoneNumber}}</td>
+    <td>
+      <button type="button" class="btn btn-primary" (click)="onEditClient(client)">Edit</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

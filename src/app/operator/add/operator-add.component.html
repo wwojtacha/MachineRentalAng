@@ -1,0 +1,60 @@
+<form [formGroup]="operatorForm" (ngSubmit)="onSubmit()">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="operatorName">Operator name</label>
+        <input type="text" id="operatorName" formControlName="operatorName" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="qualifications">Qualifications</label>
+        <textarea rows="5" type="text" id="qualifications" formControlName="qualifications" class="form-control"></textarea>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group" *ngIf="isOnEdit">
+        <label for="editedCompany">Current company</label>
+        <input id="editedCompany" formControlName="editedCompany" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2" id="changeCompanyButton">
+      <div class="form-group" *ngIf="isOnEdit">
+        <button type="button" class="btn-default" (click)="enableCompanySelect()">Change company</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="isCompanyShown">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="company">Company</label>
+        <select id="company" formControlName="company" class="form-control" (ngModelChange)="onSelectCompany($event)" [ngStyle]="styleElementToChange()">
+          <option></option>
+          <option *ngFor="let company of companies | async" [ngValue]="company">{{company.mpk}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="col-xs-offset-0">
+      <button type="submit" class="btn btn-success" [disabled]="!operatorForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+    </div>
+  </div>
+
+  <div id="message" *ngFor="let message of userMessages" [ngStyle]="messageStyler.styleMessage(message)">{{message}}</div>
+
+
+</form>

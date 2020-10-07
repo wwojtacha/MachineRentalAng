@@ -1,0 +1,11 @@
+form {
+  margin-left: 5%;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid red;
+}
+
+#changeEstimatePositionButton {
+  margin-top: 1.5%;
+}
