@@ -3,7 +3,7 @@ import {WorkDocument} from '../../work-document/model/work-document.model';
 import {CostCode} from '../../costcode/model/costcode.model';
 import {EstimatePosition} from '../../estimate/model/estimate.position';
 import {HourPrice} from '../../price/hour/model/hour-price.model';
-import {Operator} from "../../operator/model/operator.model";
+import {Operator} from '../../operator/model/operator.model';
 
 export class WorkReportEntry {
 

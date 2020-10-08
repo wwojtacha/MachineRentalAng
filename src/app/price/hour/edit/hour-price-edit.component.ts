@@ -25,7 +25,7 @@ export class HourPriceEditComponent implements OnInit {
   isError = false;
   messageStyler = MessageStyler;
   machines = new BehaviorSubject<Machine[]>([]);
-  machineInternalIds = [];
+  // machineInternalIds = [];
   costCodes = new BehaviorSubject<CostCode[]>([]);
   projectCodes = new Set();
   isNewPriceShown = false;
@@ -39,7 +39,7 @@ export class HourPriceEditComponent implements OnInit {
   ngOnInit(): void {
 
     const workCode = this.price.workCode;
-    const machineNumber = this.price.machineInternalId;
+    const machineNumber = this.price.machine;
     const priceType = this.price.priceType;
     const price = this.price.price;
     const startDate = this.price.startDate;
@@ -48,14 +48,14 @@ export class HourPriceEditComponent implements OnInit {
 
     this.priceEditForm = new FormGroup({
       editedWorkCode: new FormControl(workCode, Validators.required),
-      editedMachineNumber: new FormControl(machineNumber, Validators.required),
+      editedMachine: new FormControl(machineNumber, Validators.required),
       editedPriceType: new FormControl(priceType, Validators.required),
       editedPriceValue: new FormControl(price, Validators.required),
       editedStartDate: new FormControl(startDate, Validators.required),
       editedEndDate: new FormControl(endDate, Validators.required),
       editedProjectCode: new FormControl(projectCode, Validators.required),
       newWorkCode: new FormControl({value: workCode, disabled: true}, Validators.required),
-      newMachineNumber: new FormControl({value: machineNumber, disabled: true}, Validators.required),
+      newMachine: new FormControl({value: machineNumber, disabled: true}, Validators.required),
       newPriceType: new FormControl({value: priceType, disabled: true}, Validators.required),
       newPriceValue: new FormControl(price, Validators.required),
       newStartDate: new FormControl('', Validators.required),
@@ -75,11 +75,6 @@ export class HourPriceEditComponent implements OnInit {
 
     this.machineRepositoryService.getMachines(params).subscribe(response => {
       this.machines.next(Object.values(response)[0]);
-
-      const machines = this.machines.getValue();
-      for (const machine of machines) {
-        this.machineInternalIds.push(machine.internalId);
-      }
     });
 
   }
@@ -88,7 +83,7 @@ export class HourPriceEditComponent implements OnInit {
 
     const price = new HourPrice(
       this.priceEditForm.value.editedWorkCode,
-      this.priceEditForm.value.editedMachineNumber,
+      this.priceEditForm.value.editedMachine,
       this.priceEditForm.value.editedPriceType,
       this.priceEditForm.value.editedPriceValue,
       this.priceEditForm.value.editedStartDate,
@@ -124,7 +119,7 @@ export class HourPriceEditComponent implements OnInit {
 
     const editedPrice = new HourPrice(
       this.price.workCode,
-      this.price.machineInternalId,
+      this.price.machine,
       this.price.priceType,
       this.priceEditForm.value.editedPriceValue,
       this.priceEditForm.value.editedStartDate,
@@ -134,7 +129,7 @@ export class HourPriceEditComponent implements OnInit {
 
     const newHourPrice = new HourPrice(
       this.price.workCode,
-      this.price.machineInternalId,
+      this.price.machine,
       this.price.priceType,
       this.priceEditForm.value.newPriceValue,
       this.priceEditForm.value.newStartDate,
@@ -156,5 +151,9 @@ export class HourPriceEditComponent implements OnInit {
         this.isError = true;
         this.userMessage = err.error.message;
       });
+  }
+
+  compareIds(a, b) {
+    return a.id === b.id;
   }
 }

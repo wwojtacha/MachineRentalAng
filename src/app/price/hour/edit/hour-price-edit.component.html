@@ -21,10 +21,9 @@
       <div class="row">
         <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="editedMachineNumber">Machine</label>
-          <select type="text" id="editedMachineNumber" formControlName="editedMachineNumber" class="form-control">
-            <option></option>
-            <option *ngFor="let machineInternalId of machineInternalIds" [ngValue]="machineInternalId">{{machineInternalId}}</option>
+          <label for="editedMachine">Machine</label>
+          <select type="text" id="editedMachine" formControlName="editedMachine" class="form-control" [compareWith]="compareIds">
+            <option *ngFor="let machine of machines | async" [ngValue]="machine">{{machine.internalId}}</option>
           </select>
         </div>
         <!--</div>-->
@@ -105,10 +104,9 @@
       <div class="row">
         <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="newMachineNumber">Machine</label>
-          <select type="text" id="newMachineNumber" formControlName="newMachineNumber" class="form-control">
-            <option></option>
-            <option *ngFor="let machineInternalId of machineInternalIds" [ngValue]="machineInternalId">{{machineInternalId}}</option>
+          <label for="newMachine">Machine</label>
+          <select type="text" id="newMachine" formControlName="newMachine" class="form-control" [compareWith]="compareIds">
+            <option *ngFor="let machine of machines | async" [ngValue]="machine">{{machine.internalId}}</option>
           </select>
         </div>
         <!--</div>-->
