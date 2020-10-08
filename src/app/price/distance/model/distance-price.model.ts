@@ -1,8 +1,9 @@
+import {Machine} from '../../../machine/model/machine.model';
 
 export class DistancePrice {
   id: number;
   workCode: string;
-  machineInternalId: string;
+  machine: Machine;
   priceType: string;
   price: number;
   rangeMin: number;
@@ -12,9 +13,9 @@ export class DistancePrice {
   projectCode: string;
 
 
-  constructor(workCode: string, machineInternalId: string, priceType: string, price: number, rangeMin: number, rangeMax: number, startDate: Date, endDate: Date, projectCode: string) {
+  constructor(workCode: string, machine: Machine, priceType: string, price: number, rangeMin: number, rangeMax: number, startDate: Date, endDate: Date, projectCode: string) {
     this.workCode = workCode;
-    this.machineInternalId = machineInternalId;
+    this.machine = machine;
     this.priceType = priceType;
     this.price = price;
     this.rangeMin = rangeMin;

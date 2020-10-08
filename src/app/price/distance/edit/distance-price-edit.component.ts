@@ -25,7 +25,6 @@ export class DistancePriceEditComponent implements OnInit {
   isError = false;
   messageStyler = MessageStyler;
   machines = new BehaviorSubject<Machine[]>([]);
-  machineInternalIds = [];
   costCodes = new BehaviorSubject<CostCode[]>([]);
   projectCodes = new Set();
   isNewPriceShown = false;
@@ -39,7 +38,7 @@ export class DistancePriceEditComponent implements OnInit {
   ngOnInit(): void {
 
     const workCode = this.price.workCode;
-    const machineNumber = this.price.machineInternalId;
+    const machineNumber = this.price.machine;
     const priceType = this.price.priceType;
     const price = this.price.price;
     const rangeMin = this.price.rangeMin;
@@ -50,7 +49,7 @@ export class DistancePriceEditComponent implements OnInit {
 
     this.priceEditForm = new FormGroup({
       editedWorkCode: new FormControl(workCode, Validators.required),
-      editedMachineNumber: new FormControl(machineNumber, Validators.required),
+      editedMachine: new FormControl(machineNumber, Validators.required),
       editedPriceType: new FormControl(priceType, Validators.required),
       editedPriceValue: new FormControl(price, Validators.required),
       editedRangeMin: new FormControl(rangeMin, Validators.required),
@@ -59,7 +58,7 @@ export class DistancePriceEditComponent implements OnInit {
       editedEndDate: new FormControl(endDate, Validators.required),
       editedProjectCode: new FormControl(projectCode, Validators.required),
       newWorkCode: new FormControl({value: workCode, disabled: true}, Validators.required),
-      newMachineNumber: new FormControl({value: machineNumber, disabled: true}, Validators.required),
+      newMachine: new FormControl({value: machineNumber, disabled: true}, Validators.required),
       newPriceType: new FormControl({value: priceType, disabled: true}, Validators.required),
       newPriceValue: new FormControl(price, Validators.required),
       newRangeMin: new FormControl(rangeMin, Validators.required),
@@ -82,11 +81,6 @@ export class DistancePriceEditComponent implements OnInit {
 
     this.machineRepositoryService.getMachines(params).subscribe(response => {
       this.machines.next(Object.values(response)[0]);
-
-      const machines = this.machines.getValue();
-      for (const machine of machines) {
-        this.machineInternalIds.push(machine.internalId);
-      }
     });
 
   }
@@ -95,7 +89,7 @@ export class DistancePriceEditComponent implements OnInit {
 
     const price = new DistancePrice(
       this.priceEditForm.value.editedWorkCode,
-      this.priceEditForm.value.editedMachineNumber,
+      this.priceEditForm.value.editedMachine,
       this.priceEditForm.value.editedPriceType,
       this.priceEditForm.value.editedPriceValue,
       this.priceEditForm.value.editedRangeMin,
@@ -132,7 +126,7 @@ export class DistancePriceEditComponent implements OnInit {
 
     const editedDistancePrice = new DistancePrice(
       this.price.workCode,
-      this.price.machineInternalId,
+      this.price.machine,
       this.price.priceType,
       this.priceEditForm.value.editedPriceValue,
       this.priceEditForm.value.editedRangeMin,
@@ -144,7 +138,7 @@ export class DistancePriceEditComponent implements OnInit {
 
     const newDistancePrice = new DistancePrice(
       this.price.workCode,
-      this.price.machineInternalId,
+      this.price.machine,
       this.price.priceType,
       this.priceEditForm.value.newPriceValue,
       this.priceEditForm.value.newRangeMin,
@@ -169,5 +163,9 @@ export class DistancePriceEditComponent implements OnInit {
         this.userMessage = err.error.message;
       });
 
+  }
+
+  compareIds(a, b) {
+    return a.id === b.id;
   }
 }
