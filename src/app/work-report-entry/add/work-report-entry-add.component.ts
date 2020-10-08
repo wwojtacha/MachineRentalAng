@@ -14,6 +14,8 @@ import {EstimatePositionRepositoryService} from '../../estimate/repository-servi
 import {WorkDocument} from '../../work-document/model/work-document.model';
 import {HourPriceRepositoryService} from '../../price/hour/repository-service/hour-price-repository.service';
 import {HourPrice} from '../../price/hour/model/hour-price.model';
+import {Operator} from '../../operator/model/operator.model';
+import {OperatorRepositoryService} from '../../operator/repository-service/operator-repository.service';
 
 @Component({
   selector: 'app-work-report-entry-add',
@@ -35,6 +37,7 @@ export class WorkReportEntryAddComponent implements OnInit {
   isEstimatePositionShown = !this.isOnEdit;
   hourPrices = new BehaviorSubject<HourPrice[]>([]);
   hourPrice;
+  acceptingPersons = new BehaviorSubject<Operator[]>([]);
   isHourPriceValid = true;
 
   constructor(private workReportEntryRepositoryService: WorkReportEntryRepositoryService,
@@ -43,7 +46,8 @@ export class WorkReportEntryAddComponent implements OnInit {
               private workReportEntryService: WorkReportEntryService,
               private costCodeRepositoryService: CostCodeRepositoryService,
               private estimatePositionRepositoryService: EstimatePositionRepositoryService,
-              private hourPriceRepositoryService: HourPriceRepositoryService) {
+              private hourPriceRepositoryService: HourPriceRepositoryService,
+              private operatorRepositoryService: OperatorRepositoryService) {
   }
 
 
@@ -108,6 +112,10 @@ export class WorkReportEntryAddComponent implements OnInit {
 
     this.estimatePositionRepositoryService.getEstimatePositions(params).subscribe(response => {
       this.estimatePositions.next(Object.values(response)[0]);
+    });
+
+    this.operatorRepositoryService.getOperators(params).subscribe(response => {
+      this.acceptingPersons.next(Object.values(response)[0]);
     });
 
     const workDocument: WorkDocument = history.state.workDocument;
@@ -256,5 +264,9 @@ export class WorkReportEntryAddComponent implements OnInit {
     if (this.isOnEdit) {
       return {'background-color': 'blue', color: 'white'};
     }
+  }
+
+  compareIds(a, b) {
+    return a.id === b.id;
   }
 }

@@ -200,7 +200,9 @@
     <div class="col-xs-2">
       <div class="form-group">
         <label for="acceptingPerson">Accepted by</label>
-        <input type="text" id="acceptingPerson" formControlName="acceptingPerson" class="form-control">
+        <select type="text" id="acceptingPerson" formControlName="acceptingPerson" class="form-control" [compareWith]="compareIds">
+          <option *ngFor="let acceptingPerson of acceptingPersons | async" [ngValue]="acceptingPerson">{{acceptingPerson.name}}</option>
+        </select>
       </div>
     </div>
   </div>

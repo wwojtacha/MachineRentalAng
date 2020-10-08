@@ -28,7 +28,7 @@
     <td>{{workReportEntry.hourPrice.price}}</td>
     <td>{{workReportEntry.estimatePosition.name}}</td>
     <td>{{workReportEntry.costCode.fullCode}}</td>
-    <td>{{workReportEntry.acceptingPerson}}</td>
+    <td>{{workReportEntry.acceptingPerson.name}}</td>
     <td>
       <button type="button" class="btn btn-primary" (click)="onEditWorkDocumentEntry(workReportEntry, i)">Edit</button>
       <button mat-button type="button" class="btn btn-danger" (click)="onDeleteWorkDocumentEntry(workReportEntry.id, i)">Delete</button>

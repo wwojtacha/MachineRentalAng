@@ -15,6 +15,8 @@ import {WorkDocument} from '../../work-document/model/work-document.model';
 import {Material} from '../../material/model/material.model';
 import {MaterialRepositoryService} from '../../material/repository-service/material-repository.service';
 import {DistancePrice} from '../../price/distance/model/distance-price.model';
+import {Operator} from '../../operator/model/operator.model';
+import {OperatorRepositoryService} from '../../operator/repository-service/operator-repository.service';
 
 @Component({
   selector: 'app-road-card-entry-add',
@@ -37,6 +39,7 @@ export class RoadCardEntryAddComponent implements OnInit {
   distancePrice;
   materials = new BehaviorSubject<Material[]>([]);
   isMaterialShown = !this.isOnEdit;
+  acceptingPersons = new BehaviorSubject<Operator[]>([]);
   isDistancePriceValid = true;
 
 
@@ -47,7 +50,8 @@ export class RoadCardEntryAddComponent implements OnInit {
               private costCodeRepositoryService: CostCodeRepositoryService,
               private estimatePositionRepositoryService: EstimatePositionRepositoryService,
               private distancePriceRepositoryService: DistancePriceRepositoryService,
-              private materialRepoitoryService: MaterialRepositoryService) {
+              private materialRepoitoryService: MaterialRepositoryService,
+              private operatorRepositoryService: OperatorRepositoryService) {
   }
 
   ngOnInit(): void {
@@ -123,6 +127,9 @@ export class RoadCardEntryAddComponent implements OnInit {
       this.materials.next(Object.values(response)[0]);
     });
 
+    this.operatorRepositoryService.getOperators(params).subscribe(response => {
+      this.acceptingPersons.next(Object.values(response)[0]);
+    });
 
     const workDocument: WorkDocument = history.state.workDocument;
     const matchingPricesParams = new HttpParams({
@@ -293,5 +300,9 @@ export class RoadCardEntryAddComponent implements OnInit {
 
   onPriceTypeChange() {
     this.getDistancePrice();
+  }
+
+  compareIds(a, b) {
+    return a.id === b.id;
   }
 }

@@ -3,6 +3,7 @@ import {WorkDocument} from '../../work-document/model/work-document.model';
 import {CostCode} from '../../costcode/model/costcode.model';
 import {EstimatePosition} from '../../estimate/model/estimate.position';
 import {HourPrice} from '../../price/hour/model/hour-price.model';
+import {Operator} from "../../operator/model/operator.model";
 
 export class WorkReportEntry {
 
@@ -17,11 +18,11 @@ export class WorkReportEntry {
   hourPrice: HourPrice;
   estimatePosition: EstimatePosition;
   costCode: CostCode;
-  acceptingPerson: string;
+  acceptingPerson: Operator;
   workDocument: WorkDocument;
 
 
-  constructor(workCode: string, startHour: Time, endHour: Time, placeOfWork: string, typeOfWork: string, workQuantity: number, measureUnit: string, hourPrice: HourPrice, estimatePosition: EstimatePosition, costCode: CostCode, acceptingPerson: string, workDocument: WorkDocument) {
+  constructor(workCode: string, startHour: Time, endHour: Time, placeOfWork: string, typeOfWork: string, workQuantity: number, measureUnit: string, hourPrice: HourPrice, estimatePosition: EstimatePosition, costCode: CostCode, acceptingPerson: Operator, workDocument: WorkDocument) {
     this.workCode = workCode;
     this.startHour = startHour;
     this.endHour = endHour;
