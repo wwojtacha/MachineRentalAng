@@ -25,5 +25,9 @@ button {
 }
 
 #addNewWorkDocumentEntryButton {
-  margin-bottom: 3%;
+  padding-bottom: 3%;
+}
+
+#saveEntriesButton {
+  margin-top: 3%;
 }
