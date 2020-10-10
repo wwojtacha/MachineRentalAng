@@ -82,11 +82,11 @@
     <td>{{price.projectCode}}</td>
     <td>
       <button type="button" class="btn btn-primary" (click)="onEditPrice(price)">Edit</button>
-      <!--<button type="button" class="btn btn-danger" (click)="onDeletePrice(price.id, i)">Delete</button>-->
+      <button type="button" class="btn btn-danger" (click)="onDeletePrice(price.id, i)">Delete</button>
     </td>
   </tr>
   </tbody>
 </table>
 
-<div id="message" [ngStyle]="messageStyler.stylePriceMessage(isError)">{{userMessage}}</div>
+<!--<div id="message" [ngStyle]="messageStyler.stylePriceMessage(isError)">{{userMessage}}</div>-->
 

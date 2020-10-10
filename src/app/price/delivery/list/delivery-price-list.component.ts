@@ -12,6 +12,9 @@ import {ClientRepositoryService} from '../../../client/repository-service/client
 import {MaterialRepositoryService} from '../../../material/repository-service/material-repository.service';
 import {DeliveryPriceRepositoryService} from '../repository-service/delivery-price-repository.service';
 import {CostCode} from '../../../costcode/model/costcode.model';
+import {MatDialog} from "@angular/material";
+import {ConfirmationDialogComponent} from "../../../confirmation-dialog/confirmation-dialog.component";
+import {ErrorDialogComponent} from "../../../error-dialog/error-dialog.component";
 
 @Component({
   selector: 'app-delivery-price-list',
@@ -21,7 +24,7 @@ import {CostCode} from '../../../costcode/model/costcode.model';
 export class DeliveryPriceListComponent implements OnInit {
   deliveryPriceListForm: FormGroup;
   messageStyler = MessageStyler;
-  isError: false;
+  // isError = false;
   userMessage;
   prices = new BehaviorSubject<DeliveryPrice[]>([]);
   contractors = new BehaviorSubject<Client[]>([]);
@@ -29,12 +32,12 @@ export class DeliveryPriceListComponent implements OnInit {
   costCodes = new BehaviorSubject<CostCode[]>([]);
   projectCodes = new Set();
 
-
   constructor(private router: Router,
               private costCodeRepositoryService: CostCodeRepositoryService,
               private clientRepositoryService: ClientRepositoryService,
               private materialRepositoryService: MaterialRepositoryService,
-              private deliveryPriceRepositoryService: DeliveryPriceRepositoryService) {
+              private deliveryPriceRepositoryService: DeliveryPriceRepositoryService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -83,6 +86,57 @@ export class DeliveryPriceListComponent implements OnInit {
 
   onEditPrice(price: DeliveryPrice) {
     this.router.navigateByUrl('delivery-price-edit/', {state: {price}});
+  }
+
+  // onDeletePrice(id: number, index: number) {
+  //   this.deliveryPriceRepositoryService.deletePrice(id).subscribe(
+  //     data => {
+  //       this.userMessage = 'Price with id: '  + id + ' has been deleted.';
+  //       this.prices.getValue().splice(index, 1);
+  //     },
+  //     err => {
+  //       this.isError = true;
+  //       const entries = Object.entries(err.error);
+  //       for (const entry of entries) {
+  //         if (entry[0] === 'message') {
+  //           this.userMessage = entry[1];
+  //         }
+  //       }
+  //     }
+  //   );
+  // }
+
+  onDeletePrice(id: number, index: number) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Are you sure you want to delete ?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deliveryPriceRepositoryService.deletePrice(id).subscribe(
+          data => {
+            this.prices.getValue().splice(index, 1);
+          },
+          err => {
+            let userMessage;
+            const entries = Object.entries(err.error);
+            for (const entry of entries) {
+              if (entry[0] === 'message') {
+                userMessage = entry[1];
+              }
+            }
+
+            // this.userMessage = Object.keys(err.error).find(k => err.error[k].index === 'message');
+
+            this.dialog.open(ErrorDialogComponent, {
+              width: '450px',
+              data: userMessage
+            });
+          }
+        );
+      }
+    });
   }
 }
 

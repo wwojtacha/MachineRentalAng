@@ -33,7 +33,7 @@ export class DistancePriceRepositoryService {
     return this.http.put(this.url.DISTANCE_PRICES + 'editAndSave/' + id, doubleDistancePrice);
   }
 
-  deletePrice(id: string) {
+  deletePrice(id: number) {
     return this.http.delete(this.url.DISTANCE_PRICES + id);
   }
 

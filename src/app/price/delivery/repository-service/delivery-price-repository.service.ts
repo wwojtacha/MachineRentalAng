@@ -32,7 +32,7 @@ export class DeliveryPriceRepositoryService {
     return this.http.put(this.url.DELIVERY_PRICES + 'editAndSave/' + id, doubleDeliveryPrice);
   }
 
-  deletePrice(id: string) {
+  deletePrice(id: number) {
     return this.http.delete(this.url.DELIVERY_PRICES + id);
   }
 

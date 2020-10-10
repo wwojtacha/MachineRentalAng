@@ -36,7 +36,7 @@ export class HourPriceRepositoryService {
     return this.http.put(this.url.HOUR_PRICES + 'editAndSave/' + id, doubleHourPrice);
   }
 
-  deletePrice(id: string) {
+  deletePrice(id: number) {
     return this.http.delete(this.url.HOUR_PRICES + id);
   }
 
