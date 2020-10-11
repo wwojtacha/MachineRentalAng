@@ -23,4 +23,5 @@ export class UrlKeeper {
   static DELIVERY_PRICES = UrlKeeper.MAIN_BACKEND_URL + UrlKeeper.SEPARATOR + 'deliveryPrices' + UrlKeeper.SEPARATOR;
   static DELIVERY_DOCUMENTS = UrlKeeper.MAIN_BACKEND_URL + UrlKeeper.SEPARATOR + 'deliveryDocuments' + UrlKeeper.SEPARATOR;
   static DELIVERY_DOCUMENT_ENTRIES = UrlKeeper.MAIN_BACKEND_URL + UrlKeeper.SEPARATOR + 'deliveryDocumentEntries' + UrlKeeper.SEPARATOR;
+  static REPORTS = UrlKeeper.MAIN_BACKEND_URL + UrlKeeper.SEPARATOR + 'reports/workReportEntriesReport' + UrlKeeper.SEPARATOR;
 }

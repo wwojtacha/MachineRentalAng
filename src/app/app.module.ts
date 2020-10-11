@@ -87,6 +87,8 @@ import {DeliveryDocumentEntryListComponent} from './delivery-document-entry/list
 import {SaveEntriesButtonDirective} from './work-document/directives/show-save-entries-button.directive';
 import {ShowEntriesDirective} from './work-document/directives/show-entries.directive';
 import {ShowAddDeliveyEntryButtonDirective} from './work-document/directives/show-add-delivey-entry-button.directive';
+import {WorkReportReportService} from './reports/work-report-report.service';
+import {WorkReportReportComponent} from './reports/work-report-report.component';
 
 @NgModule({
   declarations: [
@@ -145,7 +147,8 @@ import {ShowAddDeliveyEntryButtonDirective} from './work-document/directives/sho
     DeliveryPriceAddComponent,
     DeliveryPriceEditComponent,
     DeliveryDocumentEntryAddComponent,
-    DeliveryDocumentEntryListComponent
+    DeliveryDocumentEntryListComponent,
+    WorkReportReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -168,6 +171,7 @@ import {ShowAddDeliveyEntryButtonDirective} from './work-document/directives/sho
     AuthenticationService, UserRepositoryService, CostCodeRepositoryService, EstimatePositionRepositoryService,
     MaterialRepositoryService, HourPriceRepositoryService, DistancePriceRepositoryService, DeliveryDocumentRepositoryService,
     DeliveryPriceRepositoryService, DeliveryDocumentEntryService, DeliveryDocumentEntryRepositoryService,
+    WorkReportReportService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
     ],
   bootstrap: [AppComponent]

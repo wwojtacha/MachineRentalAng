@@ -1,0 +1,101 @@
+<form [formGroup]="reportsForm">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="startDate">Start date</label>
+        <input type="date" id="startDate" formControlName="startDate" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="endDate">End date</label>
+        <input type="date" id="endDate" formControlName="endDate" class="form-control">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <button type="button" class="btn btn-primary" (click)="generateReport()">Work report entries</button>
+    </div>
+  </div>
+
+  <!--<div class="row">-->
+    <!--<div class="col-xs-offset-0">-->
+      <!--<button type="button" class="btn btn-primary" (click)="generateReport()">Work report entries</button>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+  <!--<div class="row">-->
+  <!--<div class="col-xs-offset-0">-->
+  <!--<button type="submit" class="btn btn-success" [disabled]="!operatorForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--<div id="message" *ngFor="let message of userMessages" [ngStyle]="messageStyler.styleMessage(message)">{{message}}</div>-->
+
+
+</form>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-xs-1">Document number</th>
+    <th class="col-xs-1">Document type</th>
+    <th class="col-xs-1">Date</th>
+    <th class="col-xs-1">Machine id</th>
+    <th class="col-xs-1">Operator name</th>
+    <th class="col-xs-1">Delegation</th>
+    <th class="col-xs-1">Invoice number</th>
+    <th class="col-xs-1">Work code</th>
+    <th class="col-xs-1">Start hour</th>
+    <th class="col-xs-1">End hour</th>
+    <th class="col-xs-1">Place of work</th>
+    <th class="col-xs-1">Type of work</th>
+    <th class="col-xs-1">Work quantity</th>
+    <th class="col-xs-1">Measure unit</th>
+    <th class="col-xs-1">Price type</th>
+    <th class="col-xs-1">Price</th>
+    <th class="col-xs-1">Estimate name</th>
+    <th class="col-xs-1">Estimate cost code</th>
+    <th class="col-xs-1">Cost code</th>
+    <th class="col-xs-1">Accepted by</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let workReportEntry of workReportEntries | async; let i = index">
+    <td>{{workReportEntry.workDocument.id}}</td>
+    <td>{{workReportEntry.workDocument.documentType}}</td>
+    <td>{{workReportEntry.workDocument.date}}</td>
+    <td>{{workReportEntry.workDocument.machine.internalId}}</td>
+    <td>{{workReportEntry.workDocument.operator.name}}</td>
+    <td>{{workReportEntry.workDocument.delegation}}</td>
+    <td>{{workReportEntry.workDocument.invoiceNumber}}}</td>
+    <td>{{workReportEntry.workCode}}</td>
+    <td>{{workReportEntry.startHour}}</td>
+    <td>{{workReportEntry.endHour}}</td>
+    <td>{{workReportEntry.placeOfWork}}</td>
+    <td>{{workReportEntry.typeOfWork}}</td>
+    <td>{{workReportEntry.workQuantity}}</td>
+    <td>{{workReportEntry.measureUnit}}</td>
+    <td>{{workReportEntry.hourPrice.priceType}}</td>
+    <td>{{workReportEntry.hourPrice.price}}</td>
+    <td>{{workReportEntry.estimatePosition.name}}</td>
+    <td>{{workReportEntry.estimatePosition.costCode.fullCode}}</td>
+    <td>{{workReportEntry.costCode.fullCode}}</td>
+    <td>{{workReportEntry.acceptingPerson.name}}</td>
+
+  </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+

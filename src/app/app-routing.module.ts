@@ -41,6 +41,7 @@ import {DeliveryPriceEditComponent} from './price/delivery/edit/delivery-price-e
 import {DeliveryDocumentListComponent} from './delivery-document/list/delivery-document-list.component';
 import {DeliveryDocumentAddComponent} from './delivery-document/add/delivery-document-add.component';
 import {DeliveryDocumentEntryAddComponent} from './delivery-document-entry/add/delivery-document-entry-add.component';
+import {WorkReportReportComponent} from './reports/work-report-report.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -114,10 +115,11 @@ const appRoutes: Routes = [
   {path: 'delivery-document-entry-add', component: DeliveryDocumentEntryAddComponent, children: [{
       path: ':id', component: DeliveryDocumentEntryAddComponent
     }]},
-  
+
   {path: 'user-add', component: UserAddComponent, children: [{
       path: ':id', component: UserAddComponent}]
   },
+  {path: 'reports', component: WorkReportReportComponent},
   ];
 
 @NgModule({

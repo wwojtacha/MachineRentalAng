@@ -4,13 +4,23 @@
     <a routerLinkActive="active" routerLink="/" class="active">Home</a>
   </div>
 
-    <div class="navbar-brand" *ngIf="currentUser">
-      <a routerLinkActive="active" routerLink="/machines">Machines</a>
-    </div>
+    <ul class="navbar-brand" *ngIf="currentUser">
+      <li class="dropdown" appDropdown>
+        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Machines<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a style="cursor: pointer;" routerLink="/machines">Machines</a></li>
+          <li><a style="cursor: pointer;" routerLink="/machine-type-list">Machine types</a></li>
+        </ul>
+      </li>
+    </ul>
 
-    <div class="navbar-brand" *ngIf="currentUser">
-      <a routerLinkActive="active" routerLink="/machine-type-list">Machine types</a>
-    </div>
+    <!--<div class="navbar-brand" *ngIf="currentUser">-->
+      <!--<a routerLinkActive="active" routerLink="/machines">Machines</a>-->
+    <!--</div>-->
+
+    <!--<div class="navbar-brand" *ngIf="currentUser">-->
+      <!--<a routerLinkActive="active" routerLink="/machine-type-list">Machine types</a>-->
+    <!--</div>-->
 
     <div class="navbar-brand" *ngIf="currentUser">
       <a routerLinkActive="active" routerLink="/clients">Contractors</a>
@@ -55,25 +65,29 @@
       </li>
     </ul>
 
+    <ul class="navbar-brand" *ngIf="currentUser">
+      <li class="dropdown" appDropdown>
+        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Documents<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a style="cursor: pointer;" routerLink="/work-documents">Work documents</a></li>
+          <li><a style="cursor: pointer;" routerLink="/delivery-documents">Delivery documents</a></li>
+        </ul>
+      </li>
+    </ul>
+
+
+
     <!--<div class="navbar-brand" *ngIf="currentUser">-->
-      <!--<a routerLinkActive="active" routerLink="/hourPrices">Hour prices</a>-->
+      <!--<a routerLinkActive="active" routerLink="/work-documents">Work documents</a>-->
     <!--</div>-->
 
     <!--<div class="navbar-brand" *ngIf="currentUser">-->
-    <!--<a routerLinkActive="active" routerLink="/distancePrices">Distance prices</a>-->
+      <!--<a routerLinkActive="active" routerLink="/delivery-documents">Delivery documents</a>-->
     <!--</div>-->
 
     <!--<div class="navbar-brand" *ngIf="currentUser">-->
-      <!--<a routerLinkActive="active" routerLink="/deliveryPrices">Delivery prices</a>-->
+      <!--<a routerLinkActive="active" routerLink="/reports">Reports</a>-->
     <!--</div>-->
-
-    <div class="navbar-brand" *ngIf="currentUser">
-      <a routerLinkActive="active" routerLink="/work-documents">Work documents</a>
-    </div>
-
-    <div class="navbar-brand" *ngIf="currentUser">
-      <a routerLinkActive="active" routerLink="/delivery-documents">Delivery documents</a>
-    </div>
 
     <div class="navbar-brand" *ngIf="isAdmin">
       <a routerLinkActive="active" routerLink="/users">Users</a>
@@ -91,13 +105,6 @@
     </div>
 
     <div class="nav navbar-nav navbar-right">
-      <!--<li class="dropdown" appDropdown>-->
-        <!--<a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>-->
-        <!--<ul class="dropdown-menu">-->
-          <!--<li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>-->
-          <!--<li><a style="cursor: pointer;" (click)="onFetchData">Fetch Data</a></li>-->
-        <!--</ul>-->
-      <!--</li>-->
       <div class="navbar-brand">
         <a routerLinkActive="active" routerLink="/login" *ngIf="!currentUser">Login</a>
       </div>
