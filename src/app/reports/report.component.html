@@ -1,0 +1,46 @@
+<form [formGroup]="reportsForm">
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="startDate">Start date</label>
+        <input type="date" id="startDate" formControlName="startDate" class="form-control" (ngModelChange)="onDateChange()">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="endDate">End date</label>
+        <input type="date" id="endDate" formControlName="endDate" class="form-control" (ngModelChange)="onDateChange()">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <button type="button" class="btn btn-primary" (click)="generateExcelWorkReportEntryReport()" [disabled]="!isValid">Work report entries</button>
+    </div>
+    <div class="col-xs-2">
+      <button type="button" class="btn btn-primary" (click)="generateExcelRoadCardEntryReport()" [disabled]="!isValid">Road card entries</button>
+    </div>
+    <div class="col-xs-2">
+      <button type="button" class="btn btn-primary" (click)="generateExcelDeliveryDocumentEntryReport()" [disabled]="!isValid">Delivery document entries</button>
+    </div>
+  </div>
+
+
+
+
+
+</form>
+
+
+
+
+
+
+
+
+
+
