@@ -3,7 +3,7 @@ import {AuthenticationService} from '../login/service/auth.service';
 import {Router} from '@angular/router';
 import {AuthUserModel} from '../login/model/auth-user.model';
 import {UserRepositoryService} from '../user/repository-service/user-repository.service';
-import {User} from '../user/model/user.model';
+import {UserDto} from '../user/model/userdto.model';
 
 @Component({
   selector: 'app-navigation',
@@ -33,13 +33,12 @@ export class NavigationComponent implements OnInit {
       (authUser) => {
         this.currentUser = authUser;
 
-        this.userRepositoryService.getAllUsers().subscribe((users: User[]) => {
-          for (const user of users) {
-            if (this.currentUser != null && user.username === this.currentUser.username && user.role === 'ADMIN') {
-              this.isAdmin = true;
-              break;
-            }
-          }
+        if (this.currentUser === null) {
+          return;
+        }
+
+        this.userRepositoryService.getUser(this.currentUser.username).subscribe((userDto: UserDto) => {
+          this.isAdmin = userDto.role === 'ADMIN';
         });
       }
     );

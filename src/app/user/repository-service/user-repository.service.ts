@@ -22,8 +22,8 @@ export class UserRepositoryService {
     return this.http.get(this.url.USERS);
   }
 
-  getUser(id: number) {
-    return this.http.get(this.url.USERS + id);
+  getUser(username: string) {
+    return this.http.get(this.url.USERS + username);
   }
 
   updateUser(id: number, user: User) {
