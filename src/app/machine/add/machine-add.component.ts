@@ -52,7 +52,7 @@ export class MachineAddComponent implements OnInit {
     let productionYear = null;
     let owner = null;
     let machineStatus = '';
-    let quantity = null;
+    let quantity = 1;
 
     if (this.isOnEdit) {
         internalId = this.machine.internalId;
