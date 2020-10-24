@@ -89,6 +89,9 @@ import {ShowEntriesDirective} from './work-document/directives/show-entries.dire
 import {ShowAddDeliveyEntryButtonDirective} from './work-document/directives/show-add-delivey-entry-button.directive';
 import {ReportComponent} from './reports/report.component';
 import {ReportService} from './reports/report.service';
+import {DailyReportListComponent} from './daily-report/list/daily-report-list.component';
+import {DailyReportRepositoryService} from './daily-report/repository-service/daily-report-repository.service';
+import {DailyReportAddComponent} from './daily-report/add/daily-report-add.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +152,8 @@ import {ReportService} from './reports/report.service';
     DeliveryDocumentEntryAddComponent,
     DeliveryDocumentEntryListComponent,
     ReportComponent,
+    DailyReportListComponent,
+    DailyReportAddComponent
   ],
   imports: [
     BrowserModule,
@@ -171,7 +176,7 @@ import {ReportService} from './reports/report.service';
     AuthenticationService, UserRepositoryService, CostCodeRepositoryService, EstimatePositionRepositoryService,
     MaterialRepositoryService, HourPriceRepositoryService, DistancePriceRepositoryService, DeliveryDocumentRepositoryService,
     DeliveryPriceRepositoryService, DeliveryDocumentEntryService, DeliveryDocumentEntryRepositoryService,
-    ReportService,
+    ReportService, DailyReportRepositoryService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
     ],
   bootstrap: [AppComponent]

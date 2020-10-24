@@ -1,0 +1,86 @@
+<div id="add-button" class="row">
+  <div class="col-xs-offset-0">
+    <button type="button" class="btn btn-primary" routerLink="/daily-report-add">Add new Daily Report</button>
+  </div>
+</div>
+
+<br><br>
+
+<form [formGroup]="dailyReportListForm" (ngSubmit)="onSearch()">
+
+  <div id="searchFields" class="row">
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" formControlName="date" class="form-control">
+      </div>
+    </div>
+
+      <div class="col-xs-2">
+        <div class="form-group">
+          <label for="estimatePosition">Estimate position</label>
+          <select type="text" id="estimatePosition" formControlName="estimatePosition" class="form-control">
+            <option></option>
+            <option *ngFor="let estimatePosition of estimatePositions | async" [ngValue]="estimatePosition">{{estimatePosition.name + ';' + estimatePosition.costCode.fullCode}}</option>
+          </select>
+        </div>
+      </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="location">Location</label>
+        <input type="text" id="location" formControlName="location" class="form-control">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br><br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-1">Date</th>
+    <th class="col-md-1">Estimate name</th>
+    <th class="col-md-1">Estimate cost code</th>
+    <th class="col-md-1">Estimate sell price</th>
+    <th class="col-md-1">Estimate remarks</th>
+    <th class="col-md-1">Object name</th>
+    <th class="col-md-1">Km (from)</th>
+    <th class="col-md-1">Km (to)</th>
+    <th class="col-md-1">Side</th>
+    <th class="col-md-1">Quantity</th>
+    <th class="col-md-1">Measure unit</th>
+    <th class="col-md-1">Remarks</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let dailyReport of dailyReports | async; let i = index">
+    <td>{{dailyReport.date}}</td>
+    <td>{{dailyReport.estimatePosition.name}}</td>
+    <td>{{dailyReport.estimatePosition.costCode.fullCode}}</td>
+    <td>{{dailyReport.estimatePosition.sellPrice}}</td>
+    <td>{{dailyReport.estimatePosition.remarks}}</td>
+    <td>{{dailyReport.location}}</td>
+    <td>{{dailyReport.startPoint}}</td>
+    <td>{{dailyReport.endPoint}}</td>
+    <td>{{dailyReport.side}}</td>
+    <td>{{dailyReport.quantity}}</td>
+    <td>{{dailyReport.measureUnit}}</td>
+    <td>{{dailyReport.remarks}}</td>
+    <td>
+      <button id="editButton" type="button" class="btn btn-primary" (click)="onEditDailyReport(dailyReport)">Edit</button>
+      <button mat-button type="button" class="btn btn-danger" (click)="onDeleteDailyReport(dailyReport.id, i)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

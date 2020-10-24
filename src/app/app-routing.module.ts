@@ -42,6 +42,8 @@ import {DeliveryDocumentListComponent} from './delivery-document/list/delivery-d
 import {DeliveryDocumentAddComponent} from './delivery-document/add/delivery-document-add.component';
 import {DeliveryDocumentEntryAddComponent} from './delivery-document-entry/add/delivery-document-entry-add.component';
 import {ReportComponent} from './reports/report.component';
+import {DailyReportListComponent} from './daily-report/list/daily-report-list.component';
+import {DailyReportAddComponent} from './daily-report/add/daily-report-add.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -120,6 +122,10 @@ const appRoutes: Routes = [
       path: ':id', component: UserAddComponent}]
   },
   {path: 'reports', component: ReportComponent},
+  {path: 'daily-reports', component: DailyReportListComponent},
+  {path: 'daily-report-add', component: DailyReportAddComponent, children: [{
+      path: ':id', component: DailyReportAddComponent}]
+  },
   ];
 
 @NgModule({
