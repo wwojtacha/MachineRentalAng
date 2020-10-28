@@ -102,19 +102,35 @@ export class CostReportComponent implements OnInit {
 
 
   showEquipmentDetails(costReport: CostReport) {
-    
+
     const equipmentCosts = costReport.totalEquipmentCost.equipmentCosts;
 
     const details = new Set();
-    
+
     for (const equipmentCost of equipmentCosts) {
       details.add(equipmentCost.machineType.machineType);
     }
-    
-    
+
+
     this.dialog.open(DetailsDialogComponent, {
       width: '30vh',
       data: equipmentCosts
+    });
+  }
+
+  showTotalDetails(costReport: CostReport) {
+    const transportCosts = costReport.totalTransportCost.transportCosts;
+
+    const details = new Set();
+
+    for (const transportCost of transportCosts) {
+      details.add(transportCost.machineType.machineType);
+    }
+
+
+    this.dialog.open(DetailsDialogComponent, {
+      width: '30vh',
+      data: transportCosts
     });
   }
 }

@@ -1,16 +1,33 @@
-table, form {
-  /*margin-left: 2%;*/
-  /*margin-right: 2%;*/
-  /*width: 90%;*/
+form, table {
   margin: 0 auto;
   width: 95%;
 }
 
-/*form {*/
-  /*margin-left: 5%;*/
-/*}*/
+.centeredButton {
+  margin: auto;
+}
 
-.detailsButton {
-  width: 5px;
-  column-width: 5px;
+.detailsColumn {
+  width: 3vh;
+  max-width: 3vh;
+}
+
+.estimateSection {
+  width: 5vh;
+}
+
+.equipmentSection {
+  background-color: khaki;
+  width: 5vh;
+}
+
+.transportSection {
+  background-color: beige;
+  width: 5vh;
+
+}
+
+.materialSection {
+  background-color: bisque;
+  width: 5vh;
 }
