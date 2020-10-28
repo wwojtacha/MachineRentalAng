@@ -1,0 +1,16 @@
+table, form {
+  /*margin-left: 2%;*/
+  /*margin-right: 2%;*/
+  /*width: 90%;*/
+  margin: 0 auto;
+  width: 95%;
+}
+
+/*form {*/
+  /*margin-left: 5%;*/
+/*}*/
+
+.detailsButton {
+  width: 5px;
+  column-width: 5px;
+}

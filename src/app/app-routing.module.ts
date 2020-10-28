@@ -44,6 +44,7 @@ import {DeliveryDocumentEntryAddComponent} from './delivery-document-entry/add/d
 import {ReportComponent} from './reports/report.component';
 import {DailyReportListComponent} from './daily-report/list/daily-report-list.component';
 import {DailyReportAddComponent} from './daily-report/add/daily-report-add.component';
+import {CostReportComponent} from './reports/cost/cost-report.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
@@ -121,7 +122,8 @@ const appRoutes: Routes = [
   {path: 'user-add', component: UserAddComponent, children: [{
       path: ':id', component: UserAddComponent}]
   },
-  {path: 'reports', component: ReportComponent},
+  {path: 'excel-reports', component: ReportComponent},
+  {path: 'cost-report', component: CostReportComponent},
   {path: 'daily-reports', component: DailyReportListComponent},
   {path: 'daily-report-add', component: DailyReportAddComponent, children: [{
       path: ':id', component: DailyReportAddComponent}]

@@ -1,0 +1,76 @@
+<form [formGroup]="costReportForm" (ngSubmit)="onSearch()">
+
+
+  <div class="row">
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="startDate">Start date</label>
+        <input type="date" id="startDate" formControlName="startDate" class="form-control" (ngModelChange)="onDateChange()">
+      </div>
+    </div>
+
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="endDate">End date</label>
+        <input type="date" id="endDate" formControlName="endDate" class="form-control" (ngModelChange)="onDateChange()">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-2">
+        <div class="form-group">
+          <label for="projectCode">Project code (estimate)</label>
+          <select type="text" id="projectCode" formControlName="projectCode" class="form-control" (ngModelChange)="onProjectCodeChange()">
+            <option></option>
+            <option *ngFor="let projectCode of projectCodes">{{projectCode}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-xs-1">
+      <button type="submit" class="btn btn-success" [disabled]="!isValid">Search</button>
+    </div>
+  </div>
+
+</form>
+
+<br>
+
+<table class="table">
+  <thead>
+  <tr>
+    <th class="col-md-2">Estimate position name</th>
+    <th class="col-md-1">Estimate position cost code</th>
+    <th class="col-md-1">Total daily report quantity</th>
+    <th class="col-md-1">Total equipment cost value</th>
+    <th class="col-md-1">Total equipment hours</th>
+    <th class="col-md-1">Total equipmet cost / Total daily report quantity</th>
+    <th class="col-md-1">Total daily report quantity / Total equipmet hours</th>
+    <th class="col-md-1"></th>
+    <th class="col-md-1">Total delivery cost</th>
+    <th class="col-md-1">Total delivery cost / Total daily report quantity</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let costReport of costReports | async; let i = index">
+    <td>{{costReport.estimatePosition.name}}</td>
+    <td>{{costReport.estimatePosition.costCode.fullCode}}</td>
+    <td>{{costReport.totalDailyReportQuantity}}</td>
+    <td>{{costReport.totalEquipmentCost.totalCostValue}}</td>
+    <td>{{costReport.totalEquipmentCost.totalWorkHoursCount}}</td>
+    <td>{{(costReport.totalEquipmentCost.totalCostValue / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
+    <td>{{(costReport.totalDailyReportQuantity / costReport.totalEquipmentCost.totalWorkHoursCount).toFixed(2)}}</td>
+    <td>
+      <button id="equipmentDetails" type="button" class="btn btn-primary" (click)="showEquipmentDetails(costReport)">D</button>
+    </td>
+    <td>{{costReport.totalDeliveryCost}}</td>
+    <td>{{(costReport.totalDeliveryCost / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
+
+  </tr>
+  </tbody>
+</table>

@@ -27,4 +27,6 @@ export class UrlKeeper {
   static ROAD_CARD_ENTRY_REPORT = UrlKeeper.MAIN_BACKEND_URL + UrlKeeper.SEPARATOR + 'reports/roadCardEntriesReport' + UrlKeeper.SEPARATOR;
   static DELIVERY_DOCUMENT_ENTRY_REPORT = UrlKeeper.MAIN_BACKEND_URL + UrlKeeper.SEPARATOR + 'reports/deliveryDocumentEntriesReport' + UrlKeeper.SEPARATOR;
   static DAILY_REPORTS = UrlKeeper.MAIN_BACKEND_URL + UrlKeeper.SEPARATOR + 'dailyReports' + UrlKeeper.SEPARATOR;
+  static COST_REPORT = UrlKeeper.MAIN_BACKEND_URL + UrlKeeper.SEPARATOR + 'costReport' + UrlKeeper.SEPARATOR;
+
 }

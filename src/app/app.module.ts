@@ -92,6 +92,9 @@ import {ReportService} from './reports/report.service';
 import {DailyReportListComponent} from './daily-report/list/daily-report-list.component';
 import {DailyReportRepositoryService} from './daily-report/repository-service/daily-report-repository.service';
 import {DailyReportAddComponent} from './daily-report/add/daily-report-add.component';
+import {CostReportComponent} from './reports/cost/cost-report.component';
+import {CostReportRepositoryService} from './reports/cost/repository-service/cost-report-repository.service';
+import {DetailsDialogComponent} from './reports/cost/details-dialog/details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -153,7 +156,9 @@ import {DailyReportAddComponent} from './daily-report/add/daily-report-add.compo
     DeliveryDocumentEntryListComponent,
     ReportComponent,
     DailyReportListComponent,
-    DailyReportAddComponent
+    DailyReportAddComponent,
+    CostReportComponent,
+    DetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -168,7 +173,8 @@ import {DailyReportAddComponent} from './daily-report/add/daily-report-add.compo
   ],
   entryComponents: [
     ConfirmationDialogComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    DetailsDialogComponent
   ],
   providers: [MachineRepositoryService, MachineTypeRepositoryService, ClientRepositoryService, SellerRepositoryService,
     PriceRepositoryService, OrderRepositoryService, PriceService, OperatorRepositoryService, WorkDocumentRepositoryService,
@@ -176,7 +182,7 @@ import {DailyReportAddComponent} from './daily-report/add/daily-report-add.compo
     AuthenticationService, UserRepositoryService, CostCodeRepositoryService, EstimatePositionRepositoryService,
     MaterialRepositoryService, HourPriceRepositoryService, DistancePriceRepositoryService, DeliveryDocumentRepositoryService,
     DeliveryPriceRepositoryService, DeliveryDocumentEntryService, DeliveryDocumentEntryRepositoryService,
-    ReportService, DailyReportRepositoryService,
+    ReportService, DailyReportRepositoryService, CostReportRepositoryService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
     ],
   bootstrap: [AppComponent]

@@ -86,9 +86,19 @@
       <!--<a routerLinkActive="active" routerLink="/delivery-documents">Delivery documents</a>-->
     <!--</div>-->
 
-    <div class="navbar-brand" *ngIf="currentUser">
-      <a routerLinkActive="active" routerLink="/reports">Reports</a>
-    </div>
+    <!--<div class="navbar-brand" *ngIf="currentUser">-->
+      <!--<a routerLinkActive="active" routerLink="/reports">Reports</a>-->
+    <!--</div>-->
+
+    <ul class="navbar-brand" *ngIf="currentUser">
+      <li class="dropdown" appDropdown>
+        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Reports<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a style="cursor: pointer;" routerLink="/excel-reports">Excel reports</a></li>
+          <li><a style="cursor: pointer;" routerLink="/cost-report">Cost report</a></li>
+        </ul>
+      </li>
+    </ul>
 
     <div class="navbar-brand" *ngIf="isAdmin">
       <a routerLinkActive="active" routerLink="/users">Users</a>
