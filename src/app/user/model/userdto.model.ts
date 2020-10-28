@@ -1,13 +1,13 @@
 export class UserDto {
 
   username: string;
-  role: string;
+  userRole: string;
   email: string;
 
 
   constructor(username: string, role: string, email: string) {
     this.username = username;
-    this.role = role;
+    this.userRole = role;
     this.email = email;
   }
 

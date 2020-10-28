@@ -38,7 +38,7 @@ export class NavigationComponent implements OnInit {
         }
 
         this.userRepositoryService.getUser(this.currentUser.username).subscribe((userDto: UserDto) => {
-          this.isAdmin = userDto.role === 'ADMIN';
+          this.isAdmin = userDto.userRole === 'ADMIN';
         });
       }
     );

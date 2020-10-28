@@ -31,6 +31,8 @@
     <td>{{workReportEntry.acceptingPerson.name}}</td>
     <td>
       <button type="button" class="btn btn-primary" (click)="onEditWorkDocumentEntry(workReportEntry, i)">Edit</button>
+    </td>
+    <td>
       <button mat-button type="button" class="btn btn-danger" (click)="onDeleteWorkDocumentEntry(workReportEntry.id, i)">Delete</button>
     </td>
   </tr>
