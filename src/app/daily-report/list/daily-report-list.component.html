@@ -79,6 +79,8 @@
     <td>{{dailyReport.remarks}}</td>
     <td>
       <button id="editButton" type="button" class="btn btn-primary" (click)="onEditDailyReport(dailyReport)">Edit</button>
+    </td>
+    <td>
       <button mat-button type="button" class="btn btn-danger" (click)="onDeleteDailyReport(dailyReport.id, i)">Delete</button>
     </td>
   </tr>
