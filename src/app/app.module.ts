@@ -95,6 +95,7 @@ import {DailyReportAddComponent} from './daily-report/add/daily-report-add.compo
 import {CostReportComponent} from './reports/cost/cost-report.component';
 import {CostReportRepositoryService} from './reports/cost/repository-service/cost-report-repository.service';
 import {DetailsDialogComponent} from './reports/cost/details-dialog/details-dialog.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -169,7 +170,8 @@ import {DetailsDialogComponent} from './reports/cost/details-dialog/details-dial
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
-    MatSelectModule
+    MatSelectModule,
+    DragDropModule
   ],
   entryComponents: [
     ConfirmationDialogComponent,
