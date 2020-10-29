@@ -25,6 +25,7 @@ export class CostReportComponent implements OnInit {
   isValid = false;
   totalEquipmentCosts = new BehaviorSubject<TotalEquipmentCost[]>([]);
   costReports = new BehaviorSubject<CostReport[]>([]);
+  coefficient = 0;
 
   constructor(private costCodeRepositoryService: CostCodeRepositoryService,
               private costReportRepositoryService: CostReportRepositoryService,
@@ -36,7 +37,8 @@ export class CostReportComponent implements OnInit {
     this.costReportForm = new FormGroup({
       startDate: new FormControl('', Validators.required),
       endDate: new FormControl('', Validators.required),
-      projectCode: new FormControl('', Validators.required)
+      projectCode: new FormControl('', Validators.required),
+      coefficient: new FormControl(0, Validators.required)
       }
     );
 

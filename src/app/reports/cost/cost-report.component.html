@@ -17,7 +17,6 @@
       </div>
     </div>
 
-    <div class="row">
       <div class="col-md-3">
         <div class="form-group">
           <label for="projectCode">Project code (estimate)</label>
@@ -26,6 +25,12 @@
             <option *ngFor="let projectCode of projectCodes">{{projectCode}}</option>
           </select>
         </div>
+      </div>
+
+    <div class="col-md-2">
+      <div class="form-group">
+        <label for="coefficient">OH</label>
+        <input type="number" id="coefficient" formControlName="coefficient" class="form-control" [(ngModel)]="coefficient">
       </div>
     </div>
 
@@ -63,6 +68,12 @@
     <th class="estimateSection">Estimate position name</th>
     <th class="estimateSection">Estimate position cost code</th>
     <th class="estimateSection">Total daily report quantity</th>
+    <th class="estimateSection">Estimate position sell price</th>
+    <th class="estimateSection">Sell value</th>
+    <th class="estimateSection">Total cost</th>
+    <th class="estimateSection">Total cost + OH</th>
+    <th class="estimateSection">Result</th>
+
     <th class="equipmentSection">Total equipment cost value</th>
     <th class="equipmentSection">Total equipment hours</th>
     <th class="equipmentSection">Total equipmet cost / Total daily report quantity</th>
@@ -82,6 +93,13 @@
     <td class="estimateSection">{{costReport.estimatePosition.name}}</td>
     <td class="estimateSection">{{costReport.estimatePosition.costCode.fullCode}}</td>
     <td class="estimateSection">{{costReport.totalDailyReportQuantity}}</td>
+    <td class="estimateSection">{{costReport.estimatePosition.sellPrice}}</td>
+    <td class="estimateSection">{{(costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice).toFixed(2)}}</td>
+    <td class="estimateSection">{{costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost}}</td>
+    <td class="estimateSection">{{((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost) + ((coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost))).toFixed(2)}}</td>
+    <td class="estimateSection">{{((costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice) - ((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost) + ((coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost)))).toFixed(2)}}</td>
+
+
     <td class="equipmentSection">{{costReport.totalEquipmentCost.totalCostValue}}</td>
     <td class="equipmentSection">{{costReport.totalEquipmentCost.totalWorkHoursCount}}</td>
     <td class="equipmentSection">{{(costReport.totalEquipmentCost.totalCostValue / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
