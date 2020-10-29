@@ -94,8 +94,9 @@ import {DailyReportRepositoryService} from './daily-report/repository-service/da
 import {DailyReportAddComponent} from './daily-report/add/daily-report-add.component';
 import {CostReportComponent} from './reports/cost/cost-report.component';
 import {CostReportRepositoryService} from './reports/cost/repository-service/cost-report-repository.service';
-import {DetailsDialogComponent} from './reports/cost/details-dialog/details-dialog.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {EquipmentDetailsDialogComponent} from './reports/cost/equipment/details-dialog/equipment-details-dialog.component';
+import {TransportDetailsDialogComponent} from './reports/cost/transport/details-dialog/transport-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -159,7 +160,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     DailyReportListComponent,
     DailyReportAddComponent,
     CostReportComponent,
-    DetailsDialogComponent
+    EquipmentDetailsDialogComponent,
+    TransportDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -176,7 +178,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
   entryComponents: [
     ConfirmationDialogComponent,
     ErrorDialogComponent,
-    DetailsDialogComponent
+    EquipmentDetailsDialogComponent,
+    TransportDetailsDialogComponent
   ],
   providers: [MachineRepositoryService, MachineTypeRepositoryService, ClientRepositoryService, SellerRepositoryService,
     PriceRepositoryService, OrderRepositoryService, PriceService, OperatorRepositoryService, WorkDocumentRepositoryService,

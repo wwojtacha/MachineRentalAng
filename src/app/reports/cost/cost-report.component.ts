@@ -7,8 +7,9 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CostReportRepositoryService} from './repository-service/cost-report-repository.service';
 import {TotalEquipmentCost} from './equipment/total-equipment-cost.model';
 import {CostReport} from './model/cost-report.model';
-import {DetailsDialogComponent} from './details-dialog/details-dialog.component';
 import {MatDialog} from '@angular/material';
+import {EquipmentDetailsDialogComponent} from './equipment/details-dialog/equipment-details-dialog.component';
+import {TransportDetailsDialogComponent} from './transport/details-dialog/transport-details-dialog.component';
 
 @Component({
   selector: 'app-cost-report',
@@ -105,34 +106,17 @@ export class CostReportComponent implements OnInit {
 
   showEquipmentDetails(costReport: CostReport) {
 
-    const equipmentCosts = costReport.totalEquipmentCost.equipmentCosts;
-
-    const details = new Set();
-
-    for (const equipmentCost of equipmentCosts) {
-      details.add(equipmentCost.machineType.machineType);
-    }
-
-
-    this.dialog.open(DetailsDialogComponent, {
-      width: '30vh',
-      data: equipmentCosts
+    this.dialog.open(EquipmentDetailsDialogComponent, {
+      width: '80vh',
+      data: costReport
     });
   }
 
-  showTotalDetails(costReport: CostReport) {
-    const transportCosts = costReport.totalTransportCost.transportCosts;
+  showTransportDetails(costReport: CostReport) {
 
-    const details = new Set();
-
-    for (const transportCost of transportCosts) {
-      details.add(transportCost.machineType.machineType);
-    }
-
-
-    this.dialog.open(DetailsDialogComponent, {
-      width: '30vh',
-      data: transportCosts
+    this.dialog.open(TransportDetailsDialogComponent, {
+      width: '80vh',
+      data: costReport
     });
   }
 }

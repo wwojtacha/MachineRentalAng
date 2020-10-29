@@ -1,0 +1,28 @@
+<div mat-dialog-content cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+
+  <table class="table">
+    <thead>
+    <tr>
+      <th class="col-xs-1">Machine type</th>
+      <th class="col-xs-1">Cost value</th>
+      <th class="col-xs-1">Work hours count</th>
+      <th class="col-xs-1">Equipmet cost /Ttotal daily report quantity</th>
+      <th class="col-xs-1">Total daily report quantity / equipment hours</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let equipmentCost of costReport.totalEquipmentCost.equipmentCosts">
+      <td>{{equipmentCost.machineType.machineType}}</td>
+      <td>{{equipmentCost.costValue}}</td>
+      <td>{{equipmentCost.workHoursCount}}</td>
+      <td>{{(equipmentCost.costValue / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
+      <td>{{(costReport.totalDailyReportQuantity / equipmentCost.workHoursCount).toFixed(2)}}</td>
+
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button class=btn-primary (click)="onOkClick()">Ok</button>
+</div>
