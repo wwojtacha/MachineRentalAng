@@ -33,6 +33,7 @@ export class DailyReportAddComponent implements OnInit {
         date: new FormControl(dailyReport.date, Validators.required),
         estimatePosition: new FormControl(dailyReport.estimatePosition, Validators.required),
         estimateSellPrice: new FormControl({value: dailyReport.estimatePosition.sellPrice, disabled: true}, Validators.required),
+        estimateMeasureUnit: new FormControl({value: dailyReport.estimatePosition.measureUnit, disabled: true}, Validators.required),
         estimateRemarks: new FormControl({value: dailyReport.estimatePosition.remarks, disabled: true}, Validators.required),
         location: new FormControl(dailyReport.location, Validators.required),
         startPoint: new FormControl(dailyReport.startPoint, Validators.required),
@@ -49,6 +50,7 @@ export class DailyReportAddComponent implements OnInit {
         date: new FormControl('', Validators.required),
         estimatePosition: new FormControl('', Validators.required),
         estimateSellPrice: new FormControl({value: '', disabled: true}, Validators.required),
+        estimateMeasureUnit: new FormControl({value: '', disabled: true}, Validators.required),
         estimateRemarks: new FormControl({value: '', disabled: true}, Validators.required),
         location: new FormControl('', Validators.required),
         startPoint: new FormControl('', Validators.required),
@@ -135,6 +137,7 @@ export class DailyReportAddComponent implements OnInit {
 
     this.dailyReportAddForm.patchValue({
       estimateSellPrice: estimatePosition.sellPrice,
+      estimateMeasureUnit: estimatePosition.measureUnit,
       estimateRemarks: estimatePosition.remarks
     });
   }
