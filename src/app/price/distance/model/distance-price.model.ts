@@ -11,9 +11,18 @@ export class DistancePrice {
   startDate: Date;
   endDate: Date;
   projectCode: string;
+  modificationDate: Date;
 
 
-  constructor(workCode: string, machine: Machine, priceType: string, price: number, rangeMin: number, rangeMax: number, startDate: Date, endDate: Date, projectCode: string) {
+  constructor(workCode: string,
+              machine: Machine,
+              priceType: string,
+              price: number,
+              rangeMin: number,
+              rangeMax: number,
+              startDate: Date,
+              endDate: Date,
+              projectCode: string) {
     this.workCode = workCode;
     this.machine = machine;
     this.priceType = priceType;
