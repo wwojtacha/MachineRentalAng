@@ -11,9 +11,16 @@ export class DeliveryPrice {
   public startDate: Date;
   public endDate: Date;
   public projectCode: string;
+  modificationDate: Date;
 
 
-  constructor(contractor: Client, material: Material, priceType: string, price: number, startDate: Date, endDate: Date, projectCode: string) {
+  constructor(contractor: Client,
+              material: Material,
+              priceType: string,
+              price: number,
+              startDate: Date,
+              endDate: Date,
+              projectCode: string) {
     this.contractor = contractor;
     this.material = material;
     this.priceType = priceType;
