@@ -37,7 +37,7 @@ export class RoadCardEntryAddComponent implements OnInit {
   isEstimatePositionShown = !this.isOnEdit;
   distancePrices = new BehaviorSubject<DistancePrice[]>([]);
   distancePrice;
-  materials = new BehaviorSubject<Material[]>([]);
+  // materials = new BehaviorSubject<Material[]>([]);
   isMaterialShown = !this.isOnEdit;
   acceptingPersons = new BehaviorSubject<Operator[]>([]);
   isDistancePriceValid = true;
@@ -50,7 +50,7 @@ export class RoadCardEntryAddComponent implements OnInit {
               private costCodeRepositoryService: CostCodeRepositoryService,
               private estimatePositionRepositoryService: EstimatePositionRepositoryService,
               private distancePriceRepositoryService: DistancePriceRepositoryService,
-              private materialRepoitoryService: MaterialRepositoryService,
+              // private materialRepoitoryService: MaterialRepositoryService,
               private operatorRepositoryService: OperatorRepositoryService) {
   }
 
@@ -67,7 +67,7 @@ export class RoadCardEntryAddComponent implements OnInit {
         startHour: new FormControl(roadCardEntry.startHour, Validators.required),
         endHour: new FormControl(roadCardEntry.endHour, Validators.required),
         loadingPlace: new FormControl(roadCardEntry.loadingPlace, Validators.required),
-        editedMaterial: new FormControl({value: roadCardEntry.material.type, disabled: true}),
+        // editedMaterial: new FormControl({value: roadCardEntry.material.type, disabled: true}),
         material: new FormControl(roadCardEntry.material, Validators.required),
         unloadingPlace: new FormControl(roadCardEntry.unloadingPlace, Validators.required),
         quantity: new FormControl(roadCardEntry.quantity, [Validators.required, Validators.min(0)]),
@@ -91,7 +91,7 @@ export class RoadCardEntryAddComponent implements OnInit {
         startHour: new FormControl('', Validators.required),
         endHour: new FormControl('', Validators.required),
         loadingPlace: new FormControl('', Validators.required),
-        editedMaterial: new FormControl({value: null, disabled: true}),
+        // editedMaterial: new FormControl({value: null, disabled: true}),
         material: new FormControl('', Validators.required),
         unloadingPlace: new FormControl('', Validators.required),
         quantity: new FormControl('', [Validators.required, Validators.min(0)]),
@@ -123,9 +123,9 @@ export class RoadCardEntryAddComponent implements OnInit {
       this.estimatePositions.next(Object.values(response)[0]);
     });
 
-    this.materialRepoitoryService.getMaterials(params).subscribe(response => {
-      this.materials.next(Object.values(response)[0]);
-    });
+    // this.materialRepoitoryService.getMaterials(params).subscribe(response => {
+    //   this.materials.next(Object.values(response)[0]);
+    // });
 
     this.operatorRepositoryService.getOperators(params).subscribe(response => {
       this.acceptingPersons.next(Object.values(response)[0]);

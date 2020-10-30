@@ -44,29 +44,38 @@
     </div>
   </div>
 
+  <!--<div class="row">-->
+    <!--<div class="col-xs-2">-->
+      <!--<div class="form-group" *ngIf="isOnEdit">-->
+        <!--<label for="editedMaterial">Current material</label>-->
+        <!--<input id="editedMaterial" formControlName="editedMaterial" class="form-control">-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="col-xs-2" id="changeMaterialButton">-->
+      <!--<div class="form-group" *ngIf="isOnEdit">-->
+        <!--<button type="button" class="btn-default" (click)="enableMaterialSelect()">Change material</button>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="row" *ngIf="isMaterialShown">-->
+    <!--<div class="col-xs-2">-->
+      <!--<div class="form-group">-->
+        <!--<label for="material">Material</label>-->
+        <!--<select type="text" id="mateial" formControlName="material" class="form-control" (ngModelChange)="onSelectMaterial($event)" [ngStyle]="styleElementToChange()">-->
+          <!--<option value=""></option>-->
+          <!--<option *ngFor="let material of materials | async" [ngValue]="material">{{material.type}}</option>-->
+        <!--</select>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
   <div class="row">
-    <div class="col-xs-2">
-      <div class="form-group" *ngIf="isOnEdit">
-        <label for="editedMaterial">Current material</label>
-        <input id="editedMaterial" formControlName="editedMaterial" class="form-control">
-      </div>
-    </div>
-
-    <div class="col-xs-2" id="changeMaterialButton">
-      <div class="form-group" *ngIf="isOnEdit">
-        <button type="button" class="btn-default" (click)="enableMaterialSelect()">Change material</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="row" *ngIf="isMaterialShown">
     <div class="col-xs-2">
       <div class="form-group">
         <label for="material">Material</label>
-        <select type="text" id="mateial" formControlName="material" class="form-control" (ngModelChange)="onSelectMaterial($event)" [ngStyle]="styleElementToChange()">
-          <option value=""></option>
-          <option *ngFor="let material of materials | async" [ngValue]="material">{{material.type}}</option>
-        </select>
+        <input id="material" formControlName="material" class="form-control">
       </div>
     </div>
   </div>
@@ -112,7 +121,7 @@
       <div class="form-group">
         <label for="priceType">Price type</label>
         <select type="text" id="priceType" formControlName="priceType" class="form-control" (ngModelChange)="onPriceTypeChange()">
-          <option value="DISTANCE">Distance</option>
+          <option value="DISTANCE_KM">Distance</option>
           <option value="DISTANCE_M3">Per m3</option>
           <option value="DISTANCE_MG">Per Mg</option>
           <option value="DISTANCE_RUN">Per run</option>

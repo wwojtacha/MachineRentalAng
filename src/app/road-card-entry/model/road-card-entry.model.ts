@@ -13,7 +13,7 @@ export class RoadCardEntry {
   startHour: Time;
   endHour: Time;
   loadingPlace: string;
-  material: Material;
+  material: string;
   unloadingPlace: string;
   quantity: number;
   measureUnit: string;
@@ -25,12 +25,12 @@ export class RoadCardEntry {
   workDocument: WorkDocument;
 
 
-  constructor(workCode: string, startHour: Time, endHour: Time, loadingPlace: string, materialType: Material, unloadingPlace: string, quantity: number, measureUnit: string, distance: number, distancePrice: DistancePrice, estimatePosition: EstimatePosition, costCode: CostCode, acceptingPerson: Operator, workDocument: WorkDocument) {
+  constructor(workCode: string, startHour: Time, endHour: Time, loadingPlace: string, material: string, unloadingPlace: string, quantity: number, measureUnit: string, distance: number, distancePrice: DistancePrice, estimatePosition: EstimatePosition, costCode: CostCode, acceptingPerson: Operator, workDocument: WorkDocument) {
     this.workCode = workCode;
     this.startHour = startHour;
     this.endHour = endHour;
     this.loadingPlace = loadingPlace;
-    this.material = materialType;
+    this.material = material;
     this.unloadingPlace = unloadingPlace;
     this.quantity = quantity;
     this.measureUnit = measureUnit;
