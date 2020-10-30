@@ -97,6 +97,7 @@ import {CostReportRepositoryService} from './reports/cost/repository-service/cos
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {EquipmentDetailsDialogComponent} from './reports/cost/equipment/details-dialog/equipment-details-dialog.component';
 import {TransportDetailsDialogComponent} from './reports/cost/transport/details-dialog/transport-details-dialog.component';
+import {DeliveryDetailsDialogComponent} from './reports/cost/delivery/delivery-dialog/delivery-details-dialog.component';
 
 @NgModule({
   declarations: [
@@ -161,7 +162,8 @@ import {TransportDetailsDialogComponent} from './reports/cost/transport/details-
     DailyReportAddComponent,
     CostReportComponent,
     EquipmentDetailsDialogComponent,
-    TransportDetailsDialogComponent
+    TransportDetailsDialogComponent,
+    DeliveryDetailsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -179,7 +181,8 @@ import {TransportDetailsDialogComponent} from './reports/cost/transport/details-
     ConfirmationDialogComponent,
     ErrorDialogComponent,
     EquipmentDetailsDialogComponent,
-    TransportDetailsDialogComponent
+    TransportDetailsDialogComponent,
+    DeliveryDetailsDialogComponent
   ],
   providers: [MachineRepositoryService, MachineTypeRepositoryService, ClientRepositoryService, SellerRepositoryService,
     PriceRepositoryService, OrderRepositoryService, PriceService, OperatorRepositoryService, WorkDocumentRepositoryService,

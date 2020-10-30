@@ -3,6 +3,7 @@
   <tr>
     <th class="col-xs-1">Contractor</th>
     <th class="col-xs-1">Material</th>
+    <th class="col-xs-1">Price type</th>
     <th class="col-xs-1">Quantity</th>
     <th class="col-xs-1">Measure unit</th>
     <th class="col-xs-1">Estimate position</th>
@@ -16,6 +17,7 @@
   <tr *ngFor="let deliveryDocumentEntry of deliveryDocumentEntries | async; let i = index">
     <td>{{deliveryDocumentEntry.contractor.name}}</td>
     <td>{{deliveryDocumentEntry.material.type}}</td>
+    <td>{{deliveryDocumentEntry.deliveryPrice.priceType}}</td>
     <td>{{deliveryDocumentEntry.quantity}}</td>
     <td>{{deliveryDocumentEntry.measureUnit}}</td>
     <td>{{deliveryDocumentEntry.estimatePosition.name}}</td>

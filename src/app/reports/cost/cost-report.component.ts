@@ -10,6 +10,7 @@ import {CostReport} from './model/cost-report.model';
 import {MatDialog} from '@angular/material';
 import {EquipmentDetailsDialogComponent} from './equipment/details-dialog/equipment-details-dialog.component';
 import {TransportDetailsDialogComponent} from './transport/details-dialog/transport-details-dialog.component';
+import {DeliveryDetailsDialogComponent} from './delivery/delivery-dialog/delivery-details-dialog.component';
 
 @Component({
   selector: 'app-cost-report',
@@ -115,6 +116,13 @@ export class CostReportComponent implements OnInit {
   showTransportDetails(costReport: CostReport) {
 
     this.dialog.open(TransportDetailsDialogComponent, {
+      width: '80vh',
+      data: costReport
+    });
+  }
+
+  showDeliveryDetails(costReport: CostReport) {
+    this.dialog.open(DeliveryDetailsDialogComponent, {
       width: '80vh',
       data: costReport
     });
