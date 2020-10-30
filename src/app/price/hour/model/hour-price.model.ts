@@ -9,6 +9,7 @@ export class HourPrice {
   startDate: Date;
   endDate: Date;
   projectCode: string;
+  modificationDate: Date;
 
 
   constructor(workCode: string, machine: Machine, priceType: string, price: number, startDate: Date, endDate: Date, projectCode: string) {
