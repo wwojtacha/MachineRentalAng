@@ -87,6 +87,10 @@
     <th class="materialSection">Total delivery cost</th>
     <th class="materialSection">Total delivery cost / Total daily report quantity</th>
     <th class="detailsColumn verticalBorder"></th>
+
+    <th class="labourSection">Total labour cost value</th>
+    <th class="labourSection">Total labour hours</th>
+    <th class="labourSection">Total labour cost / Total daily report quantity</th>
   </tr>
   </thead>
   <tbody>
@@ -99,7 +103,6 @@
     <td class="estimateSection">{{(costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue).toFixed(2)}}</td>
     <td class="estimateSection">{{((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue) + ((coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue))).toFixed(2)}}</td>
     <td class="estimateSection verticalBorder">{{((costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice) - ((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue) + ((coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue)))).toFixed(2)}}</td>
-
 
     <td class="equipmentSection">{{costReport.totalEquipmentCost.totalCostValue}}</td>
     <td class="equipmentSection">{{costReport.totalEquipmentCost.totalWorkHoursCount}}</td>
@@ -124,6 +127,9 @@
         <button type="button" class="detailsButton" (click)="showDeliveryDetails(costReport)">D</button>
       </div>
     </td>
+    <td class="labourSection">{{costReport.totalLabourCost.totalCostValue}}</td>
+    <td class="labourSection">{{costReport.totalLabourCost.totalWorkHoursCount}}</td>
+    <td class="labourSection">{{(costReport.totalLabourCost.totalCostValue / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
   </tr>
   </tbody>
 </table>

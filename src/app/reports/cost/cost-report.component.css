@@ -40,10 +40,14 @@ form, table {
 .transportSection {
   /*background-color: beige;*/
   width: 5vh;
-
 }
 
 .materialSection {
+  /*background-color: bisque;*/
+  width: 5vh;
+}
+
+.labourSection {
   /*background-color: bisque;*/
   width: 5vh;
 }
