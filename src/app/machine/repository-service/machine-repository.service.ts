@@ -29,4 +29,8 @@ export class MachineRepositoryService {
   private handleError(error: HttpErrorResponse) {
     return throwError(Object.values(error.error)[0]);
   }
+
+  deleteMachine(id: any) {
+    return this.http.delete(this.url.MACHINES + id);
+  }
 }

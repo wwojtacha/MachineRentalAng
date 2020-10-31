@@ -9,6 +9,9 @@ import {Machine} from '../model/machine.model';
 import {MachineType} from '../../machine-type/model/machine-type.model';
 import {Client} from '../../client/model/client.model';
 import {ClientRepositoryService} from '../../client/repository-service/client-repository.service';
+import {ConfirmationDialogComponent} from '../../confirmation-dialog/confirmation-dialog.component';
+import {ErrorDialogComponent} from '../../error-dialog/error-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-machine-list',
@@ -16,7 +19,7 @@ import {ClientRepositoryService} from '../../client/repository-service/client-re
   styleUrls: ['./machine-list.component.css']
 })
 export class MachineListComponent implements OnInit {
-  machines;
+  machines = new BehaviorSubject<Machine[]>([]);
   machineListForm: FormGroup;
   machineTypes = new BehaviorSubject<MachineType[]>([]);
   owners = new BehaviorSubject<Client[]>([]);
@@ -24,7 +27,8 @@ export class MachineListComponent implements OnInit {
   constructor(private machineRepositoryService: MachineRepositoryService,
               private machineTypeRepositoryService: MachineTypeRepositoryService,
               private clientRepositoryService: ClientRepositoryService,
-              private router: Router) {
+              private router: Router,
+              public dialog: MatDialog) {
   }
 
 
@@ -65,12 +69,43 @@ export class MachineListComponent implements OnInit {
     });
 
     this.machineRepositoryService.getMachines(params)
-    .subscribe((machineObject) => {
-      this.machines = Object.values(machineObject)[0];
+    .subscribe(response => {
+      this.machines.next(Object.values(response)[0]);
     });
   }
 
   onEditMachine(machine: Machine) {
     this.router.navigateByUrl('machine-add/', {state: {machine}});
+  }
+
+  onDeleteMachine(id: any, index: number) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: 'Are you sure you want to delete ?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.machineRepositoryService.deleteMachine(id).subscribe(
+          data => {
+            this.machines.getValue().splice(index, 1);
+          },
+          err => {
+            let userMessage;
+            const entries = Object.entries(err.error);
+            for (const entry of entries) {
+              if (entry[0] === 'message') {
+                userMessage = entry[1];
+              }
+            }
+
+            this.dialog.open(ErrorDialogComponent, {
+              width: '450px',
+              data: userMessage
+            });
+          }
+        );
+      }
+    });
   }
 }
