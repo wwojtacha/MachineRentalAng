@@ -41,6 +41,7 @@ export class RoadCardEntryAddComponent implements OnInit {
   isMaterialShown = !this.isOnEdit;
   acceptingPersons = new BehaviorSubject<Operator[]>([]);
   isDistancePriceValid = true;
+  priceTypes = new Set<string>();
 
 
   constructor(private roadCardEntryRepositoryService: RoadCardEntryRepositoryService,
@@ -143,6 +144,11 @@ export class RoadCardEntryAddComponent implements OnInit {
 
     this.distancePriceRepositoryService.getMatchingPrices(matchingPricesParams).subscribe(response => {
       this.distancePrices.next(Object.values(response));
+
+      const prices = this.distancePrices.getValue();
+      for (const price of prices) {
+        this.priceTypes.add(price.priceType);
+      }
     });
   }
 

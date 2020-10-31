@@ -39,6 +39,7 @@ export class WorkReportEntryAddComponent implements OnInit {
   hourPrice;
   acceptingPersons = new BehaviorSubject<Operator[]>([]);
   isHourPriceValid = true;
+  priceTypes = new Set<string>();
 
   constructor(private workReportEntryRepositoryService: WorkReportEntryRepositoryService,
               private router: Router,
@@ -131,6 +132,11 @@ export class WorkReportEntryAddComponent implements OnInit {
 
     this.hourPriceRepositoryService.getMatchingPrices(matchingPricesParams).subscribe(response => {
       this.hourPrices.next(Object.values(response));
+
+      const prices = this.hourPrices.getValue();
+      for (const price of prices) {
+        this.priceTypes.add(price.priceType);
+      }
     });
 
   }

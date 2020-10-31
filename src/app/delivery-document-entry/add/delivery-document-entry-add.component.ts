@@ -47,6 +47,7 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
   deliveryDocument;
   id;
   date;
+  priceTypes = new Set<string>();
 
 
   constructor(private costCodeRepositoryService: CostCodeRepositoryService,
@@ -103,6 +104,12 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
       });
       this.deliveryPriceRepositoryService.getMatchingPrices(params2).subscribe(response => {
         this.deliveryPrices.next(Object.values(response));
+
+        this.priceTypes.clear();
+        const prices = this.deliveryPrices.getValue();
+        for (const price of prices) {
+          this.priceTypes.add(price.priceType);
+        }
         // this.getDeliveryPrice();
       });
     } else {
@@ -178,6 +185,12 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
     });
     this.deliveryPriceRepositoryService.getMatchingPrices(params).subscribe(response => {
       this.deliveryPrices.next(Object.values(response));
+
+      this.priceTypes.clear();
+      const prices = this.deliveryPrices.getValue();
+      for (const price of prices) {
+        this.priceTypes.add(price.priceType);
+      }
       this.getDeliveryPrice();
     });
   }
