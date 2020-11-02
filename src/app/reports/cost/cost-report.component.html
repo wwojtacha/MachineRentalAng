@@ -30,7 +30,7 @@
     <div class="col-md-2">
       <div class="form-group">
         <label for="coefficient">OH</label>
-        <input type="number" id="coefficient" formControlName="coefficient" class="form-control" [(ngModel)]="coefficient">
+        <input type="number" id="coefficient" formControlName="coefficient" class="form-control" (ngModelChange)="onCoefficientChange()">
       </div>
     </div>
 
@@ -100,36 +100,46 @@
     <td class="estimateSection">{{costReport.totalDailyReportQuantity}}</td>
     <td class="estimateSection">{{costReport.estimatePosition.sellPrice}}</td>
     <td class="estimateSection">{{(costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice).toFixed(2)}}</td>
-    <td class="estimateSection">{{(costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue).toFixed(2)}}</td>
-    <td class="estimateSection">{{((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue) + ((coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue))).toFixed(2)}}</td>
-    <td class="estimateSection verticalBorder">{{((costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice) - ((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue) + ((coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue)))).toFixed(2)}}</td>
+    <td class="estimateSection">{{(costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue).toFixed(2)}}</td>
+    <td class="estimateSection">{{((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue) + ((coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue))).toFixed(2)}}</td>
+    <td class="estimateSection verticalBorder">{{((costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice) - ((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue) + ((coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue)))).toFixed(2)}}</td>
 
-    <td class="equipmentSection">{{costReport.totalEquipmentCost.totalCostValue}}</td>
-    <td class="equipmentSection">{{costReport.totalEquipmentCost.totalWorkHoursCount}}</td>
+    <td class="equipmentSection">{{costReport.totalEquipmentCost.totalCostValue.toFixed(2)}}</td>
+    <td class="equipmentSection">{{costReport.totalEquipmentCost.totalWorkHoursCount.toFixed(2)}}</td>
     <td class="equipmentSection">{{(costReport.totalEquipmentCost.totalCostValue / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
     <td class="detailsColumn verticalBorder">
       <div class="centeredButton">
         <button type="button" class="detailsButton" (click)="showEquipmentDetails(costReport)">D</button>
       </div>
     </td>
-    <td class="transportSection">{{costReport.totalTransportCost.totalCostValue}}</td>
-    <td class="transportSection">{{costReport.totalTransportCost.totalWorkHoursCount}}</td>
+    <td class="transportSection">{{costReport.totalTransportCost.totalCostValue.toFixed(2)}}</td>
+    <td class="transportSection">{{costReport.totalTransportCost.totalWorkHoursCount.toFixed(2)}}</td>
     <td class="transportSection">{{(costReport.totalTransportCost.totalCostValue / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
     <td class="detailsColumn verticalBorder">
       <div class="centeredButton">
         <button type="button" class="detailsButton" (click)="showTransportDetails(costReport)">D</button>
       </div>
     </td>
-    <td class="materialSection">{{costReport.totalDeliveryCost.totalCostValue}}</td>
+    <td class="materialSection">{{costReport.totalDeliveryCost.totalCostValue.toFixed(2)}}</td>
     <td class="materialSection">{{(costReport.totalDeliveryCost.totalCostValue / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
     <td class="detailsColumn verticalBorder">
       <div class="centeredButton">
         <button type="button" class="detailsButton" (click)="showDeliveryDetails(costReport)">D</button>
       </div>
     </td>
-    <td class="labourSection">{{costReport.totalLabourCost.totalCostValue}}</td>
-    <td class="labourSection">{{costReport.totalLabourCost.totalWorkHoursCount}}</td>
+    <td class="labourSection">{{costReport.totalLabourCost.totalCostValue.toFixed(2)}}</td>
+    <td class="labourSection">{{costReport.totalLabourCost.totalWorkHoursCount.toFixed(2)}}</td>
     <td class="labourSection">{{(costReport.totalLabourCost.totalCostValue / costReport.totalDailyReportQuantity).toFixed(2)}}</td>
+  </tr>
+  <tr>
+    <td class="estimateSection"></td>
+    <td class="estimateSection"></td>
+    <td class="estimateSection">TOTAL</td>
+    <td class="estimateSection"></td>
+    <td class="estimateSection">{{grossSellValue.toFixed(2)}}</td>
+    <td class="estimateSection">{{grossTotalCost.toFixed(2)}}</td>
+    <td class="estimateSection">{{(grossTotalCostWithOH + ((coefficient / 100) * grossTotalCostWithOH)).toFixed(2)}}</td>
+    <td class="estimateSection">{{(grossSellValue - (grossTotalCostWithOH + ((coefficient / 100) * grossTotalCostWithOH))).toFixed(2)}}</td>
   </tr>
   </tbody>
 </table>

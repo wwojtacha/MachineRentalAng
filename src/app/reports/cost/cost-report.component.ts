@@ -19,8 +19,6 @@ import {DeliveryDetailsDialogComponent} from './delivery/delivery-dialog/deliver
 })
 export class CostReportComponent implements OnInit {
 
-
-
   costReportForm: FormGroup;
   costCodes = new BehaviorSubject<CostCode[]>([]);
   projectCodes = new Set();
@@ -28,6 +26,12 @@ export class CostReportComponent implements OnInit {
   totalEquipmentCosts = new BehaviorSubject<TotalEquipmentCost[]>([]);
   costReports = new BehaviorSubject<CostReport[]>([]);
   coefficient = 0;
+
+  grossSellValue = 0;
+  grossTotalCost = 0;
+  grossTotalCostWithOH = 0;
+  grossResult = 0;
+
 
   constructor(private costCodeRepositoryService: CostCodeRepositoryService,
               private costReportRepositoryService: CostReportRepositoryService,
@@ -101,6 +105,14 @@ export class CostReportComponent implements OnInit {
 
     this.costReportRepositoryService.getEquipmentCostReport(params).subscribe(response => {
       this.costReports.next(Object.values(response));
+
+      const costReports = this.costReports.getValue();
+      for (const costReport of costReports) {
+        this.grossSellValue += (costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice);
+        this.grossTotalCost += costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue;
+        this.grossTotalCostWithOH += (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue) + ((this.coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue));
+        this.grossResult += (costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice) - ((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue) + ((this.coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue)));
+      }
     });
   }
 
@@ -126,5 +138,9 @@ export class CostReportComponent implements OnInit {
       width: '80vh',
       data: costReport
     });
+  }
+
+  onCoefficientChange() {
+    this.coefficient = this.costReportForm.value.coefficient;
   }
 }
