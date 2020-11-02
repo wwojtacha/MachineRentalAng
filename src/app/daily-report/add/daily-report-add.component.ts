@@ -138,7 +138,8 @@ export class DailyReportAddComponent implements OnInit {
     this.dailyReportAddForm.patchValue({
       estimateSellPrice: estimatePosition.sellPrice,
       estimateMeasureUnit: estimatePosition.measureUnit,
-      estimateRemarks: estimatePosition.remarks
+      estimateRemarks: estimatePosition.remarks,
+      measureUnit: estimatePosition.measureUnit
     });
   }
 }
