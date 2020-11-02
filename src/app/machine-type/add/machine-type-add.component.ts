@@ -28,18 +28,23 @@ export class MachineTypeAddComponent implements OnInit {
 
     if (this.isOnEdit) {
       this.machineTypeForm = new FormGroup({
-        machineType: new FormControl(this.machineType.machineType, Validators.required)
+        machineType: new FormControl(this.machineType.machineType, Validators.required),
+        costCategory: new FormControl(this.machineType.costCategory, Validators.required)
       });
     } else {
       this.machineTypeForm = new FormGroup({
-        machineType: new FormControl('', Validators.required)
+        machineType: new FormControl('', Validators.required),
+        costCategory: new FormControl('', Validators.required)
       });
     }
 
   }
 
   onSubmit() {
-    const newMachineType = new MachineType(this.machineTypeForm.value.machineType);
+    const newMachineType = new MachineType(
+      this.machineTypeForm.value.machineType,
+      this.machineTypeForm.value.costCategory
+    );
 
     if (this.isOnEdit) {
       this.machineTypeRepositoryService.update(this.machineType.id, newMachineType).subscribe(

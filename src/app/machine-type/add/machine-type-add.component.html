@@ -1,15 +1,24 @@
 <form [formGroup]="machineTypeForm" (ngSubmit)="onSubmit()">
 
   <div class="row">
-
     <div class="col-xs-2">
       <div class="form-group">
         <label for="machineType">Machine type</label>
         <input type="text" id="machineType" formControlName="machineType" class="form-control">
       </div>
     </div>
+  </div>
 
-
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
+        <label for="costCategory">Cost category</label>
+        <select type="text" id="costCategory" formControlName="costCategory" class="form-control">
+          <option value="EQUIPMENT">Equipment</option>
+          <option value="TRANSPORT">Transport</option>
+        </select>
+      </div>
+    </div>
   </div>
 
 
