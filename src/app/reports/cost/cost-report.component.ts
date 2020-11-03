@@ -103,15 +103,35 @@ export class CostReportComponent implements OnInit {
       }
     });
 
+    this.grossSellValue = 0;
+    this.grossTotalCost = 0;
+    this.grossTotalCostWithOH = 0;
+    this.grossResult = 0;
+
     this.costReportRepositoryService.getEquipmentCostReport(params).subscribe(response => {
       this.costReports.next(Object.values(response));
 
       const costReports = this.costReports.getValue();
       for (const costReport of costReports) {
-        this.grossSellValue += (costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice);
-        this.grossTotalCost += costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue;
-        this.grossTotalCostWithOH += (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue) + ((this.coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue));
-        this.grossResult += (costReport.totalDailyReportQuantity * costReport.estimatePosition.sellPrice) - ((costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue) + ((this.coefficient / 100) * (costReport.totalEquipmentCost.totalCostValue + costReport.totalTransportCost.totalCostValue + costReport.totalDeliveryCost.totalCostValue + costReport.totalLabourCost.totalCostValue)));
+
+        const dailyReportQuantity = costReport.totalDailyReportQuantity;
+        const sellPrice = costReport.estimatePosition.sellPrice;
+
+        const equipmentCost = costReport.totalEquipmentCost.totalCostValue;
+        const transportCost = costReport.totalTransportCost.totalCostValue;
+        const deliveryCost = costReport.totalDeliveryCost.totalCostValue;
+        const labourCost = costReport.totalLabourCost.totalCostValue;
+
+        const totalSellValue = dailyReportQuantity * sellPrice;
+        const totalCost = equipmentCost + transportCost + deliveryCost + labourCost;
+        const totalCostWithOH = totalCost + ((this.coefficient / 100) * totalCost);
+        const totalResult = totalSellValue - totalCostWithOH;
+
+
+        this.grossSellValue += totalSellValue;
+        this.grossTotalCost += totalCost;
+        this.grossTotalCostWithOH += totalCostWithOH;
+        this.grossResult += totalResult;
       }
     });
   }
