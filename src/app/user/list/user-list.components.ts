@@ -5,6 +5,7 @@ import {BehaviorSubject} from 'rxjs';
 import {HttpParams} from '@angular/common/http';
 import {UserRepositoryService} from '../repository-service/user-repository.service';
 import {Router} from '@angular/router';
+import {UserDto} from "../model/userdto.model";
 
 @Component({
   selector: 'app-user-list',
@@ -13,7 +14,7 @@ import {Router} from '@angular/router';
 })
 export class UserListComponent implements OnInit {
   userListForm: FormGroup;
-  users = new BehaviorSubject<User[]>(null);
+  userDtos = new BehaviorSubject<UserDto[]>(null);
 
   constructor(private userRepositoryService: UserRepositoryService,
               private router: Router) {}
@@ -26,8 +27,8 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  onEditUser(user: User) {
-    this.router.navigateByUrl('user-add/', {state : {user}});
+  onEditUser(userDto: UserDto) {
+    this.router.navigateByUrl('user-add/', {state : {userDto}});
   }
 
   onSearch() {
@@ -40,8 +41,8 @@ export class UserListComponent implements OnInit {
       }
     });
 
-    this.userRepositoryService.getAllUsers().subscribe((response: User[]) => {
-      this.users.next(response);
+    this.userRepositoryService.getAllUsers().subscribe((response: UserDto[]) => {
+      this.userDtos.next(response);
     });
 
   }

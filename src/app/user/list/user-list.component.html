@@ -8,38 +8,6 @@
 
 <form [formGroup]="userListForm" (ngSubmit)="onSearch()">
 
-  <!--<div id="searchFields" class="row">-->
-
-    <!--<div class="col-xs-1">-->
-      <!--<div class="form-group">-->
-        <!--<label for="username">Username</label>-->
-        <!--<input type="text" id="username" formControlName="username" class="form-control">-->
-      <!--</div>-->
-    <!--</div>-->
-
-
-
-    <!--<div class="col-xs-2">-->
-      <!--<div class="form-group">-->
-        <!--<label for="role">User role</label>-->
-        <!--<select id="role" formControlName="role" class="form-control">-->
-          <!--<option></option>-->
-          <!--<option>ADMIN</option>-->
-          <!--<option>USER</option>-->
-        <!--</select>-->
-      <!--</div>-->
-    <!--</div>-->
-
-    <!--<div class="col-xs-1">-->
-      <!--<div class="form-group">-->
-        <!--<label for="email">E-mail address</label>-->
-        <!--<input type="email" id="email" formControlName="email" class="form-control">-->
-      <!--</div>-->
-    <!--</div>-->
-
-
-  <!--</div>-->
-
   <div class="row">
     <div class="col-xs-1">
       <button type="submit" class="btn btn-success">Search</button>
@@ -59,12 +27,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let user of users | async; let i = index">
-    <td>{{user.username}}</td>
-    <td>{{user.role}}</td>
-    <td>{{user.email}}</td>
+  <tr *ngFor="let userDto of userDtos | async; let i = index">
+    <td>{{userDto.username}}</td>
+    <td>{{userDto.userRole}}</td>
+    <td>{{userDto.email}}</td>
     <td>
-      <button id="editButton" type="button" class="btn btn-primary" (click)="onEditUser(user)">Edit</button>
+      <button id="editButton" type="button" class="btn btn-primary" (click)="onEditUser(userDto)">Edit</button>
       <!--<button mat-button type="button" class="btn btn-danger" (click)="onDeleteOrder(order.id, i)">Delete</button>-->
     </td>
   </tr>

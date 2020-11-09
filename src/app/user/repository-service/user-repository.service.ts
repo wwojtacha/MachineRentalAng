@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {UrlKeeper} from '../../utils/url-keeper';
 import {User} from '../model/user.model';
+import {UserDto} from "../model/userdto.model";
 
 @Injectable()
 export class UserRepositoryService {
@@ -26,8 +27,12 @@ export class UserRepositoryService {
     return this.http.get(this.url.USERS + username);
   }
 
-  updateUser(id: number, user: User) {
-    return this.http.put(this.url.USERS + id, user);
+  updateUserWithoutPasswordChange(id: number, userDto: UserDto) {
+    return this.http.put(this.url.USERS + 'withoutPassword/' + id, userDto);
+  }
+
+  updateUserWithPasswordChange(id: number, user: User) {
+    return this.http.put(this.url.USERS + 'withPassword/' + id, user);
   }
 
   deleteUser(id: number) {
