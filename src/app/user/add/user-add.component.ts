@@ -94,19 +94,6 @@ export class UserAddComponent implements OnInit {
         );
       }
 
-      // this.userRepositoryService.updateUser(this.userDto.id, user).subscribe(
-      //   data => {
-      //     this.userMessages.length = 0;
-      //     this.userMessages.push('User { ' + Object.values(data).splice(1, 1).toString() + ' } has been updated.');
-      //   },
-      //   err => {
-      //     this.userMessages.length = 0;
-      //     const errors = Object.values(err.error);
-      //     for (const error of errors) {
-      //       this.userMessages.push(error);
-      //     }
-      //   }
-      // );
     } else {
       this.userRepositoryService.createUser(user).subscribe(
         data => {
