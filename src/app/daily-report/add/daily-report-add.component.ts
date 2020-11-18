@@ -58,7 +58,7 @@ export class DailyReportAddComponent implements OnInit {
         side: new FormControl('-', Validators.required),
         quantity: new FormControl('', Validators.required),
         measureUnit: new FormControl('', Validators.required),
-        remarks: new FormControl('', Validators.required),
+        remarks: new FormControl('-', Validators.required),
       });
     }
 
