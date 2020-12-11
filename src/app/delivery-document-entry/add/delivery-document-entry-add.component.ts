@@ -28,7 +28,7 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
   deliveryDocumentEntryAddForm: FormGroup;
   contractorNames = [];
   contractors = new BehaviorSubject<Client[]>([]);
-  materialTypes = [];
+  materialTypes = new Set<string>();
   materials = new BehaviorSubject<Material[]>([]);
   estimatePositionNames = [];
   estimatePositions = new BehaviorSubject<EstimatePosition[]>([]);
@@ -78,7 +78,9 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
         materialType: new FormControl(deliveryDocumentEntry.material.type, Validators.required),
         quantity: new FormControl(deliveryDocumentEntry.quantity, Validators.required),
         measureUnit: new FormControl(deliveryDocumentEntry.measureUnit, Validators.required),
-        estimatePositionName: new FormControl(deliveryDocumentEntry.estimatePosition.name + ';' + deliveryDocumentEntry.estimatePosition.costCode.fullCode, Validators.required),
+        estimatePositionName: new FormControl(
+          deliveryDocumentEntry.estimatePosition.name + ';' + deliveryDocumentEntry.estimatePosition.costCode.fullCode,
+          Validators.required),
         projectCode: new FormControl(deliveryDocumentEntry.costCode.projectCode, Validators.required),
         costType: new FormControl(deliveryDocumentEntry.costCode.costType, Validators.required),
         priceType: new FormControl(deliveryDocumentEntry.deliveryPrice.priceType, Validators.required),
@@ -110,7 +112,6 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
         for (const price of prices) {
           this.priceTypes.add(price.priceType);
         }
-        // this.getDeliveryPrice();
       });
     } else {
       this.deliveryDocumentEntryAddForm = new FormGroup({
@@ -161,11 +162,6 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
 
     this.materialRepositoryService.getMaterials(params).subscribe(response => {
       this.materials.next(Object.values(response)[0]);
-
-      const materials = this.materials.getValue();
-      for (const material of materials) {
-        this.materialTypes.push(material.type);
-      }
     });
   }
 
@@ -187,10 +183,19 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
       this.deliveryPrices.next(Object.values(response));
 
       this.priceTypes.clear();
+      this.materialTypes.clear();
       const prices = this.deliveryPrices.getValue();
       for (const price of prices) {
         this.priceTypes.add(price.priceType);
+        this.materialTypes.add(price.material.type);
       }
+
+      if (this.materialTypes.size === 1) {
+        this.deliveryDocumentEntryAddForm.patchValue({
+          materialType: this.materialTypes.values().next().value
+        });
+      }
+
       this.getDeliveryPrice();
     });
   }
@@ -240,7 +245,7 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
   getDeliveryPrice() {
     const priceType = this.deliveryDocumentEntryAddForm.value.priceType;
     const materialType = this.deliveryDocumentEntryAddForm.value.materialType;
-    const projectCode = this.selectedEstimatePosition.costCode.projectCode;
+    const projectCode = this.selectedEstimatePosition === undefined ? '' : this.selectedEstimatePosition.costCode.projectCode;
 
     this.deliveryDocumentEntryAddForm.patchValue({
       deliveryPrice: ''
@@ -319,7 +324,8 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
         this.deliveryDocumentEntryService.updateDeliveryDocumentEntry(history.state.index, deliveryDocumentEntry);
         const areEntriesVisible = true;
         const isAddNewDeliveryEntryButtonVisible = true;
-        this.router.navigateByUrl('delivery-document-add', {state: {deliveryDocument, areEntriesVisible, isAddNewDeliveryEntryButtonVisible}});
+        this.router.navigateByUrl('delivery-document-add',
+          {state: {deliveryDocument, areEntriesVisible, isAddNewDeliveryEntryButtonVisible}});
       },
         err => {
           this.userMessages.length = 0;
@@ -339,7 +345,8 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
           this.deliveryDocumentEntryService.addDeliveryDocumentEntry(deliveryDocumentEntry);
           const areEntriesVisible = true;
           const isAddNewDeliveryEntryButtonVisible = true;
-          this.router.navigateByUrl('delivery-document-add', {state: {deliveryDocument, areEntriesVisible, isAddNewDeliveryEntryButtonVisible}});
+          this.router.navigateByUrl('delivery-document-add',
+            {state: {deliveryDocument, areEntriesVisible, isAddNewDeliveryEntryButtonVisible}});
         },
         err => {
           this.userMessages.length = 0;
