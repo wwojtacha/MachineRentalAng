@@ -17,6 +17,7 @@ export class RoadCardEntry {
   unloadingPlace: string;
   quantity: number;
   measureUnit: string;
+  runsNumber: number;
   distance: number;
   distancePrice: DistancePrice;
   estimatePosition: EstimatePosition;
@@ -25,7 +26,7 @@ export class RoadCardEntry {
   workDocument: WorkDocument;
 
 
-  constructor(workCode: string, startHour: Time, endHour: Time, loadingPlace: string, material: string, unloadingPlace: string, quantity: number, measureUnit: string, distance: number, distancePrice: DistancePrice, estimatePosition: EstimatePosition, costCode: CostCode, acceptingPerson: Operator, workDocument: WorkDocument) {
+  constructor(workCode: string, startHour: Time, endHour: Time, loadingPlace: string, material: string, unloadingPlace: string, quantity: number, measureUnit: string, runsNumber: number, distance: number, distancePrice: DistancePrice, estimatePosition: EstimatePosition, costCode: CostCode, acceptingPerson: Operator, workDocument: WorkDocument) {
     this.workCode = workCode;
     this.startHour = startHour;
     this.endHour = endHour;
@@ -34,6 +35,7 @@ export class RoadCardEntry {
     this.unloadingPlace = unloadingPlace;
     this.quantity = quantity;
     this.measureUnit = measureUnit;
+    this.runsNumber = runsNumber;
     this.distance = distance;
     this.distancePrice = distancePrice;
     this.estimatePosition = estimatePosition;

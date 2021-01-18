@@ -119,6 +119,15 @@
   <div class="row">
     <div class="col-xs-2">
       <div class="form-group">
+        <label for="runsNumber">Runs number</label>
+        <input type="number" min="0" id="runsNumber" formControlName="runsNumber" class="form-control">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="form-group">
         <label for="priceType">Price type</label>
         <select type="text" id="priceType" formControlName="priceType" class="form-control" (ngModelChange)="onPriceTypeChange()">
           <option *ngFor="let priceType of priceTypes" [ngValue]="priceType">{{priceType}}</option>
