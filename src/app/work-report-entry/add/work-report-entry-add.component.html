@@ -171,5 +171,5 @@
   </div>
 
   <button type="button" class="btn btn-primary" (click)="onAddEntry()" [disabled]="!workReportEntryForm.valid || !isHourPriceValid">{{isOnEdit ? 'Update' : 'Add'}}</button>
-
+  <button type="button" class="btn btn-primary col-sm-offset-1" (click)="onBack()">Back</button>
 </form>

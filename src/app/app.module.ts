@@ -98,6 +98,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import {EquipmentDetailsDialogComponent} from './reports/cost/equipment/details-dialog/equipment-details-dialog.component';
 import {TransportDetailsDialogComponent} from './reports/cost/transport/details-dialog/transport-details-dialog.component';
 import {DeliveryDetailsDialogComponent} from './reports/cost/delivery/delivery-dialog/delivery-details-dialog.component';
+import {WorkDocumentService} from './work-document/service/work-document.service';
 
 @NgModule({
   declarations: [
@@ -190,7 +191,7 @@ import {DeliveryDetailsDialogComponent} from './reports/cost/delivery/delivery-d
     AuthenticationService, UserRepositoryService, CostCodeRepositoryService, EstimatePositionRepositoryService,
     MaterialRepositoryService, HourPriceRepositoryService, DistancePriceRepositoryService, DeliveryDocumentRepositoryService,
     DeliveryPriceRepositoryService, DeliveryDocumentEntryService, DeliveryDocumentEntryRepositoryService,
-    ReportService, DailyReportRepositoryService, CostReportRepositoryService,
+    ReportService, DailyReportRepositoryService, CostReportRepositoryService, WorkDocumentService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
     ],
   bootstrap: [AppComponent]

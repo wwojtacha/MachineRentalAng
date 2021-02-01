@@ -209,6 +209,23 @@ export class RoadCardEntryAddComponent implements OnInit {
       roadCardEntry, isDocumentEntryOnEdit, isSaveEntriesButtonVisible, isAddNewWorkDocumentEntryButtonVisible, areEntriesVisible}});
   }
 
+  onBack() {
+    const workDocument = history.state.workDocument;
+
+    const shouldGetDataFromDb = false;
+    const areEntriesVisible = true;
+    const isAddNewWorkDocumentEntryButtonVisible = true;
+    const isDocumentEntryOnEdit = false;
+    const isSaveEntriesButtonVisible = true;
+
+    this.router.navigateByUrl('work-document-add', {
+      state: {
+        shouldGetDataFromDb, workDocument, areEntriesVisible, isAddNewWorkDocumentEntryButtonVisible,
+        isDocumentEntryOnEdit, isSaveEntriesButtonVisible
+      }
+    });
+  }
+
   onSelectProjectCode(projectCode: any) {
     this.costTypes.length = 0;
 

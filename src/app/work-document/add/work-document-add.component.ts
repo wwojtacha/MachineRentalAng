@@ -129,7 +129,7 @@ export class WorkDocumentAddComponent implements OnInit {
 
     let workDocument: WorkDocument;
 
-    if (this.isOnEdit || history.state.shouldGetDataFromDb) {
+    if (this.isOnEdit || history.state.shouldGetDataFromDb !== undefined) {
       workDocument = history.state.workDocument;
     } else if (history.state.isDocumentEntryOnEdit !== undefined && history.state.workReportEntry) {
       workDocument = history.state.workReportEntry.workDocument;

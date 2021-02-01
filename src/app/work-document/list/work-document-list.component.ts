@@ -13,6 +13,7 @@ import {ConfirmationDialogComponent} from '../../confirmation-dialog/confirmatio
 import {ErrorDialogComponent} from '../../error-dialog/error-dialog.component';
 import {MatDialog} from '@angular/material';
 import {BehaviorSubject} from 'rxjs';
+import {WorkDocumentService} from '../service/work-document.service';
 
 @Component({
   selector: 'app-work-document-list',
@@ -30,6 +31,7 @@ export class WorkDocumentListComponent implements OnInit {
               private operatorRepositoryService: OperatorRepositoryService,
               private machineRepositoryService: MachineRepositoryService,
               private workDocumentRepositoryService: WorkDocumentRepositoryService,
+              private workDocumentService: WorkDocumentService,
               public dialog: MatDialog) {}
 
   ngOnInit(): void {
@@ -51,6 +53,10 @@ export class WorkDocumentListComponent implements OnInit {
     this.operatorRepositoryService.getOperators(params).subscribe(response => this.operators = Object.values(response)[0]);
 
     this.machineRepositoryService.getMachines(params).subscribe(response => this.machines = Object.values(response)[0]);
+
+    this.workDocuments.next(this.workDocumentService.getWorkDocuments());
+
+    document.getElementById('newWorkDocumentButton').focus();
   }
 
   onSearch() {
@@ -69,7 +75,11 @@ export class WorkDocumentListComponent implements OnInit {
       }
     });
 
-    this.workDocumentRepositoryService.getWorkDocuments(params).subscribe(response => this.workDocuments.next(Object.values(response)[0]));
+    this.workDocumentRepositoryService.getWorkDocuments(params).subscribe(response => {
+      this.workDocuments.next(Object.values(response)[0]);
+      this.workDocumentService.clearWorkDocuments();
+      this.workDocumentService.addWorkDocuments(Object.values(response)[0]);
+    });
   }
 
   onEditWorkDocument(workDocument: WorkDocument) {
