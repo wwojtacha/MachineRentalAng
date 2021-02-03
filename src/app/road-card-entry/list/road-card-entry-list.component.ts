@@ -50,7 +50,7 @@ export class RoadCardEntryListComponent implements  OnInit {
   onEditWorkDocumentEntry(roadCardEntry: RoadCardEntry, index: number) {
 
     let workDocument;
-    if (history.state.isDocumentEntryOnEdit !== undefined) {
+    if (history.state.isDocumentEntryOnEdit) {
       workDocument = history.state.roadCardEntry.workDocument;
     } else {
       workDocument = history.state.workDocument;

@@ -68,7 +68,7 @@ export class WorkReportEntryListComponent implements OnInit {
   onEditWorkDocumentEntry(workReportEntry: WorkReportEntry, index: number) {
 
     let workDocument;
-    if (history.state.isDocumentEntryOnEdit !== undefined) {
+    if (history.state.isDocumentEntryOnEdit) {
       workDocument = history.state.workReportEntry.workDocument;
     } else {
       workDocument = history.state.workDocument;
