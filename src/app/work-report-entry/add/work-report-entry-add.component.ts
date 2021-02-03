@@ -16,6 +16,8 @@ import {HourPriceRepositoryService} from '../../price/hour/repository-service/ho
 import {HourPrice} from '../../price/hour/model/hour-price.model';
 import {Operator} from '../../operator/model/operator.model';
 import {OperatorRepositoryService} from '../../operator/repository-service/operator-repository.service';
+import {StartEndHourDialogComponent} from '../../work-document/hours-dialog/start-end-hour-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-work-report-entry-add',
@@ -48,7 +50,8 @@ export class WorkReportEntryAddComponent implements OnInit {
               private costCodeRepositoryService: CostCodeRepositoryService,
               private estimatePositionRepositoryService: EstimatePositionRepositoryService,
               private hourPriceRepositoryService: HourPriceRepositoryService,
-              private operatorRepositoryService: OperatorRepositoryService) {
+              private operatorRepositoryService: OperatorRepositoryService,
+              public dialog: MatDialog) {
   }
 
 
@@ -293,5 +296,20 @@ export class WorkReportEntryAddComponent implements OnInit {
 
   compareIds(a, b) {
     return a.id === b.id;
+  }
+
+  onHourChange() {
+    const startHour = this.workReportEntryForm.value.startHour;
+    const endHour = this.workReportEntryForm.value.endHour;
+
+    if (startHour !== '' && endHour !== '' && endHour < startHour) {
+      const dialogRef = this.dialog.open(StartEndHourDialogComponent, {
+        restoreFocus: false,
+        width: '350px',
+        data: 'End hour is lower than start hour'
+      });
+
+      dialogRef.afterClosed().subscribe(() => document.getElementById('placeOfWork').focus());
+    }
   }
 }

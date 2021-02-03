@@ -99,6 +99,7 @@ import {EquipmentDetailsDialogComponent} from './reports/cost/equipment/details-
 import {TransportDetailsDialogComponent} from './reports/cost/transport/details-dialog/transport-details-dialog.component';
 import {DeliveryDetailsDialogComponent} from './reports/cost/delivery/delivery-dialog/delivery-details-dialog.component';
 import {WorkDocumentService} from './work-document/service/work-document.service';
+import {StartEndHourDialogComponent} from "./work-document/hours-dialog/start-end-hour-dialog.component";
 
 @NgModule({
   declarations: [
@@ -164,7 +165,8 @@ import {WorkDocumentService} from './work-document/service/work-document.service
     CostReportComponent,
     EquipmentDetailsDialogComponent,
     TransportDetailsDialogComponent,
-    DeliveryDetailsDialogComponent
+    DeliveryDetailsDialogComponent,
+    StartEndHourDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -183,7 +185,8 @@ import {WorkDocumentService} from './work-document/service/work-document.service
     ErrorDialogComponent,
     EquipmentDetailsDialogComponent,
     TransportDetailsDialogComponent,
-    DeliveryDetailsDialogComponent
+    DeliveryDetailsDialogComponent,
+    StartEndHourDialogComponent
   ],
   providers: [MachineRepositoryService, MachineTypeRepositoryService, ClientRepositoryService, SellerRepositoryService,
     PriceRepositoryService, OrderRepositoryService, PriceService, OperatorRepositoryService, WorkDocumentRepositoryService,

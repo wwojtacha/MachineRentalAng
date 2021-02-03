@@ -17,6 +17,9 @@ import {MaterialRepositoryService} from '../../material/repository-service/mater
 import {DistancePrice} from '../../price/distance/model/distance-price.model';
 import {Operator} from '../../operator/model/operator.model';
 import {OperatorRepositoryService} from '../../operator/repository-service/operator-repository.service';
+import {ConfirmationDialogComponent} from "../../confirmation-dialog/confirmation-dialog.component";
+import {StartEndHourDialogComponent} from '../../work-document/hours-dialog/start-end-hour-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-road-card-entry-add',
@@ -52,7 +55,8 @@ export class RoadCardEntryAddComponent implements OnInit {
               private estimatePositionRepositoryService: EstimatePositionRepositoryService,
               private distancePriceRepositoryService: DistancePriceRepositoryService,
               // private materialRepoitoryService: MaterialRepositoryService,
-              private operatorRepositoryService: OperatorRepositoryService) {
+              private operatorRepositoryService: OperatorRepositoryService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -332,5 +336,20 @@ export class RoadCardEntryAddComponent implements OnInit {
 
   compareIds(a, b) {
     return a.id === b.id;
+  }
+
+  onHourChange() {
+    const startHour = this.roadCardEntryForm.value.startHour;
+    const endHour = this.roadCardEntryForm.value.endHour;
+
+    if (startHour !== '' && endHour !== '' && endHour < startHour) {
+      const dialogRef = this.dialog.open(StartEndHourDialogComponent, {
+        restoreFocus: false,
+        width: '350px',
+        data: 'End hour is lower than start hour'
+      });
+
+      dialogRef.afterClosed().subscribe(() => document.getElementById('loadingPlace').focus());
+    }
   }
 }

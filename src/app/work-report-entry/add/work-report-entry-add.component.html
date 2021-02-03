@@ -20,7 +20,7 @@
     <div class="col-xs-2">
       <div class="form-group">
         <label for="startHour">Start hour</label>
-        <input type="time" id="startHour" formControlName="startHour" class="form-control">
+        <input type="time" id="startHour" formControlName="startHour" class="form-control" (focusout)="onHourChange()">
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
     <div class="col-xs-2">
       <div class="form-group">
         <label for="endHour">End hour</label>
-        <input type="time" id="endHour" formControlName="endHour" class="form-control">
+        <input type="time" id="endHour" formControlName="endHour" class="form-control" (focusout)="onHourChange()">
       </div>
     </div>
   </div>
