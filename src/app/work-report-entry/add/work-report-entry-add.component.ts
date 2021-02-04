@@ -266,7 +266,8 @@ export class WorkReportEntryAddComponent implements OnInit {
 
     const workCode = this.workReportEntryForm.value.workCode;
     const priceType = this.workReportEntryForm.value.priceType;
-    const projectCode = this.workReportEntryForm.value.estimatePosition.costCode.projectCode;
+    const estimatePosition = this.workReportEntryForm.value.estimatePosition;
+    const projectCode = estimatePosition === '' ? '' : estimatePosition.costCode.projectCode;
 
     this.workReportEntryForm.patchValue({
       hourPrice: ''

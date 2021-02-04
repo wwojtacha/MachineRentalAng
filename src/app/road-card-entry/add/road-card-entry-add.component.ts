@@ -12,12 +12,9 @@ import {EstimatePositionRepositoryService} from '../../estimate/repository-servi
 import {HttpParams} from '@angular/common/http';
 import {DistancePriceRepositoryService} from '../../price/distance/repository-service/distance-price-repository.service';
 import {WorkDocument} from '../../work-document/model/work-document.model';
-import {Material} from '../../material/model/material.model';
-import {MaterialRepositoryService} from '../../material/repository-service/material-repository.service';
 import {DistancePrice} from '../../price/distance/model/distance-price.model';
 import {Operator} from '../../operator/model/operator.model';
 import {OperatorRepositoryService} from '../../operator/repository-service/operator-repository.service';
-import {ConfirmationDialogComponent} from "../../confirmation-dialog/confirmation-dialog.component";
 import {StartEndHourDialogComponent} from '../../work-document/hours-dialog/start-end-hour-dialog.component';
 import {MatDialog} from '@angular/material';
 
@@ -291,7 +288,8 @@ export class RoadCardEntryAddComponent implements OnInit {
     const workCode = this.roadCardEntryForm.value.workCode;
     const distance = this.roadCardEntryForm.value.distance;
     const priceType = this.roadCardEntryForm.value.priceType;
-    const projectCode = this.roadCardEntryForm.value.estimatePosition.costCode.projectCode;
+    const estimatePosition = this.roadCardEntryForm.value.estimatePosition;
+    const projectCode = estimatePosition === '' ? '' : estimatePosition.costCode.projectCode;
 
 
     this.roadCardEntryForm.patchValue({
