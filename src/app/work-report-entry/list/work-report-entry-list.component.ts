@@ -67,25 +67,8 @@ export class WorkReportEntryListComponent implements OnInit {
 
   onEditWorkDocumentEntry(workReportEntry: WorkReportEntry, index: number) {
 
-    let workDocument;
-    if (history.state.isDocumentEntryOnEdit) {
-      workDocument = history.state.workReportEntry.workDocument;
-    } else {
-      workDocument = history.state.workDocument;
-    }
-
-    const documentType = workDocument.documentType;
-
-    // let url = 'work-documents';
-
+    const workDocument = workReportEntry.workDocument;
     const url = 'work-report-entry-add/';
-
-
-    // if ('WORK_REPORT' === documentType) {
-    //   url = 'work-report-entry-add/';
-    // } else if ('ROAD_CARD' === documentType) {
-    //   url = 'road-card-entry-add/';
-    // }
 
     this.router.navigateByUrl(url, {state: {workReportEntry, workDocument, index}});
   }

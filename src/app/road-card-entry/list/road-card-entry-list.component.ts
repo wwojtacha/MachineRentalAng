@@ -13,14 +13,15 @@ import {BehaviorSubject} from 'rxjs';
   templateUrl: './road-card-entry-list.component.html',
   styleUrls: ['./road-card-entry-list.component.css']
 })
-export class RoadCardEntryListComponent implements  OnInit {
+export class RoadCardEntryListComponent implements OnInit {
 
-  roadCardEntries = new BehaviorSubject<RoadCardEntry[]>([])
+  roadCardEntries = new BehaviorSubject<RoadCardEntry[]>([]);
 
   constructor(private roadCardEntryService: RoadCardEntryService,
               private roadCardEntryRepositoryService: RoadCardEntryRepositoryService,
               private router: Router,
-              public dialog: MatDialog) {}
+              public dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     // this.workReportEntries = this.workReportEntryService.getWorkReportEntries();
@@ -29,9 +30,11 @@ export class RoadCardEntryListComponent implements  OnInit {
 
       const workDocument = history.state.workDocument;
 
-      const params = new HttpParams({fromObject: {
+      const params = new HttpParams({
+        fromObject: {
           workDocumentId: workDocument.id
-        }});
+        }
+      });
 
       this.roadCardEntryService.clearRoadCardEntries();
 
@@ -49,25 +52,8 @@ export class RoadCardEntryListComponent implements  OnInit {
 
   onEditWorkDocumentEntry(roadCardEntry: RoadCardEntry, index: number) {
 
-    let workDocument;
-    if (history.state.isDocumentEntryOnEdit) {
-      workDocument = history.state.roadCardEntry.workDocument;
-    } else {
-      workDocument = history.state.workDocument;
-    }
-
-    const documentType = workDocument.documentType;
-
-    // let url = 'work-documents';
-
+    const workDocument = roadCardEntry.workDocument;
     const url = 'road-card-entry-add/';
-
-
-    // if ('WORK_REPORT' === documentType) {
-    //   url = 'work-report-entry-add/';
-    // } else if ('ROAD_CARD' === documentType) {
-    //   url = 'road-card-entry-add/';
-    // }
 
     this.router.navigateByUrl(url, {state: {roadCardEntry, workDocument, index}});
   }
