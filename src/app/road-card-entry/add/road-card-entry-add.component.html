@@ -1,7 +1,7 @@
 <form [formGroup]="roadCardEntryForm">
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="workCode">Activity type</label>
         <select type="text" id="workCode" formControlName="workCode" class="form-control" (ngModelChange)="onWorkCodeChange()">
@@ -18,7 +18,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="startHour">Start hour</label>
         <input type="time" id="startHour" formControlName="startHour" class="form-control" (focusout) = "onHourChange()">
@@ -27,7 +27,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="endHour">End hour</label>
         <input type="time" id="endHour" formControlName="endHour" class="form-control" (focusout) = "onHourChange()">
@@ -36,7 +36,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="loadingPlace">Loading place</label>
         <input id="loadingPlace" formControlName="loadingPlace" class="form-control">
@@ -72,7 +72,7 @@
   <!--</div>-->
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="material">Material</label>
         <input id="material" formControlName="material" class="form-control">
@@ -81,7 +81,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="unloadingPlace">Unloading place</label>
         <input id="unloadingPlace" formControlName="unloadingPlace" class="form-control">
@@ -90,7 +90,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="quantity">Quantity</label>
         <input type="number" min="0" id="quantity" formControlName="quantity" class="form-control">
@@ -99,7 +99,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="measureUnit">Measure unit</label>
         <select type="text" id="measureUnit" formControlName="measureUnit" class="form-control">
@@ -117,7 +117,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="runsNumber">Runs number</label>
         <input type="number" min="0" id="runsNumber" formControlName="runsNumber" class="form-control">
@@ -126,7 +126,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="priceType">Price type</label>
         <select type="text" id="priceType" formControlName="priceType" class="form-control" (ngModelChange)="onPriceTypeChange()">
@@ -137,7 +137,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="distance">Distance</label>
         <input type="number" step="0.1" min="0" id="distance" formControlName="distance" class="form-control" (ngModelChange)="onDistanceChange()">
@@ -155,7 +155,7 @@
   <!--</div>-->
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group" *ngIf="isOnEdit">
         <label for="editedEstimatePosition">Current estimate position</label>
         <input id="editedEstimatePosition" formControlName="editedEstimatePosition" class="form-control">
@@ -170,7 +170,7 @@
   </div>
 
   <div class="row" *ngIf="isEstimatePositionShown">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="estimatePosition">Estimate position</label>
         <select type="text" id="estimatePosition" formControlName="estimatePosition" class="form-control" (ngModelChange)="onSelectEstimatePosition($event)" [ngStyle]="styleElementToChange()">
@@ -182,7 +182,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="distancePrice">Distance price</label>
         <input type=text id="distancePrice" formControlName="distancePrice" class="form-control">
@@ -191,7 +191,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="projectCode">Project code (sell)</label>
         <select type="text" id="projectCode" formControlName="projectCode" class="form-control" (ngModelChange)="onSelectProjectCode($event)">
@@ -203,7 +203,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="costType">Cost type (sell)</label>
         <select type="text" id="costType" formControlName="costType" class="form-control">
@@ -215,7 +215,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="acceptingPerson">Accepted by</label>
         <select type="text" id="acceptingPerson" formControlName="acceptingPerson" class="form-control" [compareWith]="compareIds">
@@ -226,7 +226,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="workDocument">Work Document</label>
         <input id="workDocument" formControlName="workDocument" class="form-control">
@@ -235,5 +235,5 @@
   </div>
 
   <button type="button" class="btn btn-primary" (click)="onAddEntry()" [disabled]="!roadCardEntryForm.valid || !isDistancePriceValid">{{isOnEdit ? 'Update' : 'Add'}}</button>
-  <button type="button" class="btn btn-primary col-sm-offset-1" (click)="onBack()">Back</button>
+  <button type="button" class="btn btn-primary col-md-offset-1" (click)="onBack()">Back</button>
 </form>

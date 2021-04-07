@@ -1,7 +1,7 @@
 <form [formGroup]="estimatePositionEditForm" (ngSubmit)="onSubmit()">
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="name">Estimate position name</label>
         <input type="text" id="name" formControlName="name" class="form-control">
@@ -10,7 +10,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="projectCode">Project code</label>
         <select type="text" id="projectCode" formControlName="projectCode" class="form-control" (ngModelChange)="onSelectProjectCode($event)">
@@ -21,7 +21,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="costType">Cost type</label>
         <select type="text" id="costType" formControlName="costType" class="form-control">
@@ -33,7 +33,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="quantity">Quantity</label>
         <input type="number" min="0" id="quantity" formControlName="quantity" class="form-control" (ngModelChange)="onQuantityChange()">
@@ -42,7 +42,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="measureUnit">Measure unit</label>
         <select type="text" id="measureUnit" formControlName="measureUnit" class="form-control">
@@ -60,7 +60,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="estimateSellPrice">Sell price</label>
         <input type="number" id="estimateSellPrice" formControlName="estimateSellPrice" class="form-control" (ngModelChange)="onSellPriceChange()">
@@ -69,7 +69,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="estimateSellValue">Sell value</label>
         <input type="number" id="estimateSellValue" formControlName="estimateSellValue" class="form-control">
@@ -78,7 +78,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="remarks">Remarks</label>
         <input type="text" id="remarks" formControlName="remarks" class="form-control">
@@ -87,7 +87,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="estimateCostPrice">Cost price</label>
         <input type="number" id="estimateCostPrice" formControlName="estimateCostPrice" class="form-control" (ngModelChange)="onCostPriceChange()">
@@ -96,7 +96,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="estimateCostValue">Cost value</label>
         <input type="number" id="estimateCostValue" formControlName="estimateCostValue" class="form-control">
@@ -105,7 +105,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-1">
+    <div class="col-xs-10 col-md-2 text-center">
       <button type="submit" class="btn btn-success" [disabled]="!estimatePositionEditForm.valid">Update</button>
     </div>
   </div>

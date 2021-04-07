@@ -1,7 +1,7 @@
 <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="mpk">Client MPK / NIP</label>
         <input type="text" id="mpk" formControlName="mpk" class="form-control">
@@ -10,7 +10,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" id="name" formControlName="name" class="form-control">
@@ -19,7 +19,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="city">City</label>
         <input type="text" id="city" formControlName="city" class="form-control">
@@ -28,7 +28,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="street">Street</label>
         <input type="text" id="street" formControlName="street" class="form-control">
@@ -37,7 +37,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="buildingNumber">Building number</label>
         <input type="text" id="buildingNumber" formControlName="buildingNumber" class="form-control">
@@ -46,7 +46,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="postalCode">Postal code</label>
         <input type="text" id="postalCode" formControlName="postalCode" class="form-control">
@@ -55,7 +55,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="email">Email address</label>
         <input type="email" id="email" formControlName="email" class="form-control">
@@ -64,7 +64,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="contactPerson">Contact person</label>
         <input type="text" id="contactPerson" formControlName="contactPerson" class="form-control">
@@ -73,7 +73,7 @@
   </div>
 
   <div class="row">
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="phoneNumber">Phone number</label>
         <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
@@ -83,7 +83,7 @@
 
 
   <div class="row">
-    <div class="col-xs-1">
+    <div class="col-xs-10 col-md-2 text-center">
       <button type="submit" class="btn btn-success" [disabled]="!clientForm.valid" >{{isOnEdit ? 'Update' : 'Create'}}</button>
     </div>
   </div>
