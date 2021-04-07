@@ -8,23 +8,23 @@
 
 <form [formGroup]="operatorListForm" (ngSubmit)="onSearch()">
 
-  <div id="searchFields" class="row">
+  <div class="row">
 
-    <div class="col-xs-1">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="operatorName">Operator name</label>
         <input type="text" id="operatorName" formControlName="operatorName" class="form-control">
       </div>
     </div>
 
-    <div class="col-xs-1">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="qualifications">Qualifications</label>
         <input type="text" id="qualifications" formControlName="qualifications" class="form-control">
       </div>
     </div>
 
-    <div class="col-xs-2">
+    <div class="col-xs-10 col-md-2">
       <div class="form-group">
         <label for="company">Company</label>
         <select id="company" formControlName="company" class="form-control" (ngModelChange)="onSelectCompany($event)">
