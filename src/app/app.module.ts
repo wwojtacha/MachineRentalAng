@@ -100,6 +100,7 @@ import {TransportDetailsDialogComponent} from './reports/cost/transport/details-
 import {DeliveryDetailsDialogComponent} from './reports/cost/delivery/delivery-dialog/delivery-details-dialog.component';
 import {WorkDocumentService} from './work-document/service/work-document.service';
 import {StartEndHourDialogComponent} from "./work-document/hours-dialog/start-end-hour-dialog.component";
+import {HomeComponent} from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -166,7 +167,8 @@ import {StartEndHourDialogComponent} from "./work-document/hours-dialog/start-en
     EquipmentDetailsDialogComponent,
     TransportDetailsDialogComponent,
     DeliveryDetailsDialogComponent,
-    StartEndHourDialogComponent
+    StartEndHourDialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

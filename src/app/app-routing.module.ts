@@ -45,9 +45,11 @@ import {ReportComponent} from './reports/report.component';
 import {DailyReportListComponent} from './daily-report/list/daily-report-list.component';
 import {DailyReportAddComponent} from './daily-report/add/daily-report-add.component';
 import {CostReportComponent} from './reports/cost/cost-report.component';
+import {HomeComponent} from './home/home.component';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/', pathMatch: 'full'},
+  {path: '', redirectTo: '/home', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
   {path: 'machines', component: MachineListComponent},
   {path: 'machine-add', component: MachineAddComponent, children: [{
     path: ':id', component: MachineAddComponent}]

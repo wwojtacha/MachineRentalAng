@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginSubscription = this.authService.login(username, password).subscribe(
       response => {
         this.authService.authenticate(username, password, response.jwt, 3600);
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
         // this.isLoading = false;
       }, err => {
         // this.toastService.add({key: 'login_error', severity:'error', summary: 'Login Error', detail:`${error.error}`, life: 5000});
