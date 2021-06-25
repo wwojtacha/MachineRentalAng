@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {AuthUserModel} from '../login/model/auth-user.model';
 import {UserRepositoryService} from '../user/repository-service/user-repository.service';
 import {UserDto} from '../user/model/userdto.model';
-import {NavigationComponent} from '../navigation/navigation.component.ts';
+import {NavigationComponent} from '../navigation/navigation.component';
 
 @Component({
   selector: 'app-home',
