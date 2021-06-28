@@ -12,6 +12,7 @@ import {ClientRepositoryService} from '../../client/repository-service/client-re
 import {ConfirmationDialogComponent} from '../../confirmation-dialog/confirmation-dialog.component';
 import {ErrorDialogComponent} from '../../error-dialog/error-dialog.component';
 import {MatDialog} from '@angular/material';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-machine-list',
@@ -24,11 +25,14 @@ export class MachineListComponent implements OnInit {
   machineTypes = new BehaviorSubject<MachineType[]>([]);
   owners = new BehaviorSubject<Client[]>([]);
 
+  translationMachine = 'dupa';
+
   constructor(private machineRepositoryService: MachineRepositoryService,
               private machineTypeRepositoryService: MachineTypeRepositoryService,
               private clientRepositoryService: ClientRepositoryService,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              public translationService: TranslationService) {
   }
 
 

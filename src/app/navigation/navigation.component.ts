@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import {AuthUserModel} from '../login/model/auth-user.model';
 import {UserRepositoryService} from '../user/repository-service/user-repository.service';
 import {UserDto} from '../user/model/userdto.model';
+import {TranslationService} from '../translation/translation.service';
 
 @Component({
   selector: 'app-navigation',
@@ -15,10 +16,15 @@ export class NavigationComponent implements OnInit {
   // isUserLoggedIn = false;
   currentUser: AuthUserModel = null;
   isAdmin = false;
+  // languageForm: FormGroup;
+
+  counter = 0;
+
 
   constructor(private authService: AuthenticationService,
               private router: Router,
-              private userRepositoryService: UserRepositoryService) {}
+              private userRepositoryService: UserRepositoryService,
+              public translationService: TranslationService) {}
 
   onLogout() {
     this.authService.logout();
@@ -46,5 +52,9 @@ export class NavigationComponent implements OnInit {
       //   // this.isUserLoggedIn = true;
       //   this.currentUser = this.authService.getLoggedInUser();
       // }
+
+    // this.languageForm = new FormGroup({
+    //   language: new FormControl(this.translationService.currentLanguage, Validators.required)
+    // });
   }
 }

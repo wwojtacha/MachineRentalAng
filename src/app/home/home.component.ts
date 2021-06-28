@@ -5,6 +5,7 @@ import {AuthUserModel} from '../login/model/auth-user.model';
 import {UserRepositoryService} from '../user/repository-service/user-repository.service';
 import {UserDto} from '../user/model/userdto.model';
 import {NavigationComponent} from '../navigation/navigation.component';
+import {TranslationService} from '../translation/translation.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
               private router: Router,
-              private userRepositoryService: UserRepositoryService) {}
+              private userRepositoryService: UserRepositoryService,
+              public translationService: TranslationService) {}
 
   ngOnInit() {
     this.authService.loggedInUser.subscribe(
@@ -35,5 +37,4 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-
 }

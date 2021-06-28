@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-brand">
-    <a routerLinkActive="active" routerLink="/home" class="active">Home</a>
+    <a routerLinkActive="active" routerLink="/home" class="active">{{'menu' | translate:translationService.counter}}</a>
   </div>
 
 <!--    <ul class="navbar-brand" *ngIf="currentUser">-->
@@ -90,6 +90,10 @@
 <!--      </div>-->
 <!--    </div>-->
 
+
+
+
+
     <div class="navbar-brand pull-right">
       <div>
         <a routerLinkActive="active" routerLink="/login" *ngIf="!currentUser">Login</a>
@@ -98,6 +102,25 @@
         <a routerLinkActive="active" routerLink="/login" *ngIf="currentUser" (click)="onLogout()">Logout</a>
       </div>
     </div>
+
+
+<!--    <form [formGroup]="languageForm">-->
+
+<!--      <div id="language" class="navbar-brand pull-right">-->
+<!--        <select class="form-control" formControlName="language" (ngModelChange)="onSelectLanguage($event)">-->
+<!--          <option *ngFor="let language of translationService.languages" [ngValue]="language">{{language}}</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--    </form>-->
+
+    <div id="language" class="navbar-brand pull-right">
+      <select class="form-control" [(ngModel)]="translationService.currentLanguage" (ngModelChange)="translationService.updateCounter()">
+        <option *ngFor="let language of translationService.languages" [ngValue]="language">{{language}}</option>
+      </select>
+    </div>
+
   </div>
+
+
 
 </nav>

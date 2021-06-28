@@ -99,8 +99,10 @@ import {EquipmentDetailsDialogComponent} from './reports/cost/equipment/details-
 import {TransportDetailsDialogComponent} from './reports/cost/transport/details-dialog/transport-details-dialog.component';
 import {DeliveryDetailsDialogComponent} from './reports/cost/delivery/delivery-dialog/delivery-details-dialog.component';
 import {WorkDocumentService} from './work-document/service/work-document.service';
-import {StartEndHourDialogComponent} from "./work-document/hours-dialog/start-end-hour-dialog.component";
+import {StartEndHourDialogComponent} from './work-document/hours-dialog/start-end-hour-dialog.component';
 import {HomeComponent} from './home/home.component';
+import {TranslationService} from './translation/translation.service';
+import {TranslationPipe} from './translation/translation.pipe';
 
 @NgModule({
   declarations: [
@@ -168,7 +170,8 @@ import {HomeComponent} from './home/home.component';
     TransportDetailsDialogComponent,
     DeliveryDetailsDialogComponent,
     StartEndHourDialogComponent,
-    HomeComponent
+    HomeComponent,
+    TranslationPipe
   ],
   imports: [
     BrowserModule,
@@ -196,7 +199,7 @@ import {HomeComponent} from './home/home.component';
     AuthenticationService, UserRepositoryService, CostCodeRepositoryService, EstimatePositionRepositoryService,
     MaterialRepositoryService, HourPriceRepositoryService, DistancePriceRepositoryService, DeliveryDocumentRepositoryService,
     DeliveryPriceRepositoryService, DeliveryDocumentEntryService, DeliveryDocumentEntryRepositoryService,
-    ReportService, DailyReportRepositoryService, CostReportRepositoryService, WorkDocumentService,
+    ReportService, DailyReportRepositoryService, CostReportRepositoryService, WorkDocumentService, TranslationService,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
     ],
   bootstrap: [AppComponent]

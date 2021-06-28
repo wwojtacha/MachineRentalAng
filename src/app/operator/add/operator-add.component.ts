@@ -31,7 +31,6 @@ export class OperatorAddComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     const quaryParams = new HttpParams({});
 
     this.companyRepositoryService.getClients(quaryParams).subscribe(response => this.companies.next(Object.values(response)[0]));
