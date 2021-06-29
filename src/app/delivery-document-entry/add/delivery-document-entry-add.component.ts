@@ -26,11 +26,8 @@ import {DeliveryDocumentRepositoryService} from '../../delivery-document/reposit
 })
 export class DeliveryDocumentEntryAddComponent implements OnInit {
   deliveryDocumentEntryAddForm: FormGroup;
-  contractorNames = [];
   contractors = new BehaviorSubject<Client[]>([]);
-  materialTypes = new Set<string>();
   materials = new BehaviorSubject<Material[]>([]);
-  estimatePositionNames = [];
   estimatePositions = new BehaviorSubject<EstimatePosition[]>([]);
   deliveryPrices = new BehaviorSubject<DeliveryPrice[]>([]);
   costCodes = new BehaviorSubject<CostCode[]>([]);
@@ -74,13 +71,11 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
       const deliveryDocumentEntry = history.state.deliveryDocumentEntry;
 
       this.deliveryDocumentEntryAddForm = new FormGroup({
-        contractorName: new FormControl(deliveryDocumentEntry.contractor.name, Validators.required),
-        materialType: new FormControl(deliveryDocumentEntry.material.type, Validators.required),
+        contractorName: new FormControl(deliveryDocumentEntry.contractor, Validators.required),
+        materialType: new FormControl(deliveryDocumentEntry.material, Validators.required),
         quantity: new FormControl(deliveryDocumentEntry.quantity, Validators.required),
         measureUnit: new FormControl(deliveryDocumentEntry.measureUnit, Validators.required),
-        estimatePositionName: new FormControl(
-          deliveryDocumentEntry.estimatePosition.name + ';' + deliveryDocumentEntry.estimatePosition.costCode.fullCode,
-          Validators.required),
+        estimatePositionName: new FormControl(deliveryDocumentEntry.estimatePosition, Validators.required),
         projectCode: new FormControl(deliveryDocumentEntry.costCode.projectCode, Validators.required),
         costType: new FormControl(deliveryDocumentEntry.costCode.costType, Validators.required),
         priceType: new FormControl(deliveryDocumentEntry.deliveryPrice.priceType, Validators.required),
@@ -144,20 +139,10 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
 
     this.estimatePositionRepositoryService.getEstimatePositions(params).subscribe(response => {
       this.estimatePositions.next(Object.values(response)[0]);
-
-      const estimatePositions = this.estimatePositions.getValue();
-      for (const estimatePosition of estimatePositions) {
-        this.estimatePositionNames.push(estimatePosition.name + ';' + estimatePosition.costCode.fullCode);
-      }
     });
 
     this.clientRepositoryService.getClients(params).subscribe(response => {
       this.contractors.next(Object.values(response)[0]);
-
-      const contractors = this.contractors.getValue();
-      for (const contractor of contractors) {
-        this.contractorNames.push(contractor.name);
-      }
     });
 
     this.materialRepositoryService.getMaterials(params).subscribe(response => {
@@ -165,13 +150,8 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
     });
   }
 
-  chooseContractor(selectedContractorName: {}) {
-    for (const contractor of this.contractors.getValue()) {
-      if (contractor.name === selectedContractorName) {
-        this.selectedContractor = contractor;
-        break;
-      }
-    }
+  chooseContractor() {
+    this.selectedContractor = this.deliveryDocumentEntryAddForm.value.contractorName;
 
     const params = new HttpParams({
       fromObject: {
@@ -183,16 +163,19 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
       this.deliveryPrices.next(Object.values(response));
 
       this.priceTypes.clear();
-      this.materialTypes.clear();
+      // this.materialTypes.clear();
+      let materials: Material[] = [];
       const prices = this.deliveryPrices.getValue();
       for (const price of prices) {
         this.priceTypes.add(price.priceType);
-        this.materialTypes.add(price.material.type);
+        materials.push(price.material);
       }
 
-      if (this.materialTypes.size === 1) {
+      this.materials.next(materials);
+
+      if (materials.length === 1) {
         this.deliveryDocumentEntryAddForm.patchValue({
-          materialType: this.materialTypes.values().next().value
+          materialType: materials.values().next().value
         });
       }
 
@@ -200,29 +183,21 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
     });
   }
 
-  chooseMaterial(selectedMaterialType: {}) {
-    for (const material of this.materials.getValue()) {
-      if (material.type === selectedMaterialType) {
-        this.selectedMaterial = material;
-        break;
-      }
-    }
+  chooseMaterial() {
+    this.selectedMaterial = this.deliveryDocumentEntryAddForm.value.materialType;
 
     this.getDeliveryPrice();
   }
 
-  chooseEstimatePosition(selectedEstimatePositionName: {}) {
-    for (const estimatePosition of this.estimatePositions.getValue()) {
-      if (estimatePosition.name + ';' + estimatePosition.costCode.fullCode === selectedEstimatePositionName) {
-        this.selectedEstimatePosition = estimatePosition;
+  chooseEstimatePosition() {
 
-        this.deliveryDocumentEntryAddForm.patchValue({
-          projectCode: estimatePosition.costCode.projectCode,
-          costType: estimatePosition.costCode.costType
-        });
-        break;
-      }
-    }
+    this.selectedEstimatePosition = this.deliveryDocumentEntryAddForm.value.estimatePosition;
+
+    this.deliveryDocumentEntryAddForm.patchValue({
+      projectCode: this.selectedEstimatePosition.costCode.projectCode,
+      costType: this.selectedEstimatePosition.costCode.costType
+    });
+
 
     this.getDeliveryPrice();
   }
@@ -255,7 +230,7 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
 
     const deliveryPrices = this.deliveryPrices.getValue();
     for (const price of deliveryPrices) {
-      if (priceType === price.priceType && materialType === price.material.type && projectCode === price.projectCode) {
+      if (priceType === price.priceType && materialType.type === price.material.type && projectCode === price.projectCode) {
         this.deliveryPrice = price;
         this.deliveryDocumentEntryAddForm.patchValue({
           deliveryPrice: this.deliveryPrice.price
@@ -359,5 +334,9 @@ export class DeliveryDocumentEntryAddComponent implements OnInit {
       );
     }
 
+  }
+
+  compareIds(a, b) {
+    return a.id === b.id;
   }
 }
