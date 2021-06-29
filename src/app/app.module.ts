@@ -103,6 +103,8 @@ import {StartEndHourDialogComponent} from './work-document/hours-dialog/start-en
 import {HomeComponent} from './home/home.component';
 import {TranslationService} from './translation/translation.service';
 import {TranslationPipe} from './translation/translation.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -183,7 +185,8 @@ import {TranslationPipe} from './translation/translation.pipe';
     MatDialogModule,
     MatButtonModule,
     MatSelectModule,
-    DragDropModule
+    DragDropModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
     ConfirmationDialogComponent,
