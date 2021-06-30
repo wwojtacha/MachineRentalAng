@@ -103,7 +103,7 @@ import {StartEndHourDialogComponent} from './work-document/hours-dialog/start-en
 import {HomeComponent} from './home/home.component';
 import {TranslationService} from './translation/translation.service';
 import {TranslationPipe} from './translation/translation.pipe';
-import { ServiceWorkerModule } from 'node_modules/@angular/service-worker';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 @NgModule({
