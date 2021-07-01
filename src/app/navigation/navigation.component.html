@@ -96,10 +96,10 @@
 
     <div class="navbar-brand pull-right">
       <div>
-        <a routerLinkActive="active" routerLink="/login" *ngIf="!currentUser">Login</a>
+        <a routerLinkActive="active" routerLink="/login" *ngIf="!currentUser">{{'login' | translate:translationService.counter}}</a>
       </div>
       <div>
-        <a routerLinkActive="active" routerLink="/login" *ngIf="currentUser" (click)="onLogout()">Logout</a>
+        <a routerLinkActive="active" routerLink="/login" *ngIf="currentUser" (click)="onLogout()">{{'logout' | translate:translationService.counter}}</a>
       </div>
     </div>
 

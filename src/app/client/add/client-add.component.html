@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="mpk">Client MPK / NIP</label>
+        <label for="mpk">{{'contractorMpk' | translate:translationService.counter}}</label>
         <input type="text" id="mpk" formControlName="mpk" class="form-control">
       </div>
     </div>
@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="name">{{'name' | translate:translationService.counter}}</label>
         <input type="text" id="name" formControlName="name" class="form-control">
       </div>
     </div>
@@ -21,7 +21,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="city">City</label>
+        <label for="city">{{'city' | translate:translationService.counter}}</label>
         <input type="text" id="city" formControlName="city" class="form-control">
       </div>
     </div>
@@ -30,7 +30,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="street">Street</label>
+        <label for="street">{{'street' | translate:translationService.counter}}</label>
         <input type="text" id="street" formControlName="street" class="form-control">
       </div>
     </div>
@@ -39,7 +39,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="buildingNumber">Building number</label>
+        <label for="buildingNumber">{{'buildingNumber' | translate:translationService.counter}}</label>
         <input type="text" id="buildingNumber" formControlName="buildingNumber" class="form-control">
       </div>
     </div>
@@ -48,7 +48,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="postalCode">Postal code</label>
+        <label for="postalCode">{{'postalCode' | translate:translationService.counter}}</label>
         <input type="text" id="postalCode" formControlName="postalCode" class="form-control">
       </div>
     </div>
@@ -57,7 +57,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="email">Email address</label>
+        <label for="email">{{'email' | translate:translationService.counter}}</label>
         <input type="email" id="email" formControlName="email" class="form-control">
       </div>
     </div>
@@ -66,7 +66,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="contactPerson">Contact person</label>
+        <label for="contactPerson">{{'contactPerson' | translate:translationService.counter}}</label>
         <input type="text" id="contactPerson" formControlName="contactPerson" class="form-control">
       </div>
     </div>
@@ -75,7 +75,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="phoneNumber">Phone number</label>
+        <label for="phoneNumber">{{'phoneNumber' | translate:translationService.counter}}</label>
         <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
       </div>
     </div>
@@ -84,7 +84,7 @@
 
   <div class="row">
     <div class="col-xs-10 col-md-2 text-center">
-      <button type="submit" class="btn btn-success" [disabled]="!clientForm.valid" >{{isOnEdit ? 'Update' : 'Create'}}</button>
+      <button type="submit" class="btn btn-success" [disabled]="!clientForm.valid" >{{isOnEdit ? ('update' | translate:translationService.counter) : ('create' | translate:translationService.counter)}}</button>
     </div>
   </div>
 

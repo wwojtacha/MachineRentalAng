@@ -2,11 +2,11 @@
 
   <div class="row">
     <div class="col-md-12" *ngIf="currentUser">
-      <h4>Logged as: {{currentUser.username}}</h4>
+      <h4>{{'loggedAs' | translate:translationService.counter}} {{currentUser.username}}</h4>
     </div>
 
     <div class="col-md-12" *ngIf="!currentUser">
-      <h4>Please log in.</h4>
+      <h4>{{'pleaseLogin' | translate:translationService.counter}}</h4>
     </div>
   </div>
 
@@ -26,15 +26,15 @@
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/clients">Contractors</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/clients">{{'contractors' | translate:translationService.counter}}</button>
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/operators">Operators</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/operators">{{'operators' | translate:translationService.counter}}</button>
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/materials">Materials</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/materials">{{'materials' | translate:translationService.counter}}</button>
     </div>
 
   </div>
@@ -42,12 +42,12 @@
   <div class="row form-group">
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/estimate-positions">Estimate positions
+      <button type="button" class="btn btn-primary btn-block" routerLink="/estimate-positions">{{'estimatePositions' | translate:translationService.counter}}
       </button>
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/cost-codes">Cost codes</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/cost-codes">{{'costCodes' | translate:translationService.counter}}</button>
     </div>
 
   </div>
@@ -55,15 +55,15 @@
   <div class="row form-group">
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/hourPrices">Hour prices</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/hourPrices">{{'hourPrices' | translate:translationService.counter}}</button>
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/distancePrices">Distance prices</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/distancePrices">{{'distancePrices' | translate:translationService.counter}}</button>
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/deliveryPrices">Delivery prices</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/deliveryPrices">{{'deliveryPrices' | translate:translationService.counter}}</button>
     </div>
 
   </div>
@@ -71,27 +71,27 @@
   <div class="row form-group">
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/work-documents">Work documents</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/work-documents">{{'workDocuments' | translate:translationService.counter}}</button>
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/delivery-documents">Delivery documents
+      <button type="button" class="btn btn-primary btn-block" routerLink="/delivery-documents">{{'deliveryDocuments' | translate:translationService.counter}}
       </button>
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/daily-reports">Daily reports</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/daily-reports">{{'dailyReports' | translate:translationService.counter}}</button>
     </div>
 
   </div>
 
   <div class="row form-group">
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/excel-reports">Excel reports</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/excel-reports">{{'excelReports' | translate:translationService.counter}}</button>
     </div>
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/cost-report">Cost report</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/cost-report">{{'costReports' | translate:translationService.counter}}</button>
     </div>
 
   </div>
@@ -99,7 +99,7 @@
   <div class="row form-group" *ngIf="isAdmin">
 
     <div class="col-md-2">
-      <button type="button" class="btn btn-primary btn-block" routerLink="/users">Users</button>
+      <button type="button" class="btn btn-primary btn-block" routerLink="/users">{{'users' | translate:translationService.counter}}</button>
     </div>
 
 

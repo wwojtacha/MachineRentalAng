@@ -5,6 +5,7 @@ import {Client} from '../model/client.model';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-client-list',
@@ -16,7 +17,9 @@ export class ClientListComponent implements OnInit {
   clients = new BehaviorSubject<Client[]>([]);
   clientListForm: FormGroup;
 
-  constructor(private clientRepositoryService: ClientRepositoryService, private router: Router) {}
+  constructor(private clientRepositoryService: ClientRepositoryService,
+              private router: Router,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
 

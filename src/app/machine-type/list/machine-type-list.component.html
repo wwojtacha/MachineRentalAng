@@ -1,6 +1,6 @@
 <div id="add-button" class="row">
   <div class="col-xs-offset-1">
-    <button type="button" class="btn btn-primary" routerLink="/machine-type-add">Add new machine type</button>
+    <button type="button" class="btn btn-primary" routerLink="/machine-type-add">{{'addNewMachineType' | translate:translationService.counter}}</button>
   </div>
 </div>
 <br><br>
@@ -9,7 +9,7 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="form-group">
-        <label for="machineType">Machine type</label>
+        <label for="machineType">{{'machineType' | translate:translationService.counter}}</label>
         <input type="text" id="machineType" class="form-control" [(ngModel)]="filteredType">
       </div>
     </div>
@@ -23,16 +23,16 @@
   <table class="table">
     <thead>
     <tr>
-      <th class="col-md-3">Machine type</th>
-      <th class="col-md-3">Cost category</th>
+      <th class="col-md-3">{{'machineType' | translate:translationService.counter}}</th>
+      <th class="col-md-3">{{'costCategory' | translate:translationService.counter}}</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let machineType of machineTypes | async | filterMachineTypes:filteredType:'machineType'">
       <td>{{machineType.machineType}}</td>
-      <td>{{machineType.costCategory}}</td>
+      <td>{{machineType.costCategory | translate:translationService.counter}}</td>
       <td>
-        <button type="button" class="btn btn-primary" (click)="onEditMachineType(machineType)">Edit</button>
+        <button type="button" class="btn btn-primary" (click)="onEditMachineType(machineType)">{{'edit' | translate:translationService.counter}}</button>
       </td>
     </tr>
     </tbody>

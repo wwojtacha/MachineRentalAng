@@ -1,7 +1,7 @@
 table {
-  margin-left: 5%;
-  margin-right: 5%;
-  max-width: 90%;
+  margin-left: 2%;
+  padding-right: 2%;
+  max-width: 95%;
 }
 
 form {
@@ -10,5 +10,5 @@ form {
 }
 
 #add-button {
-  margin-left: 5%;
+  margin-left: 2%;
 }

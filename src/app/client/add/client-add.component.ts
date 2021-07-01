@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Client} from '../model/client.model';
 import {ClientRepositoryService} from '../repository-service/client-repository.service';
 import {MessageStyler} from '../../utils/message-styler';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-client-add',
@@ -17,7 +18,8 @@ export class ClientAddComponent implements OnInit {
   messageStyler = MessageStyler;
   userMessage;
 
-  constructor(private clientRepositoryService: ClientRepositoryService) {
+  constructor(private clientRepositoryService: ClientRepositoryService,
+              public translationService: TranslationService) {
   }
 
   ngOnInit(): void {

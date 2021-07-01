@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MachineType} from '../model/machine-type.model';
 import {MachineTypeRepositoryService} from '../repository-service/machine-type-repository.service';
 import {MessageStyler} from '../../utils/message-styler';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-machine-type-add',
@@ -18,7 +19,8 @@ export class MachineTypeAddComponent implements OnInit {
   userMessage;
   messageStyler = MessageStyler;
 
-  constructor(private machineTypeRepositoryService: MachineTypeRepositoryService) {}
+  constructor(private machineTypeRepositoryService: MachineTypeRepositoryService,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
     this.initializeForm();

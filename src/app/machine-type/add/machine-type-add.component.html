@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="machineType">Machine type</label>
+        <label for="machineType">{{'machineType' | translate:translationService.counter}}</label>
         <input type="text" id="machineType" formControlName="machineType" class="form-control">
       </div>
     </div>
@@ -12,10 +12,10 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="costCategory">Cost category</label>
+        <label for="costCategory">{{'costCategory' | translate:translationService.counter}}</label>
         <select type="text" id="costCategory" formControlName="costCategory" class="form-control">
-          <option value="EQUIPMENT">Equipment</option>
-          <option value="TRANSPORT">Transport</option>
+          <option value="EQUIPMENT">{{'EQUIPMENT' | translate:translationService.counter}}</option>
+          <option value="TRANSPORT">{{'TRANSPORT' | translate:translationService.counter}}</option>
         </select>
       </div>
     </div>
@@ -24,7 +24,7 @@
 
   <div class="row">
     <div class="col-xs-10 col-md-2 text-center">
-      <button type="submit" class="btn btn-success" [disabled]="!machineTypeForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+      <button type="submit" class="btn btn-success" [disabled]="!machineTypeForm.valid">{{isOnEdit ? ('update' | translate:translationService.counter) : ('create' | translate:translationService.counter)}}</button>
     </div>
   </div>
 

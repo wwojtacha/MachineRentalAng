@@ -9,6 +9,7 @@ import {MachineType} from '../../machine-type/model/machine-type.model';
 import {HttpParams} from '@angular/common/http';
 import {ClientRepositoryService} from '../../client/repository-service/client-repository.service';
 import {Client} from '../../client/model/client.model';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-machine-add',
@@ -29,7 +30,8 @@ export class MachineAddComponent implements OnInit {
 
   constructor(private machineTypeRepositoryService: MachineTypeRepositoryService,
               private machineRepositoryService: MachineRepositoryService,
-              private clientRepositoryService: ClientRepositoryService) {
+              private clientRepositoryService: ClientRepositoryService,
+              public translationService: TranslationService) {
   }
 
   ngOnInit() {

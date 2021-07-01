@@ -3,6 +3,7 @@ import {MachineTypeRepositoryService} from '../repository-service/machine-type-r
 import {Router} from '@angular/router';
 import {BehaviorSubject, Subscription} from 'rxjs';
 import {MachineType} from '../model/machine-type.model';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-machine-type-list',
@@ -15,7 +16,9 @@ export class MachineTypeListComponent implements OnInit, OnDestroy {
   filteredType = '';
   subscription: Subscription;
 
-  constructor(private machineTypeRepositoryService: MachineTypeRepositoryService, private router: Router) {
+  constructor(private machineTypeRepositoryService: MachineTypeRepositoryService,
+              private router: Router,
+              public translationService: TranslationService) {
   }
 
   ngOnInit(): void {
