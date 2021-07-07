@@ -15,10 +15,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   username: string;
   password: string;
-  errorMessage = 'Invalid Credentials';
-  successMessage: string;
-  invalidLogin = false;
-  loginSuccess = false;
   loginForm: FormGroup;
   userMessages: any[] = [];
   messageStyler = MessageStyler;
@@ -36,20 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
-  // handleLogin() {
-  //   this.authenticationService.authenticate(this.username, this.password).subscribe((response) => {
-  //     this.invalidLogin = false;
-  //     this.loginSuccess = true;
-  //     this.successMessage = 'Login Successful.';
-  //     this.router.navigate(['/machines']);
-  //   }, (error) => {
-  //     this.invalidLogin = true;
-  //     this.loginSuccess = false;
-  //   });
-  // }
-
   onSubmit() {
-    // this.isLoading = true;
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
 
@@ -57,19 +40,19 @@ export class LoginComponent implements OnInit, OnDestroy {
       response => {
         this.authService.authenticate(username, password, response.jwt, 3600);
         this.router.navigate(['/home']);
-        // this.isLoading = false;
       }, err => {
-        // this.toastService.add({key: 'login_error', severity:'error', summary: 'Login Error', detail:`${error.error}`, life: 5000});
-        // this.isLoading = false;
         this.userMessages.length = 0;
-        const error = err.error.message;
-        this.userMessages.push(error);
+
+        if (err.error.message === undefined) {
+          this.userMessages.push("Connection error. Check if backend server is operational.");
+        } else {
+          const error = err.error.message;
+          this.userMessages.push(error);
+        }
+
         setTimeout(() => {
           this.userMessages.length = 0;
         }, 3000);
-        // const error = 'Incorrect username or password.'
-        // this.userMessages.push(error);
-
       }
     );
     this.loginForm.reset();
