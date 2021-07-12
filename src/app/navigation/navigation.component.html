@@ -1,126 +1,29 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-brand">
-    <a routerLinkActive="active" routerLink="/home" class="active">{{'menu' | translate:translationService.counter}}</a>
-  </div>
-
-<!--    <ul class="navbar-brand" *ngIf="currentUser">-->
-<!--      <li class="dropdown" appDropdown>-->
-<!--        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Machines<span class="caret"></span></a>-->
-<!--        <ul class="dropdown-menu">-->
-<!--          <li><a style="cursor: pointer;" routerLink="/machines">Machines</a></li>-->
-<!--          <li><a style="cursor: pointer;" routerLink="/machine-type-list">Machine types</a></li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--    -->
-<!--    <div class="navbar-brand" *ngIf="currentUser">-->
-<!--      <a routerLinkActive="active" routerLink="/clients">Contractors</a>-->
-<!--    </div>-->
-
-<!--    <div class="navbar-brand" *ngIf="currentUser">-->
-<!--      <a routerLinkActive="active" routerLink="/operators">Operators</a>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="navbar-brand" *ngIf="currentUser">-->
-<!--      <a routerLinkActive="active" routerLink="/estimate-positions">Estimate positions</a>-->
-<!--    </div>-->
-
-<!--    <div class="navbar-brand" *ngIf="currentUser">-->
-<!--      <a routerLinkActive="active" routerLink="/cost-codes">Cost codes</a>-->
-<!--    </div>-->
-
-<!--    <div class="navbar-brand" *ngIf="currentUser">-->
-<!--      <a routerLinkActive="active" routerLink="/materials">Materials</a>-->
-<!--    </div>-->
-
-<!--    <ul class="navbar-brand" *ngIf="currentUser">-->
-<!--      <li class="dropdown" appDropdown>-->
-<!--        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Price list<span class="caret"></span></a>-->
-<!--        <ul class="dropdown-menu">-->
-<!--          <li><a style="cursor: pointer;" routerLink="/hourPrices">Hour prices</a></li>-->
-<!--          <li><a style="cursor: pointer;" routerLink="/distancePrices">Distance prices</a></li>-->
-<!--          <li><a style="cursor: pointer;" routerLink="/deliveryPrices">Delivery prices</a></li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--    </ul>-->
-
-<!--    <ul class="navbar-brand" *ngIf="currentUser">-->
-<!--      <li class="dropdown" appDropdown>-->
-<!--        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Documents<span class="caret"></span></a>-->
-<!--        <ul class="dropdown-menu">-->
-<!--          <li><a style="cursor: pointer;" routerLink="/work-documents">Work documents</a></li>-->
-<!--          <li><a style="cursor: pointer;" routerLink="/delivery-documents">Delivery documents</a></li>-->
-<!--          <li><a style="cursor: pointer;" routerLink="/daily-reports">Daily reports</a></li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--    -->
-<!--    <ul class="navbar-brand" *ngIf="currentUser">-->
-<!--      <li class="dropdown" appDropdown>-->
-<!--        <a style="cursor: pointer;" class="dropdown-toggle" role="button">Reports<span class="caret"></span></a>-->
-<!--        <ul class="dropdown-menu">-->
-<!--          <li><a style="cursor: pointer;" routerLink="/excel-reports">Excel reports</a></li>-->
-<!--          <li><a style="cursor: pointer;" routerLink="/cost-report">Cost report</a></li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--    </ul>-->
-
-<!--    <div class="navbar-brand" *ngIf="isAdmin">-->
-<!--      <a routerLinkActive="active" routerLink="/users">Users</a>-->
-<!--    </div>-->
-
-<!--    <div class="col-xs-1">-->
-<!--    </div>-->
-
-<!--    <div class="navbar-brand" *ngIf="currentUser">-->
-<!--      <p>Logged as: {{currentUser.username}}</p>-->
-<!--    </div>-->
-
-<!--    <div class="navbar-brand" *ngIf="!currentUser">-->
-<!--      <p>Please log in.</p>-->
-<!--    </div>-->
-
-<!--    <div class="nav navbar-nav navbar-right">-->
-<!--      <div class="navbar-brand">-->
-<!--        <a routerLinkActive="active" routerLink="/login" *ngIf="!currentUser">Login</a>-->
-<!--      </div>-->
-<!--      <div class="navbar-brand">-->
-<!--        <a routerLinkActive="active" routerLink="/login" *ngIf="currentUser" (click)="onLogout()">Logout</a>-->
-<!--      </div>-->
-<!--    </div>-->
-
-
-
-
+      <a routerLinkActive="active" routerLink="/home"
+         class="active">{{'menu' | translate:translationService.counter}}</a>
+    </div>
 
     <div class="navbar-brand pull-right">
       <div>
-        <a routerLinkActive="active" routerLink="/login" *ngIf="!currentUser">{{'login' | translate:translationService.counter}}</a>
+        <a routerLinkActive="active" routerLink="/login"
+           *ngIf="!currentUser">{{'login' | translate:translationService.counter}}</a>
       </div>
       <div>
-        <a routerLinkActive="active" routerLink="/login" *ngIf="currentUser" (click)="onLogout()">{{'logout' | translate:translationService.counter}}</a>
+        <a routerLinkActive="active" routerLink="/login" *ngIf="currentUser"
+           (click)="onLogout()">{{'logout' | translate:translationService.counter}}</a>
       </div>
     </div>
 
-
-<!--    <form [formGroup]="languageForm">-->
-
-<!--      <div id="language" class="navbar-brand pull-right">-->
-<!--        <select class="form-control" formControlName="language" (ngModelChange)="onSelectLanguage($event)">-->
-<!--          <option *ngFor="let language of translationService.languages" [ngValue]="language">{{language}}</option>-->
-<!--        </select>-->
-<!--      </div>-->
-<!--    </form>-->
-
     <div id="language" class="navbar-brand pull-right">
-      <select class="form-control" [(ngModel)]="translationService.currentLanguage" (ngModelChange)="translationService.updateCounter()">
+      <select class="form-control" [(ngModel)]="translationService.currentLanguage"
+              (ngModelChange)="translationService.updateCounter()">
         <option *ngFor="let language of translationService.languages" [ngValue]="language">{{language}}</option>
       </select>
     </div>
 
   </div>
-
 
 
 </nav>

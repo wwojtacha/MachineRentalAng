@@ -1,10 +1,9 @@
-import {AfterViewChecked, Component, DoCheck, OnChanges, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../login/service/auth.service';
 import {Router} from '@angular/router';
 import {AuthUserModel} from '../login/model/auth-user.model';
 import {UserRepositoryService} from '../user/repository-service/user-repository.service';
 import {UserDto} from '../user/model/userdto.model';
-import {NavigationComponent} from '../navigation/navigation.component';
 import {TranslationService} from '../translation/translation.service';
 
 @Component({
