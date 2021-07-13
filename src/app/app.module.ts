@@ -105,6 +105,7 @@ import {TranslationService} from './translation/translation.service';
 import {TranslationPipe} from './translation/translation.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import {MobileUtil} from './utils/mobile-util';
 
 @NgModule({
   declarations: [
@@ -203,6 +204,7 @@ import { environment } from '../environments/environment';
     MaterialRepositoryService, HourPriceRepositoryService, DistancePriceRepositoryService, DeliveryDocumentRepositoryService,
     DeliveryPriceRepositoryService, DeliveryDocumentEntryService, DeliveryDocumentEntryRepositoryService,
     ReportService, DailyReportRepositoryService, CostReportRepositoryService, WorkDocumentService, TranslationService,
+    MobileUtil,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}
     ],
   bootstrap: [AppComponent]
