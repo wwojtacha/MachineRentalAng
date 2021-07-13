@@ -5,6 +5,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CostCodeRepositoryService} from '../repository-service/cost-code-repository.service';
 import {HttpParams} from '@angular/common/http';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-costcode-list',
@@ -15,7 +16,9 @@ export class CostCodeListComponent implements OnInit {
   costCodes = new BehaviorSubject<CostCode[]>([]);
   costCodeListForm: FormGroup;
 
-  constructor(private costCodeRepositoryService: CostCodeRepositoryService, private router: Router) {}
+  constructor(private costCodeRepositoryService: CostCodeRepositoryService,
+              private router: Router,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
     this.costCodeListForm = new FormGroup({

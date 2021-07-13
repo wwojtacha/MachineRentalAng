@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {MessageStyler} from '../../utils/message-styler';
 import {Material} from '../model/material.model';
 import {MaterialRepositoryService} from '../repository-service/material-repository.service';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-material-add',
@@ -17,7 +18,8 @@ export class MaterialAddComponent implements OnInit {
   messageStyler = MessageStyler;
   userMessage;
 
-  constructor(private materialRepositoryService: MaterialRepositoryService) {
+  constructor(private materialRepositoryService: MaterialRepositoryService,
+              public translationService: TranslationService) {
   }
 
   ngOnInit(): void {

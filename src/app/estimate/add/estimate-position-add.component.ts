@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MessageStyler} from '../../utils/message-styler';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {EstimatePositionRepositoryService} from '../repository-service/estimate-position-repository.service';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-estimate-position-add',
@@ -15,7 +16,9 @@ export class EstimatePositionAddComponent implements OnInit {
   messageStyler = MessageStyler;
   userMessage;
 
-  constructor(private estimatePositionRepositoryService: EstimatePositionRepositoryService, private formBuilder: FormBuilder) {}
+  constructor(private estimatePositionRepositoryService: EstimatePositionRepositoryService,
+              private formBuilder: FormBuilder,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
     this.estimatePositionAddForm = this.formBuilder.group({

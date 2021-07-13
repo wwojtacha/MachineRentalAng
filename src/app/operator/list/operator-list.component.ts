@@ -7,6 +7,7 @@ import {HttpParams} from '@angular/common/http';
 import {OperatorRepositoryService} from '../repository-service/operator-repository.service';
 import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-operator-list',
@@ -21,7 +22,8 @@ export class OperatorListComponent implements OnInit {
 
   constructor(private companyRepositoryService: ClientRepositoryService,
               private operatorRepositoryService: OperatorRepositoryService,
-              private router: Router) {}
+              private router: Router,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
 

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="type">Material type</label>
+        <label for="type">{{'materialType' | translate:translationService.counter}}</label>
         <input type="text" id="type" formControlName="type" class="form-control">
       </div>
     </div>
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-xs-10 col-md-2 text-center">
-      <button type="submit" class="btn btn-success" [disabled]="!materialAddForm.valid" >{{isOnEdit ? 'Update' : 'Create'}}</button>
+      <button type="submit" class="btn btn-success" [disabled]="!materialAddForm.valid" >{{isOnEdit ? ('update' | translate:translationService.counter) : ('create' | translate:translationService.counter)}}</button>
     </div>
   </div>
 

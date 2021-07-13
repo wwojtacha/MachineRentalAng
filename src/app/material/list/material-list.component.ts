@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 import {Material} from '../model/material.model';
 import {MaterialRepositoryService} from '../repository-service/material-repository.service';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-material-list',
@@ -16,7 +17,9 @@ export class MaterialListComponent implements OnInit {
   materials = new BehaviorSubject<Material[]>([]);
   materialListForm: FormGroup;
 
-  constructor(private materialRepositoryService: MaterialRepositoryService, private router: Router) {}
+  constructor(private materialRepositoryService: MaterialRepositoryService,
+              private router: Router,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
 

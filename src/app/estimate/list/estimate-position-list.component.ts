@@ -7,6 +7,7 @@ import {CostCode} from '../../costcode/model/costcode.model';
 import {CostCodeRepositoryService} from '../../costcode/repository-service/cost-code-repository.service';
 import {HttpParams} from '@angular/common/http';
 import {EstimatePositionRepositoryService} from '../repository-service/estimate-position-repository.service';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-estimate-position-list',
@@ -22,7 +23,8 @@ export class EstimatePositionListComponent implements OnInit {
 
   constructor(private router: Router,
               private costCodeRepositoryService: CostCodeRepositoryService,
-              private estimatePositionRepositoryService: EstimatePositionRepositoryService) {}
+              private estimatePositionRepositoryService: EstimatePositionRepositoryService,
+              public translationService: TranslationService) {}
 
 
 

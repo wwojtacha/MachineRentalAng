@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="operatorName">Operator name</label>
+        <label for="operatorName">{{'nameAndSurname' | translate:translationService.counter}}</label>
         <input type="text" id="operatorName" formControlName="operatorName" class="form-control">
       </div>
     </div>
@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="qualifications">Qualifications</label>
+        <label for="qualifications">{{'qualifications' | translate:translationService.counter}}</label>
         <textarea rows="5" type="text" id="qualifications" formControlName="qualifications" class="form-control"></textarea>
       </div>
     </div>
@@ -22,14 +22,14 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group" *ngIf="isOnEdit">
-        <label for="editedCompany">Current company</label>
+        <label for="editedCompany">{{'currentCompany' | translate:translationService.counter}}</label>
         <input id="editedCompany" formControlName="editedCompany" class="form-control">
       </div>
     </div>
 
     <div class="col-xs-2" id="changeCompanyButton">
       <div class="form-group" *ngIf="isOnEdit">
-        <button type="button" class="btn-default" (click)="enableCompanySelect()">Change company</button>
+        <button type="button" class="btn-default" (click)="enableCompanySelect()">{{'changeCompany' | translate:translationService.counter}}</button>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
   <div class="row" *ngIf="isCompanyShown">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="company">Company</label>
+        <label for="company">{{'company' | translate:translationService.counter}}</label>
         <select id="company" formControlName="company" class="form-control" (ngModelChange)="onSelectCompany($event)" [ngStyle]="styleElementToChange()">
           <option></option>
           <option *ngFor="let company of companies | async" [ngValue]="company">{{company.mpk}}</option>
@@ -50,7 +50,7 @@
 
   <div class="row">
     <div class="col-xs-10 col-md-2 text-center">
-      <button type="submit" class="btn btn-success" [disabled]="!operatorForm.valid">{{isOnEdit ? 'Update' : 'Create'}}</button>
+      <button type="submit" class="btn btn-success" [disabled]="!operatorForm.valid">{{isOnEdit ? ('update' | translate:translationService.counter) : ('create' | translate:translationService.counter)}}</button>
     </div>
   </div>
 

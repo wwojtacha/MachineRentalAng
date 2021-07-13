@@ -7,6 +7,7 @@ import {HttpParams} from '@angular/common/http';
 import {CostCodeRepositoryService} from '../../costcode/repository-service/cost-code-repository.service';
 import {EstimatePosition} from '../model/estimate.position';
 import {EstimatePositionRepositoryService} from '../repository-service/estimate-position-repository.service';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-estimate-position-edit',
@@ -24,7 +25,8 @@ export class EstimatePositionEditComponent implements OnInit {
   estimatePosition = history.state.estimatePosition;
 
   constructor(private costCodeRepositoryService: CostCodeRepositoryService,
-              private estimatePositionRepositoryService: EstimatePositionRepositoryService) {
+              private estimatePositionRepositoryService: EstimatePositionRepositoryService,
+              public translationService: TranslationService) {
   }
 
   ngOnInit(): void {

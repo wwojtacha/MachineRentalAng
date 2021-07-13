@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-3">
       <div class="form-group">
-        <label for="projectCode">Project code</label>
+        <label for="projectCode">{{'projectCode' | translate:translationService.counter}}</label>
         <input type="text" id="projectCode" formControlName="projectCode" class="form-control">
       </div>
     </div>
@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-3">
       <div class="form-group">
-        <label for="costType">Cost type</label>
+        <label for="costType">{{'costType' | translate:translationService.counter}}</label>
         <input type="text" id="costType" formControlName="costType" class="form-control">
       </div>
     </div>
@@ -21,7 +21,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-3">
       <div class="form-group">
-        <label for="projectCodeDescription">Project code description</label>
+        <label for="projectCodeDescription">{{'projectCodeDescription' | translate:translationService.counter}}</label>
         <input type="text" id="projectCodeDescription" formControlName="projectCodeDescription" class="form-control">
       </div>
     </div>
@@ -30,7 +30,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-3">
       <div class="form-group">
-        <label for="costTypeDescription">Cost type description</label>
+        <label for="costTypeDescription">{{'costTypeDescription' | translate:translationService.counter}}</label>
         <input type="text" id="costTypeDescription" formControlName="costTypeDescription" class="form-control">
       </div>
     </div>
@@ -38,7 +38,7 @@
 
   <div class="row">
     <div class="col-xs-10 col-md-3 text-center">
-      <button type="submit" class="btn btn-success" [disabled]="!costCodeForm.valid" >{{isOnEdit ? 'Update' : 'Create'}}</button>
+      <button type="submit" class="btn btn-success" [disabled]="!costCodeForm.valid" >{{isOnEdit ? ('update' | translate:translationService.counter) : ('create' | translate:translationService.counter)}}</button>
     </div>
   </div>
 

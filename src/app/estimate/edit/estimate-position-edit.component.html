@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="name">Estimate position name</label>
+        <label for="name">{{'name' | translate:translationService.counter}}</label>
         <input type="text" id="name" formControlName="name" class="form-control">
       </div>
     </div>
@@ -12,7 +12,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="projectCode">Project code</label>
+        <label for="projectCode">{{'projectCode' | translate:translationService.counter}}</label>
         <select type="text" id="projectCode" formControlName="projectCode" class="form-control" (ngModelChange)="onSelectProjectCode($event)">
           <option *ngFor="let projectCode of projectCodes" [ngValue]="projectCode">{{projectCode}}</option>
         </select>
@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="costType">Cost type</label>
+        <label for="costType">{{'costType' | translate:translationService.counter}}</label>
         <select type="text" id="costType" formControlName="costType" class="form-control">
           <option></option>
           <option *ngFor="let costType of costTypes" [ngValue]="costType">{{costType}}</option>
@@ -35,7 +35,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="quantity">Quantity</label>
+        <label for="quantity">{{'quantity' | translate:translationService.counter}}</label>
         <input type="number" min="0" id="quantity" formControlName="quantity" class="form-control" (ngModelChange)="onQuantityChange()">
       </div>
     </div>
@@ -44,7 +44,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="measureUnit">Measure unit</label>
+        <label for="measureUnit">{{'measureUnit' | translate:translationService.counter}}</label>
         <select type="text" id="measureUnit" formControlName="measureUnit" class="form-control">
           <option>-</option>
           <option>h</option>
@@ -62,7 +62,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="estimateSellPrice">Sell price</label>
+        <label for="estimateSellPrice">{{'sellPrice' | translate:translationService.counter}}</label>
         <input type="number" id="estimateSellPrice" formControlName="estimateSellPrice" class="form-control" (ngModelChange)="onSellPriceChange()">
       </div>
     </div>
@@ -71,7 +71,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="estimateSellValue">Sell value</label>
+        <label for="estimateSellValue">{{'sellValue' | translate:translationService.counter}}</label>
         <input type="number" id="estimateSellValue" formControlName="estimateSellValue" class="form-control">
       </div>
     </div>
@@ -80,7 +80,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="remarks">Remarks</label>
+        <label for="remarks">{{'remarks' | translate:translationService.counter}}</label>
         <input type="text" id="remarks" formControlName="remarks" class="form-control">
       </div>
     </div>
@@ -89,7 +89,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="estimateCostPrice">Cost price</label>
+        <label for="estimateCostPrice">{{'costPrice' | translate:translationService.counter}}</label>
         <input type="number" id="estimateCostPrice" formControlName="estimateCostPrice" class="form-control" (ngModelChange)="onCostPriceChange()">
       </div>
     </div>
@@ -98,7 +98,7 @@
   <div class="row">
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="estimateCostValue">Cost value</label>
+        <label for="estimateCostValue">{{'costValue' | translate:translationService.counter}}</label>
         <input type="number" id="estimateCostValue" formControlName="estimateCostValue" class="form-control">
       </div>
     </div>
@@ -106,7 +106,7 @@
 
   <div class="row">
     <div class="col-xs-10 col-md-2 text-center">
-      <button type="submit" class="btn btn-success" [disabled]="!estimatePositionEditForm.valid">Update</button>
+      <button type="submit" class="btn btn-success" [disabled]="!estimatePositionEditForm.valid">{{'update' | translate:translationService.counter}}</button>
     </div>
   </div>
 

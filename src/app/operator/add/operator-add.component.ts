@@ -8,6 +8,7 @@ import {Client} from '../../client/model/client.model';
 import {Operator} from '../model/operator.model';
 import {OperatorRepositoryService} from '../repository-service/operator-repository.service';
 import {BehaviorSubject} from 'rxjs';
+import {TranslationService} from "../../translation/translation.service";
 
 @Component({
   selector: 'app-operator',
@@ -26,7 +27,8 @@ export class OperatorAddComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private companyRepositoryService: ClientRepositoryService,
-              private operatorRepositoryService: OperatorRepositoryService) {}
+              private operatorRepositoryService: OperatorRepositoryService,
+              public translationService: TranslationService) {}
 
 
 

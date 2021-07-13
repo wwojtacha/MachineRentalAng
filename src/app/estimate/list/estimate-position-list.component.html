@@ -1,6 +1,6 @@
 <div id="add-button" class="row">
   <div class="col-xs-offset-0">
-    <button type="button" class="btn btn-primary" routerLink="/estimate-position-add">Upload estimate positions</button>
+    <button type="button" class="btn btn-primary" routerLink="/estimate-position-add">{{'addEstimatePositions' | translate:translationService.counter}}</button>
   </div>
 </div>
 
@@ -12,14 +12,14 @@
 
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="name">Estimate position name</label>
+        <label for="name">{{'name' | translate:translationService.counter}}</label>
         <input type="text" id="name" formControlName="name" class="form-control">
       </div>
     </div>
 
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="projectCode">Project code</label>
+        <label for="projectCode">{{'projectCode' | translate:translationService.counter}}</label>
         <select type="text" id="projectCode" formControlName="projectCode" class="form-control" (ngModelChange)="onSelectProjectCode($event)">
           <option></option>
           <option *ngFor="let projectCode of projectCodes">{{projectCode}}</option>
@@ -29,7 +29,7 @@
 
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="costType">Cost type</label>
+        <label for="costType">{{'costType' | translate:translationService.counter}}</label>
         <select type="text" id="costType" formControlName="costType" class="form-control">
           <option></option>
           <option *ngFor="let costType of costTypes">{{costType}}</option>
@@ -39,7 +39,7 @@
 
     <div class="col-xs-10 col-md-2">
       <div class="form-group">
-        <label for="remarks">Remarks</label>
+        <label for="remarks">{{'remarks' | translate:translationService.counter}}</label>
         <input type="text" id="remarks" formControlName="remarks" class="form-control">
       </div>
     </div>
@@ -48,7 +48,7 @@
 
   <div class="row">
     <div class="col-xs-1">
-      <button type="submit" class="btn btn-success">Search</button>
+      <button type="submit" class="btn btn-success">{{'search' | translate:translationService.counter}}</button>
     </div>
   </div>
 
@@ -59,16 +59,16 @@
 <table class="table">
   <thead>
   <tr>
-    <th class="col-md-2">Estimate position name</th>
-    <th class="col-md-1">Project code</th>
-    <th class="col-md-1">Cost type</th>
-    <th class="col-md-1">Quantity</th>
-    <th class="col-md-1">Measure unit</th>
-    <th class="col-md-1">Sell price</th>
-    <th class="col-md-1">Sell value</th>
-    <th class="col-md-1">Remarks</th>
-    <th class="col-md-1">Cost price</th>
-    <th class="col-md-1">Cost value</th>
+    <th class="col-md-2">{{'name' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'projectCode' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'costType' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'quantity' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'measureUnit' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'sellPrice' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'sellValue' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'remarks' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'costPrice' | translate:translationService.counter}}</th>
+    <th class="col-md-1">{{'costValue' | translate:translationService.counter}}</th>
   </tr>
   </thead>
   <tbody>
@@ -84,7 +84,7 @@
     <td>{{estimatePosition.costPrice}}</td>
     <td>{{estimatePosition.costValue}}</td>
     <td>
-      <button type="button" class="btn btn-primary" (click)="onEditEstimatePosition(estimatePosition)">Edit</button>
+      <button type="button" class="btn btn-primary" (click)="onEditEstimatePosition(estimatePosition)">{{'edit' | translate:translationService.counter}}</button>
     </td>
   </tr>
   </tbody>

@@ -3,6 +3,7 @@ import {MessageStyler} from '../../utils/message-styler';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {CostCode} from '../model/costcode.model';
 import {CostCodeRepositoryService} from '../repository-service/cost-code-repository.service';
+import {TranslationService} from '../../translation/translation.service';
 
 @Component({
   selector: 'app-costcode-add',
@@ -17,7 +18,8 @@ export class CostCodeAddComponent implements OnInit {
   userMessage;
 
 
-  constructor(private costCodeRepoitoryService: CostCodeRepositoryService) {}
+  constructor(private costCodeRepoitoryService: CostCodeRepositoryService,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
     if (this.isOnEdit) {
