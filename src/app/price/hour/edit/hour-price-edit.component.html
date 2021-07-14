@@ -4,9 +4,8 @@
   <div class="prices">
     <div id="editedPrice">
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="editedWorkCode">Work code</label>
+          <label for="editedWorkCode">{{'workCode' | translate:translationService.counter}}</label>
           <select type="text" id="editedWorkCode" formControlName="editedWorkCode" class="form-control">
             <option>PS</option>
             <option>PX</option>
@@ -16,81 +15,67 @@
             <option>PR</option>
           </select>
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="editedMachine">Machine</label>
+          <label for="editedMachine">{{'machine' | translate:translationService.counter}}</label>
           <select type="text" id="editedMachine" formControlName="editedMachine" class="form-control" [compareWith]="compareIds">
             <option *ngFor="let machine of machines | async" [ngValue]="machine">{{machine.internalId}}</option>
           </select>
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="editedPriceType">Price type</label>
+          <label for="editedPriceType">{{'priceType' | translate:translationService.counter}}</label>
           <select type="text" id="editedPriceType" formControlName="editedPriceType" class="form-control">
-            <option value="ONLY_MACHINE">Machine</option>
-            <option value="WITH_OPERATOR">Machine + operator</option>
-            <option value="WITH_FUEL">Machine + fuel</option>
-            <option value="WITH_OPERATOR_AND_FUEL">Machine + opertor + fuel</option>
-            <option value="OTHER">Other</option>
+            <option value="ONLY_MACHINE">{{'machine' | translate:translationService.counter}}</option>
+            <option value="WITH_OPERATOR">{{'machineWithOperator' | translate:translationService.counter}}</option>
+            <option value="WITH_FUEL">{{'machineWithFuel' | translate:translationService.counter}}</option>
+            <option value="WITH_OPERATOR_AND_FUEL">{{'machineWithOperatorAndFuel' | translate:translationService.counter}}</option>
+            <option value="OTHER">{{'other' | translate:translationService.counter}}</option>
           </select>
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="editedPriceValue">Price</label>
+          <label for="editedPriceValue">{{'price' | translate:translationService.counter}}</label>
           <input type="number" id="editedPriceValue" formControlName="editedPriceValue" class="form-control">
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="editedStartDate">Start date</label>
+          <label for="editedStartDate">{{'startDate' | translate:translationService.counter}}</label>
           <input type="date" id="editedStartDate" formControlName="editedStartDate" class="form-control">
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="editedEndDate">End date</label>
+          <label for="editedEndDate">{{'endDate' | translate:translationService.counter}}</label>
           <input type="date" id="editedEndDate" formControlName="editedEndDate" class="form-control">
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="editedProjectCode">Project code</label>
+          <label for="editedProjectCode">{{'projectCode' | translate:translationService.counter}}</label>
           <select type="text" id="editedProjectCode" formControlName="editedProjectCode" class="form-control">
             <option></option>
             <option *ngFor="let projectCode of projectCodes" [ngValue]="projectCode">{{projectCode}}</option>
           </select>
         </div>
       </div>
-      <!--</div>-->
     </div>
 
 
     <div id="newPrice" *ngIf="isNewPriceShown">
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="newWorkCode">Work code</label>
+          <label for="newWorkCode">{{'workCode' | translate:translationService.counter}}</label>
           <select type="text" id="newWorkCode" formControlName="newWorkCode" class="form-control">
             <option>PS</option>
             <option>PX</option>
@@ -99,66 +84,54 @@
             <option>PZ</option>
           </select>
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="newMachine">Machine</label>
+          <label for="newMachine">{{'machine' | translate:translationService.counter}}</label>
           <select type="text" id="newMachine" formControlName="newMachine" class="form-control" [compareWith]="compareIds">
             <option *ngFor="let machine of machines | async" [ngValue]="machine">{{machine.internalId}}</option>
           </select>
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="newPriceType">Price type</label>
+          <label for="newPriceType">{{'priceType' | translate:translationService.counter}}</label>
           <select type="text" id="newPriceType" formControlName="newPriceType" class="form-control">
-            <option value="ONLY_MACHINE">Machine</option>
-            <option value="WITH_OPERATOR">Machine + operator</option>
-            <option value="WITH_FUEL">Machine + fuel</option>
-            <option value="WITH_OPERATOR_AND_FUEL">Machine + opertor + fuel</option>
-            <option value="OTHER">Other</option>
+            <option value="ONLY_MACHINE">{{'machine' | translate:translationService.counter}}</option>
+            <option value="WITH_OPERATOR">{{'machineWithOperator' | translate:translationService.counter}}</option>
+            <option value="WITH_FUEL">{{'machineWithFuel' | translate:translationService.counter}}</option>
+            <option value="WITH_OPERATOR_AND_FUEL">{{'machineWithOperatorAndFuel' | translate:translationService.counter}}</option>
+            <option value="OTHER">{{'other' | translate:translationService.counter}}</option>
           </select>
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="newPriceValue">Price</label>
+          <label for="newPriceValue">{{'price' | translate:translationService.counter}}</label>
           <input type="number" id="newPriceValue" formControlName="newPriceValue" class="form-control">
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="newStartDate">Start date</label>
+          <label for="newStartDate">{{'startDate' | translate:translationService.counter}}</label>
           <input type="date" id="newStartDate" formControlName="newStartDate" class="form-control">
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="newEndDate">End date</label>
+          <label for="newEndDate">{{'endDate' | translate:translationService.counter}}</label>
           <input type="date" id="newEndDate" formControlName="newEndDate" class="form-control">
         </div>
-        <!--</div>-->
       </div>
 
       <div class="row">
-        <!--<div class="col-xs-2">-->
         <div class="form-group">
-          <label for="newProjectCode">Project code</label>
+          <label for="newProjectCode">{{'projectCode' | translate:translationService.counter}}</label>
           <select type="text" id="newProjectCode" formControlName="newProjectCode" class="form-control">
             <option></option>
             <option *ngFor="let projectCode of projectCodes" [ngValue]="projectCode">{{projectCode}}</option>
@@ -168,7 +141,7 @@
 
       <div class="row" *ngIf="isNewPriceShown">
         <div class="col-xs-1">
-          <button type="button" class="btn btn-success" [disabled]="!priceEditForm.valid" (click)="onCheckAndSavePrice()">Check and save prices</button>
+          <button type="button" class="btn btn-success" [disabled]="!priceEditForm.valid" (click)="onCheckAndSavePrice()">{{'checkAndSavePrices' | translate:translationService.counter}}</button>
         </div>
       </div>
     </div>
@@ -176,20 +149,10 @@
   </div>
 
 
-  <!--</div>-->
-
-
   <div class="row">
-    <!--<div class="col-xs-2">-->
-    <button type="submit" class="btn btn-success" [disabled]="isNewPriceShown">Update</button>
-    <!--</div>-->
-
-    <!--<div class="col-xs-2">-->
-    <button id="addNewPriceButton" type="button" class="btn btn-primary" (click)="onAddNewPrice()">{{isNewPriceShown ? 'Hide' : 'Add new price'}}</button>
-    <!--</div>-->
+    <button type="submit" class="btn btn-success" [disabled]="isNewPriceShown">{{'update' | translate:translationService.counter}}</button>
+    <button id="addNewPriceButton" type="button" class="btn btn-primary" (click)="onAddNewPrice()">{{isNewPriceShown ? ('hide' | translate:translationService.counter) : ('addNewPrice' | translate:translationService.counter)}}</button>
   </div>
-
-  <!--<br>-->
 
 
 </form>

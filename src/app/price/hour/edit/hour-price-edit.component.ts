@@ -11,6 +11,7 @@ import {MachineRepositoryService} from '../../../machine/repository-service/mach
 import {CostCode} from '../../../costcode/model/costcode.model';
 import {CostCodeRepositoryService} from '../../../costcode/repository-service/cost-code-repository.service';
 import {DoubleHourPrice} from '../model/double-hour-price.model';
+import {TranslationService} from '../../../translation/translation.service';
 
 @Component({
   selector: 'app-hour-price-edit',
@@ -25,7 +26,6 @@ export class HourPriceEditComponent implements OnInit {
   isError = false;
   messageStyler = MessageStyler;
   machines = new BehaviorSubject<Machine[]>([]);
-  // machineInternalIds = [];
   costCodes = new BehaviorSubject<CostCode[]>([]);
   projectCodes = new Set();
   isNewPriceShown = false;
@@ -33,7 +33,8 @@ export class HourPriceEditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private hourPriceRepositoryService: HourPriceRepositoryService,
               private machineRepositoryService: MachineRepositoryService,
-              private costCodeRepositoryService: CostCodeRepositoryService) {
+              private costCodeRepositoryService: CostCodeRepositoryService,
+              public translationService: TranslationService) {
   }
 
   ngOnInit(): void {

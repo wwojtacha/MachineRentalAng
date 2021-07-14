@@ -1,17 +1,14 @@
 table, #message {
-  margin-left: 5%;
-  margin-right: 5%;
-  max-width: 90%;
+  margin-left: 2%;
+  max-width: 95%;
 }
 
 form {
-  margin-left: 5%;
+  margin-left: 4%;
+  margin-right: 5%;
 
 }
-button {
-  margin-left: 5%;
-}
 
-form :nth-child(2) {
-  margin-left: -0.4%;
+#add-button {
+  margin-left: 5%;
 }

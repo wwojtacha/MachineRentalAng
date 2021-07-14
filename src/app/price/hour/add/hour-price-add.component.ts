@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MessageStyler} from '../../../utils/message-styler';
 import {HourPriceRepositoryService} from '../repository-service/hour-price-repository.service';
+import {TranslationService} from '../../../translation/translation.service';
 
 @Component({
   selector: 'app-hour-price-add',
@@ -15,7 +16,9 @@ export class HourPriceAddComponent implements OnInit {
   isError = false;
   messageStyler = MessageStyler;
 
-  constructor(private hourPriceRepositoryService: HourPriceRepositoryService, private formBuilder: FormBuilder) {}
+  constructor(private hourPriceRepositoryService: HourPriceRepositoryService,
+              private formBuilder: FormBuilder,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
     this.priceAddForm = this.formBuilder.group({

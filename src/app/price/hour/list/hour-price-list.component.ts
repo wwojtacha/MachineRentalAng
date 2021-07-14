@@ -9,6 +9,7 @@ import {HourPriceRepositoryService} from '../repository-service/hour-price-repos
 import {ConfirmationDialogComponent} from '../../../confirmation-dialog/confirmation-dialog.component';
 import {ErrorDialogComponent} from '../../../error-dialog/error-dialog.component';
 import {MatDialog} from '@angular/material';
+import {TranslationService} from '../../../translation/translation.service' ;
 @Component({
   selector: 'app-hour-price-list',
   templateUrl: './hour-price-list.component.html',
@@ -18,12 +19,12 @@ export class HourPriceListComponent implements OnInit {
   prices = new BehaviorSubject<HourPrice[]>([]);
   hourPriceListForm: FormGroup;
   userMessage;
-  // isError = false;
   messageStyler = MessageStyler;
 
   constructor(private hourPriceRepositoryService: HourPriceRepositoryService,
               private router: Router,
-              public dialog: MatDialog) {}
+              public dialog: MatDialog,
+              public translationService: TranslationService) {}
 
   ngOnInit(): void {
 
