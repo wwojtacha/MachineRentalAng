@@ -1,5 +1,10 @@
 <div class="container-fluid login-message form-group">
 
+  <div>
+    <img src="assets/images/logo_dekpol.png" class="img-fluid" alt="Company logo">
+    <p id="title">EarthWorksApp</p>
+  </div>
+
   <div class="row">
     <div class="col-md-12" *ngIf="currentUser">
       <h4>{{'loggedAs' | translate:translationService.counter}} {{currentUser.username}}</h4>
